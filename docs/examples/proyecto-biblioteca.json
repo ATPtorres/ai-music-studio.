@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "id": "b2c80b9c-c82a-4452-a24d-947eb7a756f8",
+  "name": "Biblioteca creativa — regreso con otro color",
+  "createdAt": "2026-10-18T17:46:00.474Z",
+  "updatedAt": "2026-10-18T17:46:00.474Z",
+  "parameters": {
+    "key": "C",
+    "mode": "major",
+    "bpm": 100,
+    "timeSignature": [
+      4,
+      4
+    ],
+    "genre": "Indie pop",
+    "mood": "Nostálgico",
+    "complexity": "intermediate",
+    "instruments": [
+      "Piano",
+      "Bajo",
+      "Batería"
+    ],
+    "references": "",
+    "theme": "Volver a casa y descubrir que ahora la vemos de otra manera.",
+    "targetSeconds": 180
+  },
+  "tracks": [
+    {
+      "id": "a4eb6b12-178b-472e-8d4b-11445bd8884e",
+      "name": "Acordes · Biblioteca",
+      "kind": "chords",
+      "channel": 0,
+      "muted": false,
+      "volume": 0.7,
+      "chords": [
+        {
+          "id": "74bde01b-3d50-4c9e-9af6-ae0d83934027",
+          "symbol": "Cmaj9",
+          "degree": "Imaj9",
+          "start": 0,
+          "duration": 4,
+          "pitches": [
+            48,
+            52,
+            55,
+            59,
+            62
+          ]
+        },
+        {
+          "id": "8e3d5c53-a685-4a0f-8324-93cc841d9225",
+          "symbol": "Fmaj9",
+          "degree": "IVmaj9",
+          "start": 4,
+          "duration": 4,
+          "pitches": [
+            52,
+            53,
+            55,
+            57,
+            60
+          ]
+        },
+        {
+          "id": "50adcfd0-3d35-432b-bc9d-8ef5b8866a79",
+          "symbol": "Fm9",
+          "degree": "iv9 (p)",
+          "start": 8,
+          "duration": 4,
+          "pitches": [
+            51,
+            53,
+            55,
+            56,
+            60
+          ]
+        },
+        {
+          "id": "bfc5be68-026b-4cdf-b2a1-4f30a07dac3d",
+          "symbol": "Cmaj9",
+          "degree": "Imaj9",
+          "start": 12,
+          "duration": 4,
+          "pitches": [
+            48,
+            52,
+            55,
+            59,
+            62
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "pitch": 48,
+          "start": 0,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 52,
+          "start": 0,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 55,
+          "start": 0,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 59,
+          "start": 0,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 62,
+          "start": 0,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 52,
+          "start": 4,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 53,
+          "start": 4,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 55,
+          "start": 4,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 57,
+          "start": 4,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 60,
+          "start": 4,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 51,
+          "start": 8,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 53,
+          "start": 8,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 55,
+          "start": 8,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 56,
+          "start": 8,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 60,
+          "start": 8,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 48,
+          "start": 12,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 52,
+          "start": 12,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 55,
+          "start": 12,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 59,
+          "start": 12,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 62,
+          "start": 12,
+          "duration": 4,
+          "velocity": 88
+        }
+      ],
+      "harmonyKnowledge": {
+        "libraryVersion": 1,
+        "recipeId": "major-minor-four",
+        "controls": {
+          "exploration": 35,
+          "tension": 40,
+          "movement": 50,
+          "color": "borrowed",
+          "voiceLeading": true
+        },
+        "seed": 20261018,
+        "edited": false,
+        "pinned": true
+      }
+    }
+  ],
+  "sections": []
+}

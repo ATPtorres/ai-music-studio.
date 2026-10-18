@@ -1,0 +1,2154 @@
+{
+  "version": 1,
+  "title": "Biblioteca musical y creativa",
+  "sources": [
+    {
+      "id": "project-original",
+      "name": "AI Music Studio — contenido original del proyecto",
+      "rights": "Redacción, ejercicios y recetas preparados para este proyecto. Sin transcripción de canciones ni extractos de otras obras. La licencia de distribución del proyecto corresponde a su propietario; no se impone una licencia externa.",
+      "references": [
+        "https://viva.pressbooks.pub/openmusictheory/chapter/modal-mixture/",
+        "https://viva.pressbooks.pub/openmusictheory/chapter/tonicization/",
+        "https://viva.pressbooks.pub/openmusictheory/part/jazz/"
+      ]
+    }
+  ],
+  "recipes": [
+    {
+      "id": "major-home",
+      "title": "Casa abierta",
+      "mode": "major",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 4
+        },
+        {
+          "kind": "diatonic",
+          "degree": 0
+        }
+      ],
+      "genres": [
+        "pop",
+        "rock",
+        "latin"
+      ],
+      "emotions": [
+        "alegre",
+        "energico"
+      ],
+      "novelty": 10,
+      "tension": 25,
+      "movement": 65,
+      "minComplexity": "simple",
+      "explanation": "La subdominante prepara la dominante y el regreso a la tónica.",
+      "practice": "Prueba un verso tranquilo y aumenta la actividad al llegar a V.",
+      "tags": [
+        "major",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "major-pop-arc",
+      "title": "Arco luminoso",
+      "mode": "major",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 4
+        },
+        {
+          "kind": "diatonic",
+          "degree": 5
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        }
+      ],
+      "genres": [
+        "pop",
+        "electronic",
+        "urban"
+      ],
+      "emotions": [
+        "alegre",
+        "nostalgico"
+      ],
+      "novelty": 15,
+      "tension": 45,
+      "movement": 75,
+      "minComplexity": "simple",
+      "explanation": "La relativa menor introduce contraste dentro de una vuelta reconocible.",
+      "practice": "Conserva el ritmo y desplaza el acento melódico al tercer acorde.",
+      "tags": [
+        "major",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "major-relative",
+      "title": "Primero la sombra",
+      "mode": "major",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 5
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 4
+        }
+      ],
+      "genres": [
+        "pop",
+        "urban"
+      ],
+      "emotions": [
+        "nostalgico",
+        "melancolico"
+      ],
+      "novelty": 20,
+      "tension": 45,
+      "movement": 75,
+      "minComplexity": "simple",
+      "explanation": "Comenzar en vi cambia el punto de vista sin abandonar la tonalidad mayor.",
+      "practice": "Contrasta esta vuelta con una sección que empiece en I.",
+      "tags": [
+        "major",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "major-plagal",
+      "title": "Respirar en casa",
+      "mode": "major",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        }
+      ],
+      "genres": [
+        "pop",
+        "rock"
+      ],
+      "emotions": [
+        "sereno"
+      ],
+      "novelty": 10,
+      "tension": 10,
+      "movement": 20,
+      "minComplexity": "simple",
+      "explanation": "Alternar tónica y subdominante deja espacio a la melodía.",
+      "practice": "Prueba notas largas y silencios antes de añadir más armonía.",
+      "tags": [
+        "major",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "major-pedal",
+      "title": "Un horizonte fijo",
+      "mode": "major",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 0
+        }
+      ],
+      "genres": [
+        "pop",
+        "electronic"
+      ],
+      "emotions": [
+        "sereno",
+        "nostalgico"
+      ],
+      "novelty": 15,
+      "tension": 10,
+      "movement": 10,
+      "minComplexity": "simple",
+      "explanation": "La permanencia de la tónica crea un fondo estable con una salida breve.",
+      "practice": "Varía la instrumentación antes de cambiar de acorde.",
+      "tags": [
+        "major",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "major-descending",
+      "title": "Descenso cercano",
+      "mode": "major",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 6
+        },
+        {
+          "kind": "diatonic",
+          "degree": 5
+        },
+        {
+          "kind": "diatonic",
+          "degree": 4
+        }
+      ],
+      "genres": [
+        "jazz",
+        "pop"
+      ],
+      "emotions": [
+        "melancolico"
+      ],
+      "novelty": 60,
+      "tension": 65,
+      "movement": 45,
+      "minComplexity": "intermediate",
+      "explanation": "Las raíces bajan por grados y pasan por el acorde de sensible.",
+      "practice": "Escucha el acorde disminuido como tensión de paso y evita sostenerlo por inercia.",
+      "tags": [
+        "major",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "major-circle",
+      "title": "Un giro funcional",
+      "mode": "major",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 5
+        },
+        {
+          "kind": "diatonic",
+          "degree": 1
+        },
+        {
+          "kind": "diatonic",
+          "degree": 4
+        }
+      ],
+      "genres": [
+        "jazz",
+        "pop",
+        "latin"
+      ],
+      "emotions": [
+        "alegre"
+      ],
+      "novelty": 30,
+      "tension": 55,
+      "movement": 85,
+      "minComplexity": "simple",
+      "explanation": "La llegada a ii y V organiza una vuelta con dirección funcional.",
+      "practice": "Usa séptimas y compara el cierre al repetir I.",
+      "tags": [
+        "major",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "major-jazz-turn",
+      "title": "Conversación ii–V",
+      "mode": "major",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 1
+        },
+        {
+          "kind": "diatonic",
+          "degree": 4
+        },
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 5
+        }
+      ],
+      "genres": [
+        "jazz",
+        "rnb"
+      ],
+      "emotions": [
+        "sereno",
+        "nostalgico"
+      ],
+      "novelty": 30,
+      "tension": 50,
+      "movement": 80,
+      "minComplexity": "simple",
+      "explanation": "ii–V conduce a I y vi vuelve a abrir la frase.",
+      "practice": "Deja una nota común en la voz superior cuando los acordes lo permitan.",
+      "tags": [
+        "major",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "major-deceptive",
+      "title": "Una llegada aplazada",
+      "mode": "major",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 4
+        },
+        {
+          "kind": "diatonic",
+          "degree": 5
+        }
+      ],
+      "genres": [
+        "pop",
+        "rock"
+      ],
+      "emotions": [
+        "nostalgico"
+      ],
+      "novelty": 40,
+      "tension": 60,
+      "movement": 70,
+      "minComplexity": "simple",
+      "explanation": "Después de V, vi ofrece una llegada distinta de la tónica.",
+      "practice": "Reserva el regreso a I para una segunda frase.",
+      "tags": [
+        "major",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "major-mediant",
+      "title": "Luz oblicua",
+      "mode": "major",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 2
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 4
+        }
+      ],
+      "genres": [
+        "pop",
+        "rnb"
+      ],
+      "emotions": [
+        "nostalgico",
+        "sereno"
+      ],
+      "novelty": 40,
+      "tension": 45,
+      "movement": 55,
+      "minComplexity": "simple",
+      "explanation": "iii comparte notas con I y permite un cambio de color moderado.",
+      "practice": "Prueba el mismo motivo sobre I y iii antes de desarrollarlo.",
+      "tags": [
+        "major",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "major-open",
+      "title": "Pregunta suspendida",
+      "mode": "major",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 1
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 4
+        }
+      ],
+      "genres": [
+        "pop",
+        "latin"
+      ],
+      "emotions": [
+        "energico"
+      ],
+      "novelty": 35,
+      "tension": 65,
+      "movement": 60,
+      "minComplexity": "simple",
+      "explanation": "La frase termina en la dominante y deja una pregunta abierta.",
+      "practice": "Usa esta vuelta antes de una sección que empiece en I.",
+      "tags": [
+        "major",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "major-breath",
+      "title": "Regreso en dos pasos",
+      "mode": "major",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 5
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 0
+        }
+      ],
+      "genres": [
+        "pop",
+        "rnb"
+      ],
+      "emotions": [
+        "sereno"
+      ],
+      "novelty": 20,
+      "tension": 25,
+      "movement": 60,
+      "minComplexity": "simple",
+      "explanation": "La relativa menor y IV rodean una llegada tranquila a I.",
+      "practice": "Deja el último acorde más largo si quieres un cierre relajado.",
+      "tags": [
+        "major",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "major-minor-four",
+      "title": "La subdominante se oscurece",
+      "mode": "major",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "borrowed",
+          "degree": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 0
+        }
+      ],
+      "genres": [
+        "pop",
+        "rock",
+        "rnb"
+      ],
+      "emotions": [
+        "nostalgico",
+        "melancolico"
+      ],
+      "novelty": 65,
+      "tension": 60,
+      "movement": 40,
+      "minComplexity": "intermediate",
+      "explanation": "El iv prestado del menor paralelo añade una tercera descendida antes de I.",
+      "practice": "Escucha la nota cromática; no obligues a la melodía a usar solo la escala mayor.",
+      "tags": [
+        "major",
+        "prestamo",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "major-flat-six",
+      "title": "Una puerta lateral",
+      "mode": "major",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "borrowed",
+          "degree": 5
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 4
+        }
+      ],
+      "genres": [
+        "rock",
+        "electronic"
+      ],
+      "emotions": [
+        "energico"
+      ],
+      "novelty": 80,
+      "tension": 75,
+      "movement": 80,
+      "minComplexity": "advanced",
+      "explanation": "El VI del menor paralelo aporta una raíz descendida y un contraste claro.",
+      "practice": "Compara una melodía apoyada en notas de cada acorde frente a una frase fija.",
+      "tags": [
+        "major",
+        "prestamo",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "major-flat-seven",
+      "title": "Color de séptimo descendido",
+      "mode": "major",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "borrowed",
+          "degree": 6
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 0
+        }
+      ],
+      "genres": [
+        "rock",
+        "latin"
+      ],
+      "emotions": [
+        "energico",
+        "alegre"
+      ],
+      "novelty": 60,
+      "tension": 45,
+      "movement": 75,
+      "minComplexity": "intermediate",
+      "explanation": "El VII del menor paralelo evita la sensible de la escala mayor.",
+      "practice": "Prueba un ritmo constante para que el color armónico sea el cambio principal.",
+      "tags": [
+        "major",
+        "prestamo",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "major-borrowed-arc",
+      "title": "Sombra y regreso",
+      "mode": "major",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "borrowed",
+          "degree": 2
+        },
+        {
+          "kind": "borrowed",
+          "degree": 5
+        },
+        {
+          "kind": "diatonic",
+          "degree": 4
+        }
+      ],
+      "genres": [
+        "rock",
+        "electronic"
+      ],
+      "emotions": [
+        "melancolico",
+        "energico"
+      ],
+      "novelty": 90,
+      "tension": 85,
+      "movement": 90,
+      "minComplexity": "advanced",
+      "explanation": "Dos acordes del menor paralelo amplían el contraste antes de la dominante.",
+      "practice": "Usa el contraste en una sección breve y comprueba las notas cromáticas por acorde.",
+      "tags": [
+        "major",
+        "prestamo",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "major-applied-five",
+      "title": "Preparar la dominante",
+      "mode": "major",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 1
+        },
+        {
+          "kind": "secondary",
+          "target": 4
+        },
+        {
+          "kind": "diatonic",
+          "degree": 4
+        }
+      ],
+      "genres": [
+        "jazz",
+        "latin",
+        "pop"
+      ],
+      "emotions": [
+        "energico"
+      ],
+      "novelty": 60,
+      "tension": 85,
+      "movement": 75,
+      "minComplexity": "intermediate",
+      "explanation": "Una dominante aplicada refuerza la llegada a V.",
+      "practice": "La nota cromática debe escucharse en relación con su acorde objetivo.",
+      "tags": [
+        "major",
+        "dominante-aplicada",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "major-applied-two",
+      "title": "Una curva hacia ii",
+      "mode": "major",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "secondary",
+          "target": 1
+        },
+        {
+          "kind": "diatonic",
+          "degree": 1
+        },
+        {
+          "kind": "diatonic",
+          "degree": 4
+        }
+      ],
+      "genres": [
+        "jazz",
+        "rnb"
+      ],
+      "emotions": [
+        "nostalgico"
+      ],
+      "novelty": 70,
+      "tension": 80,
+      "movement": 85,
+      "minComplexity": "intermediate",
+      "explanation": "La dominante de ii introduce una tensión local antes de ii–V.",
+      "practice": "Prueba séptimas para distinguir mejor la dominante aplicada.",
+      "tags": [
+        "major",
+        "dominante-aplicada",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "minor-natural",
+      "title": "Camino menor",
+      "mode": "minor",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 5
+        },
+        {
+          "kind": "diatonic",
+          "degree": 2
+        },
+        {
+          "kind": "diatonic",
+          "degree": 6
+        }
+      ],
+      "genres": [
+        "pop",
+        "urban",
+        "rock"
+      ],
+      "emotions": [
+        "melancolico",
+        "nostalgico"
+      ],
+      "novelty": 15,
+      "tension": 45,
+      "movement": 80,
+      "minComplexity": "simple",
+      "explanation": "La vuelta recorre acordes del menor natural sin elevar la sensible.",
+      "practice": "Cambia el registro antes de aumentar la densidad de notas.",
+      "tags": [
+        "minor",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "minor-descent",
+      "title": "Escalones descendentes",
+      "mode": "minor",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 6
+        },
+        {
+          "kind": "diatonic",
+          "degree": 5
+        },
+        {
+          "kind": "diatonic",
+          "degree": 6
+        }
+      ],
+      "genres": [
+        "pop",
+        "urban",
+        "electronic"
+      ],
+      "emotions": [
+        "melancolico"
+      ],
+      "novelty": 20,
+      "tension": 50,
+      "movement": 45,
+      "minComplexity": "simple",
+      "explanation": "El descenso de raíces crea continuidad entre i, VII y VI.",
+      "practice": "Prueba una melodía que suba mientras las raíces bajan.",
+      "tags": [
+        "minor",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "minor-plagal",
+      "title": "Refugio menor",
+      "mode": "minor",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        }
+      ],
+      "genres": [
+        "pop",
+        "rnb"
+      ],
+      "emotions": [
+        "sereno"
+      ],
+      "novelty": 10,
+      "tension": 20,
+      "movement": 25,
+      "minComplexity": "simple",
+      "explanation": "La alternancia i–iv mantiene el carácter menor con poco movimiento.",
+      "practice": "Haz que el contraste aparezca en los silencios y la articulación.",
+      "tags": [
+        "minor",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "minor-pedal",
+      "title": "Permanecer y volver",
+      "mode": "minor",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 5
+        },
+        {
+          "kind": "diatonic",
+          "degree": 0
+        }
+      ],
+      "genres": [
+        "electronic",
+        "urban"
+      ],
+      "emotions": [
+        "sereno",
+        "nostalgico"
+      ],
+      "novelty": 15,
+      "tension": 20,
+      "movement": 15,
+      "minComplexity": "simple",
+      "explanation": "Una tónica prolongada deja que VI funcione como una breve ventana de color.",
+      "practice": "Introduce una variación del motivo en lugar de otro acorde.",
+      "tags": [
+        "minor",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "minor-rise",
+      "title": "Ascenso hacia VII",
+      "mode": "minor",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 5
+        },
+        {
+          "kind": "diatonic",
+          "degree": 6
+        }
+      ],
+      "genres": [
+        "rock",
+        "latin"
+      ],
+      "emotions": [
+        "energico"
+      ],
+      "novelty": 25,
+      "tension": 65,
+      "movement": 65,
+      "minComplexity": "simple",
+      "explanation": "Las raíces se alejan gradualmente de i antes de reiniciar la vuelta.",
+      "practice": "Aumenta la actividad rítmica al final de la frase.",
+      "tags": [
+        "minor",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "minor-relative",
+      "title": "Un claro en el menor",
+      "mode": "minor",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 2
+        },
+        {
+          "kind": "diatonic",
+          "degree": 5
+        },
+        {
+          "kind": "diatonic",
+          "degree": 6
+        }
+      ],
+      "genres": [
+        "pop",
+        "urban"
+      ],
+      "emotions": [
+        "nostalgico"
+      ],
+      "novelty": 25,
+      "tension": 45,
+      "movement": 65,
+      "minComplexity": "simple",
+      "explanation": "III permite un contraste de claridad dentro del menor natural.",
+      "practice": "Usa el mismo contorno melódico con otro punto de llegada.",
+      "tags": [
+        "minor",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "minor-functional",
+      "title": "Trayecto hacia v",
+      "mode": "minor",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 5
+        },
+        {
+          "kind": "diatonic",
+          "degree": 1
+        },
+        {
+          "kind": "diatonic",
+          "degree": 4
+        }
+      ],
+      "genres": [
+        "jazz",
+        "rnb"
+      ],
+      "emotions": [
+        "melancolico"
+      ],
+      "novelty": 55,
+      "tension": 70,
+      "movement": 85,
+      "minComplexity": "intermediate",
+      "explanation": "El acorde disminuido de ii añade inestabilidad antes del v menor.",
+      "practice": "Compara el v menor con una versión de V mayor cuando permitas color cromático.",
+      "tags": [
+        "minor",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "minor-mediants",
+      "title": "Parentesco de terceras",
+      "mode": "minor",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 5
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 2
+        }
+      ],
+      "genres": [
+        "pop",
+        "rnb"
+      ],
+      "emotions": [
+        "sereno",
+        "nostalgico"
+      ],
+      "novelty": 45,
+      "tension": 40,
+      "movement": 75,
+      "minComplexity": "simple",
+      "explanation": "Los acordes comparten varias notas y permiten una melodía contenida.",
+      "practice": "Activa conducción de voces y escucha los cambios de una sola nota.",
+      "tags": [
+        "minor",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "minor-question",
+      "title": "Pregunta en menor",
+      "mode": "minor",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 6
+        },
+        {
+          "kind": "diatonic",
+          "degree": 4
+        }
+      ],
+      "genres": [
+        "rock",
+        "latin"
+      ],
+      "emotions": [
+        "melancolico"
+      ],
+      "novelty": 35,
+      "tension": 70,
+      "movement": 75,
+      "minComplexity": "simple",
+      "explanation": "La llegada al v menor mantiene una apertura menos incisiva que V mayor.",
+      "practice": "Deja la respuesta melódica para la vuelta siguiente.",
+      "tags": [
+        "minor",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "minor-soft",
+      "title": "Una vuelta recogida",
+      "mode": "minor",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 5
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 0
+        }
+      ],
+      "genres": [
+        "pop",
+        "rnb"
+      ],
+      "emotions": [
+        "sereno"
+      ],
+      "novelty": 20,
+      "tension": 25,
+      "movement": 65,
+      "minComplexity": "simple",
+      "explanation": "VI e iv rodean una llegada clara al acorde menor de tónica.",
+      "practice": "Sostén el último acorde y reduce la densidad para cerrar.",
+      "tags": [
+        "minor",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "minor-bright-four",
+      "title": "Una cuarta luminosa",
+      "mode": "minor",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "borrowed",
+          "degree": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 6
+        },
+        {
+          "kind": "diatonic",
+          "degree": 0
+        }
+      ],
+      "genres": [
+        "rock",
+        "rnb"
+      ],
+      "emotions": [
+        "alegre",
+        "nostalgico"
+      ],
+      "novelty": 65,
+      "tension": 45,
+      "movement": 70,
+      "minComplexity": "intermediate",
+      "explanation": "IV mayor del paralelo introduce una sexta elevada en el contexto menor.",
+      "practice": "Identifica esa sexta en el acorde sin cambiar toda la pieza a mayor.",
+      "tags": [
+        "minor",
+        "prestamo",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "minor-major-five",
+      "title": "Dominante con sensible",
+      "mode": "minor",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "borrowed",
+          "degree": 4
+        },
+        {
+          "kind": "diatonic",
+          "degree": 0
+        }
+      ],
+      "genres": [
+        "latin",
+        "pop"
+      ],
+      "emotions": [
+        "melancolico",
+        "energico"
+      ],
+      "novelty": 55,
+      "tension": 80,
+      "movement": 75,
+      "minComplexity": "intermediate",
+      "explanation": "V mayor introduce la sensible que conduce con fuerza hacia i.",
+      "practice": "Trata la sensible como nota de ese acorde y resuélvela con intención.",
+      "tags": [
+        "minor",
+        "prestamo",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "minor-lift",
+      "title": "Contraste y tensión",
+      "mode": "minor",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "borrowed",
+          "degree": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 5
+        },
+        {
+          "kind": "borrowed",
+          "degree": 4
+        }
+      ],
+      "genres": [
+        "rock",
+        "electronic"
+      ],
+      "emotions": [
+        "energico"
+      ],
+      "novelty": 80,
+      "tension": 85,
+      "movement": 80,
+      "minComplexity": "advanced",
+      "explanation": "IV mayor y V mayor abren dos zonas cromáticas antes de volver a i.",
+      "practice": "Usa esta vuelta como contraste de una sección de menor natural.",
+      "tags": [
+        "minor",
+        "prestamo",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "minor-major-tonic",
+      "title": "Una llegada iluminada",
+      "mode": "minor",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "borrowed",
+          "degree": 4
+        },
+        {
+          "kind": "borrowed",
+          "degree": 0
+        }
+      ],
+      "genres": [
+        "pop",
+        "latin"
+      ],
+      "emotions": [
+        "nostalgico"
+      ],
+      "novelty": 90,
+      "tension": 65,
+      "movement": 70,
+      "minComplexity": "advanced",
+      "explanation": "La tónica mayor prestada cambia el color del final de la frase.",
+      "practice": "Comprueba si la tercera mayor expresa el cierre que quieres; no es una mejora automática.",
+      "tags": [
+        "minor",
+        "prestamo",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "minor-applied-four",
+      "title": "Visita a la subdominante",
+      "mode": "minor",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "secondary",
+          "target": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "borrowed",
+          "degree": 4
+        }
+      ],
+      "genres": [
+        "jazz",
+        "latin"
+      ],
+      "emotions": [
+        "melancolico"
+      ],
+      "novelty": 75,
+      "tension": 90,
+      "movement": 85,
+      "minComplexity": "advanced",
+      "explanation": "La dominante de iv refuerza esa llegada y V mayor vuelve a orientar hacia i.",
+      "practice": "Distingue las dos sensibles locales al construir una melodía.",
+      "tags": [
+        "minor",
+        "prestamo",
+        "dominante-aplicada",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "minor-applied-three",
+      "title": "Llegada al relativo",
+      "mode": "minor",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "secondary",
+          "target": 2
+        },
+        {
+          "kind": "diatonic",
+          "degree": 2
+        },
+        {
+          "kind": "diatonic",
+          "degree": 6
+        }
+      ],
+      "genres": [
+        "jazz",
+        "pop"
+      ],
+      "emotions": [
+        "nostalgico"
+      ],
+      "novelty": 65,
+      "tension": 70,
+      "movement": 80,
+      "minComplexity": "intermediate",
+      "explanation": "La dominante de III acentúa por un momento el relativo mayor.",
+      "practice": "Haz que una nota de la frase encuentre apoyo al llegar a III.",
+      "tags": [
+        "minor",
+        "dominante-aplicada",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "minor-applied-six",
+      "title": "Un rodeo hacia VI",
+      "mode": "minor",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "secondary",
+          "target": 5
+        },
+        {
+          "kind": "diatonic",
+          "degree": 5
+        },
+        {
+          "kind": "diatonic",
+          "degree": 4
+        }
+      ],
+      "genres": [
+        "jazz",
+        "rnb"
+      ],
+      "emotions": [
+        "melancolico"
+      ],
+      "novelty": 75,
+      "tension": 75,
+      "movement": 90,
+      "minComplexity": "advanced",
+      "explanation": "La dominante aplicada da más peso a VI antes del v menor.",
+      "practice": "Deja espacio al acorde objetivo para que la tensión no parezca gratuita.",
+      "tags": [
+        "minor",
+        "dominante-aplicada",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "minor-six-step",
+      "title": "Una frase que se desarrolla",
+      "mode": "minor",
+      "steps": [
+        {
+          "kind": "diatonic",
+          "degree": 0
+        },
+        {
+          "kind": "diatonic",
+          "degree": 3
+        },
+        {
+          "kind": "diatonic",
+          "degree": 6
+        },
+        {
+          "kind": "diatonic",
+          "degree": 2
+        },
+        {
+          "kind": "diatonic",
+          "degree": 5
+        },
+        {
+          "kind": "diatonic",
+          "degree": 4
+        }
+      ],
+      "genres": [
+        "jazz",
+        "latin"
+      ],
+      "emotions": [
+        "nostalgico"
+      ],
+      "novelty": 55,
+      "tension": 60,
+      "movement": 95,
+      "minComplexity": "intermediate",
+      "explanation": "Una receta de seis acordes evita limitar toda idea a una vuelta de cuatro.",
+      "practice": "Prueba ocho compases y escucha cómo cambia la continuidad al reiniciar.",
+      "tags": [
+        "minor",
+        "progresion"
+      ],
+      "sourceId": "project-original"
+    }
+  ],
+  "resources": [
+    {
+      "id": "voice-leading",
+      "category": "harmony",
+      "title": "Menos saltos, más continuidad",
+      "explanation": "Buscar notas comunes e inversiones puede suavizar el enlace entre acordes.",
+      "practice": "Compara la misma progresión con conducción de voces activada y desactivada.",
+      "example": "C–G: una inversión de G puede acercar las voces al acorde de C.",
+      "conditions": [
+        "Armonía con más de un acorde."
+      ],
+      "tags": [
+        "voces",
+        "inversiones"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "harmonic-context",
+      "category": "harmony",
+      "title": "La escala no lo explica todo",
+      "explanation": "Un acorde cromático puede necesitar notas que no están en la escala global.",
+      "practice": "Apoya los momentos importantes en notas del acorde que está sonando.",
+      "example": "En C mayor, Fm contiene Ab.",
+      "conditions": [
+        "Al permitir préstamos o dominantes aplicadas."
+      ],
+      "tags": [
+        "cromatismo",
+        "compatibilidad"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "motif",
+      "category": "melody",
+      "title": "Un motivo que se recuerda",
+      "explanation": "Una célula breve permite reconocer una frase aunque cambie su entorno.",
+      "practice": "Escribe tres o cuatro ataques y repítelos antes de transformarlos.",
+      "example": "Dos notas cortas y una larga.",
+      "conditions": [
+        "Antes de aumentar el número de notas."
+      ],
+      "tags": [
+        "motivo",
+        "repeticion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "contour",
+      "category": "melody",
+      "title": "Dirección de una frase",
+      "explanation": "El recorrido de alturas ayuda a dar forma a una idea.",
+      "practice": "Dibuja un arco que suba, alcance un punto y vuelva a bajar.",
+      "example": "Tres notas ascendentes seguidas de un descenso.",
+      "conditions": [
+        "Dentro del registro de la voz o instrumento."
+      ],
+      "tags": [
+        "contorno",
+        "registro"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "sequence",
+      "category": "melody",
+      "title": "Secuenciar un motivo",
+      "explanation": "Trasladar una célula a otras alturas conserva un parentesco reconocible.",
+      "practice": "Repite el ritmo y ajusta sus alturas al siguiente acorde.",
+      "example": "Un motivo sobre I y una respuesta sobre vi.",
+      "conditions": [
+        "Revisar la compatibilidad con cada acorde."
+      ],
+      "tags": [
+        "secuencia",
+        "desarrollo"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "space",
+      "category": "melody",
+      "title": "El silencio también forma",
+      "explanation": "Las pausas separan gestos y dejan respirar a la frase.",
+      "practice": "Retira un ataque antes de añadir una nota nueva.",
+      "example": "Una respuesta que empieza después de media negra de silencio.",
+      "conditions": [
+        "Cuando la línea se siente demasiado densa."
+      ],
+      "tags": [
+        "silencio",
+        "cantabilidad"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "resolution",
+      "category": "melody",
+      "title": "Tensión y punto de llegada",
+      "explanation": "La sensación de apoyo depende del acorde y de la posición de la nota.",
+      "practice": "Elige una nota de acorde como destino y construye el recorrido hacia ella.",
+      "example": "Una nota vecina que vuelve a una nota del acorde.",
+      "conditions": [
+        "Evitar convertir toda nota de paso en un acento fuerte."
+      ],
+      "tags": [
+        "resolucion",
+        "frase"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "syncopation",
+      "category": "rhythm",
+      "title": "Desplazar el acento",
+      "explanation": "Un ataque fuera de un apoyo esperado puede impulsar el ritmo.",
+      "practice": "Mueve un ataque y conserva los demás para escuchar su efecto.",
+      "example": "Anticipar una nota una corchea antes del siguiente apoyo.",
+      "conditions": [
+        "Mantener una referencia de pulso clara."
+      ],
+      "tags": [
+        "sincopa",
+        "acento"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "rhythmic-contrast",
+      "category": "rhythm",
+      "title": "Contraste de densidad",
+      "explanation": "Dos secciones pueden diferenciarse sin cambiar de tempo.",
+      "practice": "Combina una frase espaciada con una respuesta más activa.",
+      "example": "Verso con notas largas y coro con ataques más frecuentes.",
+      "conditions": [
+        "Conservar espacio para la voz."
+      ],
+      "tags": [
+        "densidad",
+        "contraste"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "bass-kick",
+      "category": "rhythm",
+      "title": "Bajo y bombo en conversación",
+      "explanation": "Coincidir algunos ataques y separar otros puede ordenar la base.",
+      "practice": "Escucha bajo y bombo solos antes de sumar el resto.",
+      "example": "Un ataque conjunto al inicio y una respuesta del bajo entre golpes.",
+      "conditions": [
+        "La coordinación no exige que todos los ataques coincidan."
+      ],
+      "tags": [
+        "bajo",
+        "bateria"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "meter-groups",
+      "category": "rhythm",
+      "title": "Agrupar el compás",
+      "explanation": "Los acentos internos cambian cómo se percibe una misma duración.",
+      "practice": "Marca agrupaciones y compáralas antes de llenar todos los pasos.",
+      "example": "En 6/8, dos grupos de tres corcheas.",
+      "conditions": [
+        "BPM de negras en esta aplicación."
+      ],
+      "tags": [
+        "compas",
+        "agrupacion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "section-contrast",
+      "category": "form",
+      "title": "Secciones con funciones distintas",
+      "explanation": "Una canción gana dirección cuando cada sección aporta algo.",
+      "practice": "Define qué presenta el verso y qué concentra el coro.",
+      "example": "Verso descriptivo y coro con una idea central.",
+      "conditions": [
+        "Todavía no hay timeline automático por esta ficha."
+      ],
+      "tags": [
+        "estructura",
+        "contraste"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "energy-arc",
+      "category": "form",
+      "title": "Un arco de energía",
+      "explanation": "La intensidad puede crecer mediante capas, registro o densidad.",
+      "practice": "Cambia una dimensión por vez y comprueba si la llegada se percibe.",
+      "example": "Retirar una capa antes de volver con más actividad.",
+      "conditions": [
+        "Más volumen no es la única forma de crear intensidad."
+      ],
+      "tags": [
+        "energia",
+        "desarrollo"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "bridge",
+      "category": "form",
+      "title": "Un puente que aporte perspectiva",
+      "explanation": "Una sección intermedia puede reformular la idea principal.",
+      "practice": "Cambia el punto de vista o el espacio armónico durante un tramo breve.",
+      "example": "Una pregunta nueva antes del último coro.",
+      "conditions": [
+        "Volver a conectar con el material principal."
+      ],
+      "tags": [
+        "puente",
+        "forma"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "return",
+      "category": "form",
+      "title": "Volver con una diferencia",
+      "explanation": "La repetición puede resultar significativa cuando algo ha cambiado.",
+      "practice": "Conserva una frase y modifica su acompañamiento o intención.",
+      "example": "El último coro con una línea que adquiere otro sentido.",
+      "conditions": [
+        "Mantener elementos reconocibles."
+      ],
+      "tags": [
+        "retorno",
+        "repeticion"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "image",
+      "category": "lyrics",
+      "title": "Una imagen concreta",
+      "explanation": "Un detalle visible puede expresar una emoción sin nombrarla directamente.",
+      "practice": "Elige un objeto, una acción y un lugar para la primera línea.",
+      "example": "Una llave sobre una mesa que nadie recoge.",
+      "conditions": [
+        "Ejemplo original de esta biblioteca; no es una letra completa."
+      ],
+      "tags": [
+        "imagen",
+        "narrativa"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "perspective",
+      "category": "lyrics",
+      "title": "Quién cuenta la historia",
+      "explanation": "La persona narrativa determina qué sabe y qué calla una letra.",
+      "practice": "Cuenta una misma escena en primera y segunda persona.",
+      "example": "Yo recuerdo la puerta frente a tú dejaste la puerta.",
+      "conditions": [
+        "No hace falta cambiar de narrador en cada sección."
+      ],
+      "tags": [
+        "perspectiva",
+        "voz"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "lyric-arc",
+      "category": "lyrics",
+      "title": "Que el segundo verso avance",
+      "explanation": "Repetir la misma información puede detener la historia.",
+      "practice": "Haz que cada verso revele una consecuencia o cambie la interpretación.",
+      "example": "Primer verso: la despedida; segundo: lo que quedó después.",
+      "conditions": [
+        "La biblioteca no genera letras todavía."
+      ],
+      "tags": [
+        "historia",
+        "desarrollo"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "prosody",
+      "category": "lyrics",
+      "title": "Acentos que se pueden cantar",
+      "explanation": "La claridad mejora al alinear palabras importantes con apoyos de la frase.",
+      "practice": "Lee en voz alta, canta despacio y ajusta palabras que fuerzan el acento.",
+      "example": "Comparar la posición de una palabra aguda y una llana.",
+      "conditions": [
+        "La métrica cantada depende también de la melodía."
+      ],
+      "tags": [
+        "metrica",
+        "prosodia"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "rhyme",
+      "category": "lyrics",
+      "title": "Rimar sin perder el sentido",
+      "explanation": "La rima es un recurso de cohesión y no debe obligar a cambiar la intención.",
+      "practice": "Escribe primero la idea y después busca finales con parentesco sonoro.",
+      "example": "Alternar una rima asonante con una línea sin rima.",
+      "conditions": [
+        "No se incluye un diccionario automático de rimas en esta entrega."
+      ],
+      "tags": [
+        "rima",
+        "fluidez"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "scale-major",
+      "category": "scales",
+      "title": "Mayor",
+      "intervals": [
+        0,
+        2,
+        4,
+        5,
+        7,
+        9,
+        11
+      ],
+      "explanation": "Colección de alturas expresada como semitonos desde la tónica.",
+      "practice": "Compara sus intervalos y localiza qué grados cambian respecto de mayor o menor natural.",
+      "example": "Intervalos: 0, 2, 4, 5, 7, 9, 11.",
+      "conditions": [
+        "Disponible como tonalidad global del motor actual."
+      ],
+      "tags": [
+        "escala",
+        "major"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "scale-natural-minor",
+      "category": "scales",
+      "title": "Menor natural",
+      "intervals": [
+        0,
+        2,
+        3,
+        5,
+        7,
+        8,
+        10
+      ],
+      "explanation": "Colección de alturas expresada como semitonos desde la tónica.",
+      "practice": "Compara sus intervalos y localiza qué grados cambian respecto de mayor o menor natural.",
+      "example": "Intervalos: 0, 2, 3, 5, 7, 8, 10.",
+      "conditions": [
+        "Disponible como tonalidad global del motor actual."
+      ],
+      "tags": [
+        "escala",
+        "natural-minor"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "scale-dorian",
+      "category": "scales",
+      "title": "Dórico",
+      "intervals": [
+        0,
+        2,
+        3,
+        5,
+        7,
+        9,
+        10
+      ],
+      "explanation": "Colección de alturas expresada como semitonos desde la tónica.",
+      "practice": "Compara sus intervalos y localiza qué grados cambian respecto de mayor o menor natural.",
+      "example": "Intervalos: 0, 2, 3, 5, 7, 9, 10.",
+      "conditions": [
+        "Ficha de consulta; este modo no activa un generador modal en esta entrega."
+      ],
+      "tags": [
+        "escala",
+        "dorian"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "scale-phrygian",
+      "category": "scales",
+      "title": "Frigio",
+      "intervals": [
+        0,
+        1,
+        3,
+        5,
+        7,
+        8,
+        10
+      ],
+      "explanation": "Colección de alturas expresada como semitonos desde la tónica.",
+      "practice": "Compara sus intervalos y localiza qué grados cambian respecto de mayor o menor natural.",
+      "example": "Intervalos: 0, 1, 3, 5, 7, 8, 10.",
+      "conditions": [
+        "Ficha de consulta; este modo no activa un generador modal en esta entrega."
+      ],
+      "tags": [
+        "escala",
+        "phrygian"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "scale-lydian",
+      "category": "scales",
+      "title": "Lidio",
+      "intervals": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        9,
+        11
+      ],
+      "explanation": "Colección de alturas expresada como semitonos desde la tónica.",
+      "practice": "Compara sus intervalos y localiza qué grados cambian respecto de mayor o menor natural.",
+      "example": "Intervalos: 0, 2, 4, 6, 7, 9, 11.",
+      "conditions": [
+        "Ficha de consulta; este modo no activa un generador modal en esta entrega."
+      ],
+      "tags": [
+        "escala",
+        "lydian"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "scale-mixolydian",
+      "category": "scales",
+      "title": "Mixolidio",
+      "intervals": [
+        0,
+        2,
+        4,
+        5,
+        7,
+        9,
+        10
+      ],
+      "explanation": "Colección de alturas expresada como semitonos desde la tónica.",
+      "practice": "Compara sus intervalos y localiza qué grados cambian respecto de mayor o menor natural.",
+      "example": "Intervalos: 0, 2, 4, 5, 7, 9, 10.",
+      "conditions": [
+        "Ficha de consulta; este modo no activa un generador modal en esta entrega."
+      ],
+      "tags": [
+        "escala",
+        "mixolydian"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "scale-locrian",
+      "category": "scales",
+      "title": "Locrio",
+      "intervals": [
+        0,
+        1,
+        3,
+        5,
+        6,
+        8,
+        10
+      ],
+      "explanation": "Colección de alturas expresada como semitonos desde la tónica.",
+      "practice": "Compara sus intervalos y localiza qué grados cambian respecto de mayor o menor natural.",
+      "example": "Intervalos: 0, 1, 3, 5, 6, 8, 10.",
+      "conditions": [
+        "Ficha de consulta; este modo no activa un generador modal en esta entrega."
+      ],
+      "tags": [
+        "escala",
+        "locrian"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "scale-harmonic-minor",
+      "category": "scales",
+      "title": "Menor armónica",
+      "intervals": [
+        0,
+        2,
+        3,
+        5,
+        7,
+        8,
+        11
+      ],
+      "explanation": "Colección de alturas expresada como semitonos desde la tónica.",
+      "practice": "Compara sus intervalos y localiza qué grados cambian respecto de mayor o menor natural.",
+      "example": "Intervalos: 0, 2, 3, 5, 7, 8, 11.",
+      "conditions": [
+        "Ficha de consulta; este modo no activa un generador modal en esta entrega."
+      ],
+      "tags": [
+        "escala",
+        "harmonic-minor"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "scale-melodic-minor",
+      "category": "scales",
+      "title": "Menor melódica ascendente",
+      "intervals": [
+        0,
+        2,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "explanation": "Colección de alturas expresada como semitonos desde la tónica.",
+      "practice": "Compara sus intervalos y localiza qué grados cambian respecto de mayor o menor natural.",
+      "example": "Intervalos: 0, 2, 3, 5, 7, 9, 11.",
+      "conditions": [
+        "Ficha de consulta; este modo no activa un generador modal en esta entrega."
+      ],
+      "tags": [
+        "escala",
+        "melodic-minor"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "scale-major-pentatonic",
+      "category": "scales",
+      "title": "Pentatónica mayor",
+      "intervals": [
+        0,
+        2,
+        4,
+        7,
+        9
+      ],
+      "explanation": "Colección de alturas expresada como semitonos desde la tónica.",
+      "practice": "Compara sus intervalos y localiza qué grados cambian respecto de mayor o menor natural.",
+      "example": "Intervalos: 0, 2, 4, 7, 9.",
+      "conditions": [
+        "Ficha de consulta; este modo no activa un generador modal en esta entrega."
+      ],
+      "tags": [
+        "escala",
+        "major-pentatonic"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "scale-minor-pentatonic",
+      "category": "scales",
+      "title": "Pentatónica menor",
+      "intervals": [
+        0,
+        3,
+        5,
+        7,
+        10
+      ],
+      "explanation": "Colección de alturas expresada como semitonos desde la tónica.",
+      "practice": "Compara sus intervalos y localiza qué grados cambian respecto de mayor o menor natural.",
+      "example": "Intervalos: 0, 3, 5, 7, 10.",
+      "conditions": [
+        "Ficha de consulta; este modo no activa un generador modal en esta entrega."
+      ],
+      "tags": [
+        "escala",
+        "minor-pentatonic"
+      ],
+      "sourceId": "project-original"
+    },
+    {
+      "id": "scale-minor-blues",
+      "category": "scales",
+      "title": "Blues menor",
+      "intervals": [
+        0,
+        3,
+        5,
+        6,
+        7,
+        10
+      ],
+      "explanation": "Colección de alturas expresada como semitonos desde la tónica.",
+      "practice": "Compara sus intervalos y localiza qué grados cambian respecto de mayor o menor natural.",
+      "example": "Intervalos: 0, 3, 5, 6, 7, 10.",
+      "conditions": [
+        "Ficha de consulta; este modo no activa un generador modal en esta entrega."
+      ],
+      "tags": [
+        "escala",
+        "minor-blues"
+      ],
+      "sourceId": "project-original"
+    }
+  ]
+}

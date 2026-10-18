@@ -1,0 +1,190 @@
+{
+  "version": 1,
+  "id": "a7b94b11-16df-4816-9a34-fdc5572dbac5",
+  "name": "Ejemplo Fase 2",
+  "createdAt": "2026-10-18T16:10:24.229Z",
+  "updatedAt": "2026-10-18T16:10:24.229Z",
+  "parameters": {
+    "key": "C",
+    "mode": "major",
+    "bpm": 100,
+    "timeSignature": [
+      4,
+      4
+    ],
+    "genre": "Indie pop",
+    "mood": "Nostálgico",
+    "complexity": "simple",
+    "instruments": [
+      "Piano",
+      "Bajo",
+      "Batería"
+    ],
+    "references": "",
+    "theme": "",
+    "targetSeconds": 180
+  },
+  "tracks": [
+    {
+      "id": "a9f36acc-8c09-4cf2-9ef0-440c08e89cfc",
+      "name": "Acordes C mayor",
+      "kind": "chords",
+      "channel": 0,
+      "muted": false,
+      "volume": 0.7,
+      "chords": [
+        {
+          "id": "5c1ca672-81fd-4368-a90c-c25cf4343a02",
+          "symbol": "Cmaj7",
+          "degree": "Imaj7",
+          "start": 0,
+          "duration": 4,
+          "pitches": [
+            48,
+            52,
+            55,
+            59
+          ]
+        },
+        {
+          "id": "ee48188e-e120-460a-a703-3ea4d9d394c6",
+          "symbol": "Em7",
+          "degree": "iii7",
+          "start": 4,
+          "duration": 4,
+          "pitches": [
+            52,
+            55,
+            59,
+            62
+          ]
+        },
+        {
+          "id": "d1695556-41ec-4e2f-a501-a49f76b41660",
+          "symbol": "Fmaj7",
+          "degree": "IVmaj7",
+          "start": 8,
+          "duration": 4,
+          "pitches": [
+            53,
+            57,
+            60,
+            64
+          ]
+        },
+        {
+          "id": "d1944cba-0723-4ee5-9f39-6b6f440252d4",
+          "symbol": "G7",
+          "degree": "V7",
+          "start": 12,
+          "duration": 4,
+          "pitches": [
+            55,
+            59,
+            62,
+            65
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "pitch": 48,
+          "start": 0,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 52,
+          "start": 0,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 55,
+          "start": 0,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 59,
+          "start": 0,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 52,
+          "start": 4,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 55,
+          "start": 4,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 59,
+          "start": 4,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 62,
+          "start": 4,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 53,
+          "start": 8,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 57,
+          "start": 8,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 60,
+          "start": 8,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 64,
+          "start": 8,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 55,
+          "start": 12,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 59,
+          "start": 12,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 62,
+          "start": 12,
+          "duration": 4,
+          "velocity": 88
+        },
+        {
+          "pitch": 65,
+          "start": 12,
+          "duration": 4,
+          "velocity": 88
+        }
+      ]
+    }
+  ],
+  "sections": []
+}

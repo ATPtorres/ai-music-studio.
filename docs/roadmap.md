@@ -1,0 +1,12 @@
+# Plan de implementación
+
+1. **Fundación (verificada)**: inspección, decisiones de costo/arquitectura, setup React/TS/Vite, UI adaptable, navegación, modelo versionado, persistencia JSON y pruebas. Test, lint, build e interacciones en navegador comprobados en Fase 1.
+2. **Acordes (implementada; revisión manual pendiente)**: motor puro de escalas/acordes, controles, edición por compás, Tone.js, play/pause/stop/loop y MIDI real. Pruebas automáticas musicales, de interfaz simulada y lectura MIDI correctas. Escucha, revisión visual y apertura en DAW pendientes por bloqueo de acceso del navegador; ver verification-phase2.md.
+3. **Melodía y bajo (implementada; revisión manual pendiente)**: motores con semilla, rango, densidad y ritmo; piano roll editable, variaciones, preview sincronizado con acordes y MIDI individual/con acompañamiento. Pruebas automáticas musicales, de MIDI e interacción correctas. Ver verification-phase3.md.
+4. **Batería (implementada; revisión manual pendiente)**: seis filas, diez géneros, compases variables, swing/velocidad, variaciones, preview con cuatro pistas y MIDI con canal 10. Pruebas de motores, interacción, kit, persistencia y lectura MIDI correctas. Ver verification-phase4.md.
+4.5. **Biblioteca creativa (primera entrega implementada)**: 68 recursos versionados, explorador, selector y Acordes con controles, préstamos, dominantes aplicadas, novenas y conducción de voces. Consulta y contexto acotado sin API; consumidores de motivos, ritmos y estructura pendientes. Ver phase4.5.md y verification-phase4.5.md.
+5. **Letras e IA**: proveedor desacoplado con fallback, función servidor, JSON validado, límites y timeout; título, secciones, edición y confirmación de reemplazo. Verificar fallos, cuota, ausencia de claves cliente y abuso del endpoint.
+6. **Estudio completo**: timeline, orden de secciones, vínculos de clips, duración, transporte compartido y mezcla sencilla. Exportación MIDI multipista; integración de ambos modos.
+7. **Pulido y publicación**: accesibilidad, móviles reales, rendimiento, revisión de seguridad, documentación y publicación en Netlify con GitHub. Confirmar condiciones gratuitas otra vez.
+
+Cada fase debe cerrar con comprobaciones y limitaciones explícitas antes de comenzar la siguiente. El usuario autorizó la ampliación de conocimientos antes de Fase 5; esta entrega cubre biblioteca y Acordes. No se avanza a Fase 5 en esta entrega. Gemini, letras y arreglo por secciones permanecen pendientes.
