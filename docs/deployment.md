@@ -26,7 +26,7 @@ Los valores TU_USUARIO y el nombre remoto son ejemplos: sustituirlos. Autenticar
 4. Revisar el deploy y abrir la URL asignada. Navegación es estado local; no requiere reescritura SPA en esta fase.
 5. Probar cambios de parámetros, recarga, exportación e importación tanto en desktop como móvil. Cada origen tiene almacenamiento independiente: localhost y el dominio Netlify no comparten proyectos; trasladar mediante JSON.
 
-Fase 1 no requiere variables. En Fase 5 configurar GEMINI_API_KEY y GEMINI_MODEL como secretos solo del servidor para Netlify Functions; nunca en `VITE_`, Git o archivos públicos. La función de Gemini todavía no existe. No basta con añadir las variables para activar IA.
+El editor local hasta Fase 5 no requiere variables. La asistencia Gemini usa `netlify/functions/lyrics.ts` y requiere `GEMINI_API_KEY`, `GEMINI_MODEL`, `UPSTASH_REDIS_REST_URL` y `UPSTASH_REDIS_REST_TOKEN` exclusivamente en el servidor. Sin cuotas persistentes el endpoint se bloquea. Nunca usar `VITE_`, Git o archivos públicos para secretos. Consulta [activación, límites y validación pendiente](phase5.md).
 
 ## Desarrollo local y producción
 

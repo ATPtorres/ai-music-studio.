@@ -1,6 +1,8 @@
 # Arquitectura del MVP y viabilidad
 
-Actualización Fase 4: armonía, melodías/bajos, secuenciador de batería, audio y MIDI ya implementados. Consulta [acordes](phase2.md), [melodías y bajos](phase3.md), [batería](phase4.md) y [verificación vigente](verification-phase4.md). Las decisiones de planificación siguientes se conservan como contexto de la fundación; la estructura vigente está en el README.
+Actualización histórica Fase 4: armonía, melodías/bajos, secuenciador de batería, audio y MIDI ya implementados. Consulta [acordes](phase2.md), [melodías y bajos](phase3.md), [batería](phase4.md) y [verificación vigente](verification-phase4.md). Las decisiones de planificación siguientes se conservan como contexto de la fundación; la estructura vigente está en el README.
+
+La Fase 5 añade el editor de letras y una conexión opcional de Gemini con cuotas persistentes. Ver [arquitectura y activación](phase5.md) y [verificación](verification-phase5.md); las credenciales y el despliegue real siguen pendientes.
 
 ## Alcance y decisiones
 

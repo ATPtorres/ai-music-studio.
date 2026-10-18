@@ -1,6 +1,6 @@
 # AI Music Studio
 
-Asistente de composición musical desarrollado por fases, sin pagos obligatorios. **v0.4.5 — Fase 4.5: biblioteca creativa (primera entrega)**. Conserva los proyectos JSON v1 anteriores y los generadores de acordes, melodías y bajos.
+Asistente de composición musical desarrollado por fases, sin pagos obligatorios. **v0.5.0 — Fase 5: letras y asistencia IA opcional**. Conserva los proyectos JSON v1 anteriores y los generadores de acordes, melodías y bajos.
 
 ## Ejecutar
 
@@ -55,7 +55,7 @@ Ejemplos de esta fase: [proyecto importable con tres pistas](docs/examples/proye
 
 El mapa de seis instrumentos es fijo: kick 36, snare 38, clap 39, hi-hat cerrado 42, abierto 46 y shaker/maracas 70. Los sonidos son sintetizados, sin muestras ni bancos de pago. Para una batería importada sin cuadrícula se conserva preview/MIDI; generar un patrón la reemplaza. Las notas importadas fuera de este mapa se conservan en MIDI, con un aviso de que el preview no las reproduce.
 
-Consulta [detalle de Fase 4](docs/phase4.md) y [verificación y límites](docs/verification-phase4.md). Letras/IA y estructura por secciones siguen pendientes.
+Consulta [detalle de Fase 4](docs/phase4.md) y [verificación y límites](docs/verification-phase4.md). El editor de letras se incorpora en Fase 5; el arreglo por secciones sigue pendiente.
 
 Ejemplo de esta fase: [proyecto con cuatro pistas](docs/examples/proyecto-fase4.json), [MIDI de batería](docs/examples/bateria-demo.mid) y [MIDI con acompañamiento](docs/examples/fase4-acompanamiento.mid). En el proyecto, abre Batería y selecciona las otras pistas para escuchar el conjunto.
 
@@ -66,12 +66,23 @@ Ejemplo de esta fase: [proyecto con cuatro pistas](docs/examples/proyecto-fase4.
 3. En Acordes, activa **Usar biblioteca creativa**. Prueba selección automática, exploración, tensión, movimiento armónico, color opcional, conducción de voces y extensiones de novena. Una receta fija conserva su recorrido; los tres deslizadores orientan la selección automática.
 4. Escucha, edita y exporta. La ficha aplicada explica el punto de partida y queda marcada si editas la progresión. Para usar el motor anterior, desactiva la biblioteca y genera.
 
-Esta primera entrega conecta automáticamente **Acordes**. Las demás categorías son consulta; su integración con motores nuevos sigue pendiente. No se conecta Gemini ni se necesita API key. Las puntuaciones son heurísticas, no garantías de calidad o emoción.
+Esta primera entrega conecta automáticamente **Acordes**. Las demás categorías son consulta; su integración con motores nuevos sigue pendiente. La biblioteca local no necesita API key. La asistencia de letras opcional de Fase 5 se configura aparte en el servidor. Las puntuaciones son heurísticas, no garantías de calidad o emoción.
 
 Detalles, compatibilidad y siguientes entregas en [Fase 4.5](docs/phase4.5.md); alcance de pruebas en [verificación](docs/verification-phase4.5.md). Ejemplo: [JSON importable](docs/examples/proyecto-biblioteca.json) y [MIDI de biblioteca](docs/examples/biblioteca-demo.mid).
 
+## Probar la Fase 5
+
+1. Abre **Letras e IA**. Añade secciones y escribe título y letra; el guardado es local y automático.
+2. Indica un tema y prepara una **guía local**, sin cuentas ni claves. Es un ejercicio de escritura por secciones, no una letra generada por IA.
+3. Revisa el borrador y pulsa **Aplicar borrador al proyecto**. Se pide confirmación antes de reemplazar texto; las pistas y los compases existentes se conservan.
+4. Edita, recarga y exporta/importa JSON para comprobar la persistencia. **Descargar letra TXT** exporta solo el texto.
+5. Gemini es opcional y necesita Netlify Functions y cuotas persistentes en Redis. Sin esa configuración, los fallos producen una guía local identificada; no se sobrescribe texto automáticamente.
+
+Detalles y activación: [Fase 5](docs/phase5.md). Evidencia y limitaciones: [verificación](docs/verification-phase5.md). No se ha probado todavía una llamada real a Gemini ni un despliegue Netlify: en esta sesión no hay cuentas ni credenciales configuradas.
+
 ## Arquitectura vigente
 
+- `src/features/lyrics/`, `src/services/ai/`, `server/lyrics.ts` y `netlify/functions/lyrics.ts`: edición de letras, proveedores y endpoint con cuotas persistentes.
 - `src/knowledge/` y `src/features/knowledge/`: catálogo validado, búsqueda, selector, contexto acotado y explorador.
 - `src/music/knowledgeHarmony.ts`: préstamos, dominantes aplicadas y conducción de voces.
 - `src/models/`: formato v1, esquemas estrictos y tipos musicales.
@@ -87,7 +98,7 @@ Detalles, compatibilidad y siguientes entregas en [Fase 4.5](docs/phase4.5.md); 
 - `src/music/drums.ts` y `src/features/drums/`: patrones, swing, secuenciador y repetición al acompañar.
 - `src/audio/DrumKit.ts`: seis sonidos de percusión sintetizados y cierre del hi-hat abierto.
 
-Los módulos se cargan bajo demanda. Los motores son locales y no dependen de IA. Se edita la primera pista de cada tipo, conservando las adicionales importadas. El preview de cuatro pistas en Batería es un apoyo para componer; todavía no hay arreglo por secciones, letras ni transporte de un estudio completo.
+Los módulos se cargan bajo demanda. Los motores son locales y no dependen de IA. Se edita la primera pista de cada tipo, conservando las adicionales importadas. El preview de cuatro pistas en Batería es un apoyo para componer; todavía no hay arreglo por secciones ni transporte de un estudio completo. El editor de letras de Fase 5 reutiliza las secciones del proyecto sin arreglar sus clips.
 
 ## Verificación
 
@@ -97,12 +108,12 @@ npm run lint
 npm run build
 ```
 
-86 pruebas: biblioteca/selector, armonía ampliada, contexto acotado, teoría, esquemas/persistencia, armonía, melodías/bajos, patrones y swing, generación/edición en DOM simulado, transporte/kit con Tone simulado y lectura binaria de MIDI individual/multipista. Consulta [verificación de Fase 4.5](docs/verification-phase4.5.md) para distinguir lo comprobado de la revisión auditiva, visual y en DAW pendiente. En el aislamiento Windows de esta sesión Vitest requiere permiso para sus temporales; fuera de ese aislamiento `npm test` pasa.
+118 pruebas en 20 archivos: biblioteca/selector, armonía ampliada, contexto acotado, teoría, esquemas/persistencia, armonía, melodías/bajos, patrones y swing, generación/edición en DOM simulado, transporte/kit con Tone simulado y lectura binaria de MIDI individual/multipista. Consulta [verificación de Fase 4.5](docs/verification-phase4.5.md) para distinguir lo comprobado de la revisión auditiva, visual y en DAW pendiente. En el aislamiento Windows de esta sesión Vitest requiere permiso para sus temporales; fuera de ese aislamiento `npm test` pasa.
 
 ## Datos y seguridad
 
 Un proyecto activo por navegador en localStorage, con importación validada hasta 2 MB. Sin sincronización remota ni entre pestañas. Exporta respaldos JSON: borrar los datos del navegador elimina su copia. No incluir credenciales en proyectos.
 
-Fases 1–4.5: ninguna variable de entorno. Gemini todavía no está conectado. En Fase 5, `GEMINI_API_KEY` y `GEMINI_MODEL` se configurarán solo en el servidor. Nunca usar `VITE_` para secretos. `.env` está excluido de Git.
+El editor manual, la guía local y los motores musicales no requieren variables. Gemini es opcional: `GEMINI_API_KEY`, `GEMINI_MODEL`, `UPSTASH_REDIS_REST_URL` y `UPSTASH_REDIS_REST_TOKEN` se configuran solo en Netlify Functions. La IA permanece bloqueada sin cuotas persistentes y credenciales válidas. Nunca usar `VITE_` para secretos. `.env` está excluido de Git. Ver [Fase 5](docs/phase5.md).
 
 Más documentación: [arquitectura y riesgos](docs/architecture.md), [plan por fases](docs/roadmap.md), [GitHub y Netlify](docs/deployment.md).

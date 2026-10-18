@@ -51,4 +51,4 @@ Para añadir una entrada: asignar ID único, fuente real, explicación propia, e
 1. Biblioteca y Acordes: implementados aquí, con revisión visual/auditiva manual pendiente.
 2. Consumidores de motivos, fraseo, ritmos, bajos y batería: pendientes. Sus fichas ya pueden consultarse.
 3. Más escalas activas, formas por secciones y evaluación de diversidad musical: pendientes; añadir pruebas y escucha antes de activar categorías nuevas.
-4. Contexto seleccionado para letras con Gemini en Fase 5: pendiente. No se necesita una API key para esta entrega.
+4. Contexto de escritura/forma conectado al servidor de letras en [Fase 5](phase5.md). Su activación real con Gemini sigue pendiente de credenciales y despliegue. La biblioteca y la guía local no necesitan API key.
