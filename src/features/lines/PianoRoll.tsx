@@ -21,17 +21,17 @@ export default function PianoRoll({ notes, low, high, end, beatsPerBar, selected
     const pitch = high - Math.floor(y / row)
     if (pitch >= low && pitch <= high) onAdd(pitch, start + Math.floor(x / beatWidth * 2) / 2)
   }}>
-    <rect width={width} height={height} fill="#15121d"/>
+    <rect width={width} height={height} fill="var(--studio-white)"/>
     {Array.from({ length: high - low + 1 }, (_, index) => { const pitch = high - index; return <g key={pitch}>
-      <rect x={labelWidth} y={top + index * row} width={width - labelWidth} height={row} fill={black(pitch) ? '#14111b' : '#1d1825'}/>
-      <line x1={labelWidth} x2={width} y1={top + index * row} y2={top + index * row} stroke="#302639" strokeWidth="0.5"/>
-      <rect x="0" y={top + index * row} width={labelWidth - 3} height={row - 1} fill={black(pitch) ? '#211929' : '#b6a9c5'}/>
-      <text x="7" y={top + index * row + 12} fill={black(pitch) ? '#ae9abf' : '#282031'} fontSize="8">{midiToNote(pitch)}</text>
+      <rect x={labelWidth} y={top + index * row} width={width - labelWidth} height={row} fill={black(pitch) ? 'var(--studio-blue-soft)' : 'var(--studio-white)'}/>
+      <line x1={labelWidth} x2={width} y1={top + index * row} y2={top + index * row} stroke="var(--studio-border)" strokeWidth="0.5"/>
+      <rect x="0" y={top + index * row} width={labelWidth - 3} height={row - 1} fill={black(pitch) ? 'var(--studio-blue)' : 'var(--studio-white)'}/>
+      <text x="7" y={top + index * row + 12} fill={black(pitch) ? 'var(--studio-white)' : 'var(--studio-ink)'} fontSize="8">{midiToNote(pitch)}</text>
     </g> })}
     {Array.from({ length: Math.ceil((visibleEnd - start) * 2) + 1 }, (_, index) => {
       const beat = index / 2; const bar = Math.abs((beat + start) / beatsPerBar - Math.round((beat + start) / beatsPerBar)) < 1e-8
-      return <g key={index}><line x1={labelWidth + beat * beatWidth} x2={labelWidth + beat * beatWidth} y1={top} y2={height} stroke={bar ? '#7a598d' : '#3c2e49'} strokeWidth={bar ? 1 : 0.5}/>{bar && <text x={labelWidth + beat * beatWidth + 5} y="16" fill="#a590b9" fontSize="9">{Math.round((beat + start) / beatsPerBar) + 1}</text>}</g>
+      return <g key={index}><line x1={labelWidth + beat * beatWidth} x2={labelWidth + beat * beatWidth} y1={top} y2={height} stroke={bar ? 'var(--studio-blue)' : 'var(--studio-border)'} strokeWidth={bar ? 1 : 0.5}/>{bar && <text x={labelWidth + beat * beatWidth + 5} y="16" fill="var(--studio-muted)" fontSize="9">{Math.round((beat + start) / beatsPerBar) + 1}</text>}</g>
     })}
-    {notes.map((note, index) => note.start < visibleEnd && note.start + note.duration > start ? <rect key={index} className={`roll-note ${selected === index ? 'selected-note' : ''}`} x={labelWidth + (Math.max(start, note.start) - start) * beatWidth + 1} y={top + (high - note.pitch) * row + 2} width={Math.max(4, (Math.min(visibleEnd, note.start + note.duration) - Math.max(start, note.start)) * beatWidth - 2)} height={row - 4} rx="3" role="button" tabIndex={0} aria-label={`Nota ${index + 1}: ${midiToNote(note.pitch)}, inicio ${note.start}, duración ${Number(note.duration.toFixed(3))}`} aria-pressed={selected === index} onClick={event => { event.stopPropagation(); onSelect(index) }} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onSelect(index) } }}/> : null) }
+    {notes.map((note, index) => note.start < visibleEnd && note.start + note.duration > start ? <rect key={index} className={`roll-note ${selected === index ? 'selected-note' : ''}`} x={labelWidth + (Math.max(start, note.start) - start) * beatWidth + 1} y={top + (high - note.pitch) * row + 2} width={Math.max(4, (Math.min(visibleEnd, note.start + note.duration) - Math.max(start, note.start)) * beatWidth - 2)} height={row - 4} rx="0" role="button" tabIndex={0} aria-label={`Nota ${index + 1}: ${midiToNote(note.pitch)}, inicio ${note.start}, duración ${Number(note.duration.toFixed(3))}`} aria-pressed={selected === index} onClick={event => { event.stopPropagation(); onSelect(index) }} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onSelect(index) } }}/> : null) }
   </svg></div></>
 }
