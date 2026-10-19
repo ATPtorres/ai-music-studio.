@@ -1,8 +1,9 @@
+import { midiProgram } from '../sounds/catalog'
 import { Midi } from '@tonejs/midi'
 import { projectSchema, type MusicProject, type MusicTrack } from '../models/project'
 import { chordsToNotes } from '../music/harmony'
 
-/** Standard MIDI File: metadata track + piano track, quarter-note tick units. */
+/** Standard MIDI File: metadata track + selected-instrument track, quarter-note tick units. */
 export function exportChordsMidi(project: MusicProject, trackId: string): Uint8Array {
   const validated = projectSchema.parse(project)
   const source = validated.tracks.find(track => track.id === trackId && track.kind === 'chords')
@@ -15,7 +16,7 @@ export function exportChordsMidi(project: MusicProject, trackId: string): Uint8A
   const track = midi.addTrack()
   track.name = source.name
   track.channel = source.channel
-  track.instrument.number = 0 // General MIDI acoustic grand piano.
+  track.instrument.number = midiProgram(source)
   for (const note of chordsToNotes(source.chords)) {
     const ticks = Math.round(note.start * midi.header.ppq)
     const durationTicks = Math.max(1, Math.round(note.duration * midi.header.ppq))

@@ -11,7 +11,7 @@ const fake = vi.hoisted(() => ({
 vi.mock('./DrumKit', () => ({ DrumKit: class { trigger = fake.drumHit; releaseAll = fake.drumRelease; dispose = fake.drumDispose } }))
 vi.mock('tone', () => ({
   start: fake.start, getTransport: () => fake.transport, getDraw: () => ({ schedule: (callback: () => void) => callback() }), now: () => 0,
-  Frequency: (pitch: number) => ({ toFrequency: () => pitch }), Synth: class {},
+  Frequency: (pitch: number) => ({ toFrequency: () => pitch }), Synth: class {}, FMSynth: class {}, MonoSynth: class {},
   Gain: class { gain; dispose = vi.fn(); constructor() { const ramp = vi.fn(); this.gain = { rampTo: ramp }; fake.gains.push({ ramp, dispose: this.dispose }) }; toDestination() { return this } },
   PolySynth: class { triggerAttackRelease = vi.fn(); releaseAll = vi.fn(); dispose = vi.fn(); constructor() { fake.voices.push({ attack: this.triggerAttackRelease, release: this.releaseAll, dispose: this.dispose }) }; connect() { return this } },
   Part: class { dispose = vi.fn(); constructor(callback: typeof fake.parts[number]['callback'], events: typeof fake.parts[number]['events']) { if (fake.failPart) throw new Error('Part falló'); fake.parts.push({ callback, events, dispose: this.dispose }) }; start() { return this } },

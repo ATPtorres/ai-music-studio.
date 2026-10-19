@@ -1,6 +1,6 @@
 # AI Music Studio
 
-Asistente de composición musical desarrollado por fases, sin pagos obligatorios. **v0.6.0 — Fase 6: estudio de arreglo**. Conserva los proyectos JSON v1 anteriores y los generadores de acordes, melodías y bajos.
+Asistente de composición musical desarrollado por fases, sin pagos obligatorios. **v0.6.1 — Estudio con paleta de sonidos**. Conserva los proyectos JSON v1 anteriores y los generadores de acordes, melodías y bajos.
 
 ## Ejecutar
 
@@ -18,9 +18,9 @@ Abre la URL que imprime Vite (normalmente http://127.0.0.1:5173/). Aunque la car
 1. Abre **Acordes** en el lateral o su tarjeta en Estudio/Herramientas.
 2. Elige tonalidad, mayor/menor natural, género, emoción, 2–16 compases, complejidad, tríadas/séptimas y compás. Pulsa **Generar progresión**. Los ajustes se aplican al generar, sustituyendo la progresión anterior.
 3. Cada tarjeta muestra símbolo, grado, notas y duración. Cambia el grado y la duración; las notas y los inicios siguientes se actualizan. Medio compás y compases extendidos son válidos.
-4. Pulsa **Reproducir** tras un gesto de usuario. Prueba **Pausar**, **Reanudar**, **Detener**, repetición y volumen. El sonido es síntesis triangular sencilla, no un piano muestreado.
+4. Pulsa **Reproducir** tras un gesto de usuario. Prueba **Pausar**, **Reanudar**, **Detener**, repetición y volumen. Elige el timbre en Sonido de acordes: piano, eléctrico, pad, strings o guitarras. Son aproximaciones por síntesis local.
 5. Cambia BPM (30–300) y confirma con Enter o saliendo del campo. Editar acordes o tempo detiene la reproducción. Volumen y loop se pueden cambiar durante la escucha. Abandonar el módulo detiene y libera sus nodos.
-6. **Descargar MIDI** produce un `.mid` SMF de acordes con tempo, compás, programa de piano y canal. Se puede importar en un DAW. Es información musical, no audio WAV/MP3.
+6. **Descargar MIDI** produce un `.mid` SMF de acordes con tempo, compás, programa GM del sonido elegido y canal. Se puede importar en un DAW. Es información musical, no audio WAV/MP3.
 7. Recarga y vuelve a Acordes: la pista permanece en el proyecto. Exporta JSON desde Proyectos, crea otro proyecto e importa la copia para restaurar sus notas y parámetros.
 
 Ejemplos generados con el motor real: [MIDI de cuatro compases](docs/examples/acordes-demo.mid) y [proyecto JSON importable](docs/examples/proyecto-demo.json). Cmaj7 → Em7 → Fmaj7 → G7, 100 BPM, 4/4.
@@ -90,8 +90,18 @@ Detalles y activación: [Fase 5](docs/phase5.md). Evidencia y limitaciones: [ver
 
 Detalles: [Fase 6](docs/phase6.md). Comprobaciones y límites: [verificación](docs/verification-phase6.md). Funciona localmente sin configurar la IA opcional.
 
+## Elegir sonidos
+
+- **Acordes:** piano, piano eléctrico, pad, strings, guitarra acústica y eléctrica limpia.
+- **Melodía:** pluck, guitarras acústica/eléctrica, piano, lead suave y flauta sintética.
+- **Bajo:** eléctrico, sintetizado y contrabajo.
+- **Batería:** cuatro kits de síntesis inspirados en 707, 808, 909 y LinnDrum.
+
+Genera la pista y usa su selector de sonido, o cámbialo desde la mezcla de Estructura. Se conserva al regenerar y viaja en el JSON. Cambiarlo detiene el preview, manteniendo notas y patrones. Los kits son aproximaciones, sin muestras originales; el MIDI guarda un programa GM equivalente, cuyo sonido depende del DAW. [Detalles, compatibilidad y comprobaciones](docs/sounds.md).
+
 ## Arquitectura vigente
 
+- `src/sounds/`, `src/audio/MelodicVoice.ts` y `src/audio/drumProfiles.ts`: catálogo validado, selectores y recetas de síntesis compartidas.
 - `src/arrangement/`, `src/features/arrangement/` y `src/midi/exportArrangement.ts`: disposición por secciones, clips vinculados, transporte/mezcla y MIDI completo.
 - `src/features/lyrics/`, `src/services/ai/`, `server/lyrics.ts` y `netlify/functions/lyrics.ts`: edición de letras, proveedores y endpoint con cuotas persistentes.
 - `src/knowledge/` y `src/features/knowledge/`: catálogo validado, búsqueda, selector, contexto acotado y explorador.
@@ -119,7 +129,7 @@ npm run lint
 npm run build
 ```
 
-140 pruebas en 23 archivos: biblioteca/selector, armonía ampliada, contexto acotado, teoría, esquemas/persistencia, armonía, melodías/bajos, patrones y swing, generación/edición en DOM simulado, transporte/kit con Tone simulado, letras/proveedores/límites del servidor, arreglo por secciones y lectura binaria de MIDI individual/multipista. Consulta [verificación de Fase 6](docs/verification-phase6.md) para distinguir lo comprobado de la escucha, los móviles físicos y la importación en DAW pendientes. La validación de 0.6.0 se ejecutó en Linux.
+151 pruebas en 25 archivos: biblioteca/selector, armonía ampliada, contexto acotado, teoría, esquemas/persistencia, armonía, melodías/bajos, patrones y swing, generación/edición en DOM simulado, transporte/kit con Tone simulado, letras/proveedores/límites del servidor, arreglo por secciones, selección de sonidos y lectura binaria de MIDI individual/multipista. Consulta [verificación de Fase 6](docs/verification-phase6.md) para distinguir lo comprobado de la escucha, los móviles físicos y la importación en DAW pendientes. La validación de 0.6.1 se ejecutó en Linux.
 
 ## Datos y seguridad
 

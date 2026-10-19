@@ -90,7 +90,7 @@ export function editDrumStep(input: DrumPattern, lane: DrumLane, step: number, v
 export function withDrumTrack(project: MusicProject, input: DrumPattern): MusicTrack[] {
   const pattern = drumPatternSchema.parse(input)
   const existing = project.tracks.find(track => track.kind === 'drums')
-  const track: MusicTrack = { id: existing?.id ?? crypto.randomUUID(), name: existing?.name ?? 'Batería', kind: 'drums', channel: 9, volume: existing?.volume ?? 0.7, muted: existing?.muted ?? false, chords: [], notes: drumPatternNotes(pattern), drumPattern: pattern }
+  const track: MusicTrack = { id: existing?.id ?? crypto.randomUUID(), name: existing?.name ?? 'Batería', kind: 'drums', channel: 9, volume: existing?.volume ?? 0.7, muted: existing?.muted ?? false, chords: [], notes: drumPatternNotes(pattern), drumPattern: pattern, ...(existing?.sound ? { sound: existing.sound } : {}) }
   return existing ? project.tracks.map(item => item.id === existing.id ? track : item) : [...project.tracks, track]
 }
 

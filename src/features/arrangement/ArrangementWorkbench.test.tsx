@@ -112,4 +112,14 @@ describe('Estudio de arreglo en DOM simulado', () => {
     await act(() => button('Añadir sección').click()); expect(latest.sections).toHaveLength(4)
     expect(new Set(latest.sections.map(s => s.id)).size).toBe(4)
   })
+  it('selecciona sonido en la mezcla, reconfigura el preview y conserva los eventos', async () => {
+    await act(() => root.render(<Harness/>))
+    const original = structuredClone(latest.tracks[0].notes)
+    const sound = container.querySelector<HTMLSelectElement>('[aria-label="Sonido Piano"]')!
+    await act(() => { sound.value = 'pad'; sound.dispatchEvent(new Event('change', { bubbles: true })) })
+    expect(latest.tracks[0].sound).toBe('pad')
+    expect(latest.tracks[0].notes).toEqual(original)
+    expect(audio.configure.mock.calls.at(-1)![0][0].sound).toBe('pad')
+  })
+
 })

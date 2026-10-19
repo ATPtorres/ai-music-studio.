@@ -2,6 +2,8 @@
 
 La versión 0.6.0 conecta las pistas musicales y las letras en un arreglo local por secciones: timeline, orden, duración, transporte común, mezcla sencilla y MIDI multipista. No necesita cuentas, claves, Netlify, Gemini ni Redis. La IA opcional de Fase 5 mantiene sus requisitos y su validación real pendiente.
 
+La ampliación [v0.6.1](sounds.md) añade selección de sonidos en generadores y mezcla, conservada por los vínculos.
+
 ## Recorrido de uso
 
 1. Crea acordes, melodía, bajo y/o batería en sus generadores, o importa un proyecto JSON. Abre **Estructura** desde el lateral o Herramientas.

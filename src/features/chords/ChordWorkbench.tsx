@@ -1,3 +1,4 @@
+import TrackSoundSelector from '../../sounds/TrackSoundSelector'
 import { useEffect, useRef, useState } from 'react'
 import './chords.css'
 import { ArrowDownToLine, Headphones, Pause, Piano, Play, RefreshCw, Repeat2, Sparkles, Square, Volume2 } from 'lucide-react'
@@ -40,10 +41,10 @@ export default function ChordWorkbench({ project, update, saveStatus, onOpenLine
     player.current = engine
     return () => { engine.dispose(); player.current = null }
   }, [])
-  useEffect(() => { player.current?.configure(chords ?? [], parameters.bpm, false, 0) }, [chords, parameters.bpm])
-  useEffect(() => { player.current?.setVolume(track?.muted ? 0 : track?.volume ?? 0.7) }, [track?.muted, track?.volume, chords, parameters.bpm])
+  useEffect(() => { player.current?.configure(chords ?? [], parameters.bpm, false, 0, track?.sound) }, [chords, parameters.bpm, track?.sound])
+  useEffect(() => { player.current?.setVolume(track?.muted ? 0 : track?.volume ?? 0.7) }, [track?.muted, track?.volume, chords, parameters.bpm, track?.sound])
   // Loop changes do not rebuild or interrupt the transport.
-  useEffect(() => { player.current?.setLoop(loop) }, [loop, chords, parameters.bpm])
+  useEffect(() => { player.current?.setLoop(loop) }, [loop, chords, parameters.bpm, track?.sound])
   useEffect(() => {
     if (state !== 'playing') return
     const timer = window.setInterval(() => {
@@ -90,6 +91,7 @@ export default function ChordWorkbench({ project, update, saveStatus, onOpenLine
       {useLibrary && <><p>Combina recetas musicales con tu intención. Los ajustes se aplican al generar; tus acordes actuales se conservan hasta entonces.</p><div className="creative-sliders">{([{ field: 'exploration', label: 'Exploración', hint: 'Familiar ↔ Exploratorio' }, { field: 'tension', label: 'Tensión', hint: 'Estable ↔ Tenso' }, { field: 'movement', label: 'Movimiento armónico', hint: 'Permanencia ↔ Recorrido' }] as const).map(item => <label key={item.field}>{item.label}<span>{creative[item.field]}</span><input aria-label={item.label} type="range" min="0" max="100" step="1" value={creative[item.field]} onChange={e => setCreative(current => ({ ...current, [item.field]: Number(e.target.value) }))}/><small>{item.hint}</small></label>)}</div>
       <div className="creative-choices"><label>Color armónico<select aria-label="Color armónico" value={creative.color} onChange={e => { setCreative(current => ({ ...current, color: e.target.value as CreativeSettings['color'] })); setRecipeId('auto') }}><option value="diatonic">Solo escala base</option><option value="borrowed">Permitir préstamos</option><option value="secondary">Permitir dominantes aplicadas</option><option value="mixed">Explorar ambos colores</option></select></label><label>Receta de partida<select aria-label="Receta de partida" value={recipeId} onChange={e => setRecipeId(e.target.value)}><option value="auto">Automática · {compatible.length} compatibles</option>{recipeId !== 'auto' && !compatible.some(recipe => recipe.id === recipeId) && <option value={recipeId}>Receta incompatible: cambia a Automática</option>}{compatible.map(recipe => <option key={recipe.id} value={recipe.id}>{recipe.title}</option>)}</select></label><label className="creative-voice"><input type="checkbox" checked={creative.voiceLeading} onChange={e => setCreative(current => ({ ...current, voiceLeading: e.target.checked }))}/>Conducción de voces</label></div><small className="creative-caption">Las escalas de tensión y exploración son criterios de selección, no medidas objetivas de emoción. El color permite opciones; no obliga a usar cromatismos. Exploración, tensión y movimiento orientan la selección automática; una receta fija conserva su recorrido.</small></>}
     </div>
+    <TrackSoundSelector track={track} kind="chords" onChange={sound => { if (track) update({ tracks: project.tracks.map(item => item.id === track.id ? { ...item, sound } : item) }) }}/>
     <div className="chord-config">
       <div className="section-heading"><h3>Diseña tu armonía</h3><span>Sin IA · Sin conexión a servicios</span></div>
       <div className="chord-settings-grid">

@@ -1,3 +1,4 @@
+import TrackSoundSelector from '../../sounds/TrackSoundSelector'
 import { useEffect, useRef, useState } from 'react'
 import { ArrowDownToLine, ChevronLeft, ChevronRight, Disc3, Pause, Play, RefreshCw, Repeat2, Shuffle, Square, Trash2 } from 'lucide-react'
 import { ZodError } from 'zod'
@@ -34,7 +35,7 @@ export default function DrumWorkbench({ project, update, saveStatus }: Props) {
   const music = (['chords', 'melody', 'bass'] as const).map(kind => project.tracks.find(item => item.kind === kind)).filter(item => item && (item.kind === 'chords' ? item.chords.length : item.notes.length))
   const ids = track ? [track.id, ...accompaniment.filter(id => music.some(item => item!.id === id))] : []
   const selection = selectionFor(project, ids)
-  const scoreJson = JSON.stringify(selection.tracks.map(item => ({ id: item.id, kind: item.kind, notes: item.notes, volume: 0, muted: false })))
+  const scoreJson = JSON.stringify(selection.tracks.map(item => ({ id: item.id, kind: item.kind, sound: item.sound, notes: item.notes, volume: 0, muted: false })))
   const mixJson = JSON.stringify(selection.tracks.map(item => ({ id: item.id, volume: item.volume, muted: item.muted })))
   useEffect(() => { const player = new TrackPlayer(setState); engine.current = player; return () => { player.dispose(); engine.current = null } }, [])
   useEffect(() => { engine.current?.configure(JSON.parse(scoreJson) as PreviewTrack[], project.parameters.bpm, selection.end) }, [scoreJson, project.parameters.bpm, selection.end])
@@ -88,6 +89,7 @@ export default function DrumWorkbench({ project, update, saveStatus }: Props) {
   return <section className="drum-workbench" aria-label="Secuenciador de batería">
     <p className="drum-save" role="status">{saveStatus}</p>
     <div className="drum-intro"><span className="icon-box orange"><Disc3 size={27}/></span><div><div className="eyebrow">EL PULSO DE TU CANCIÓN · MOTOR LOCAL</div><h2>Un ritmo que lo conecta todo.</h2><p>Seis instrumentos. Cada golpe, en tus manos.</p></div><span className="drum-ready">Fase 4 · Disponible</span></div>
+    <TrackSoundSelector track={track} kind="drums" onChange={sound => { if (track) update({ tracks: project.tracks.map(item => item.id === track.id ? { ...item, sound } : item) }) }}/>
     <div className="drum-config"><div className="section-heading"><h3>Elige tu punto de partida</h3><span>Sonidos sintetizados · Sin muestras externas</span></div><div className="drum-settings">
       <label>Patrón por género<select aria-label="Género de batería" value={genre} onChange={e => setGenre(e.target.value as DrumPattern['genre'])}>{drumGenres.map(value => <option key={value}>{value}</option>)}</select></label>
       <label>Longitud<select aria-label="Compases de batería" value={bars} onChange={e => setBars(Number(e.target.value))}>{Array.from(new Set([bars, 1, 2, 4, 8])).sort((a, b) => a - b).map(value => <option key={value} value={value}>{value} {value === 1 ? 'compás' : 'compases'}</option>)}</select></label>

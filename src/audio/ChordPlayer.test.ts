@@ -11,7 +11,7 @@ vi.mock('tone', () => ({
   getDraw: () => ({ schedule: (callback: () => void) => callback() }),
   Frequency: (pitch: number) => ({ toFrequency: () => 440 * 2 ** ((pitch - 69) / 12) }),
   now: () => 0,
-  Synth: class {},
+  Synth: class {}, FMSynth: class {}, MonoSynth: class {},
   Gain: class { gain = { rampTo: fake.ramp }; toDestination() { return this }; dispose = fake.gainDispose },
   PolySynth: class { connect() { return this }; triggerAttackRelease = fake.attack; releaseAll = fake.release; dispose = fake.synthDispose },
   Part: class { start() { return this }; dispose = fake.partDispose },

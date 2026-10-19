@@ -112,4 +112,15 @@ describe('Interacciones del editor en DOM simulado', () => {
     expect(readProject().tracks[0].chords[2].symbol).toBe('D')
     expect(readProject().tracks[0].harmonyKnowledge?.recipeId).toBe('major-applied-five')
   })
+  it('cambia el sonido sin alterar notas y lo conserva al regenerar', async () => {
+    await click('Generar progresión')
+    const before = structuredClone(readProject().tracks[0].notes)
+    await select('Sonido de acordes', 'electric-piano')
+    expect(readProject().tracks[0].sound).toBe('electric-piano')
+    expect(readProject().tracks[0].notes).toEqual(before)
+    await click('Regenerar progresión')
+    expect(readProject().tracks[0].sound).toBe('electric-piano')
+    expect(parseProject(JSON.stringify(readProject()))).toEqual(readProject())
+  })
+
 })

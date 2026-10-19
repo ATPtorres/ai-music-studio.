@@ -2,9 +2,11 @@ import * as Tone from 'tone'
 import { noteSchema, type MusicNote } from '../models/project'
 import type { PlaybackState } from './ChordPlayer'
 import { DrumKit } from './DrumKit'
+import { createMelodicVoice, type MelodicVoice } from './MelodicVoice'
+import { resolveSound, type SoundId, type DrumSound } from '../sounds/catalog'
 
-export interface PreviewTrack { id: string; kind: 'chords' | 'melody' | 'bass' | 'drums'; notes: MusicNote[]; volume: number; muted: boolean }
-interface Voice { synth?: Tone.PolySynth; drums?: DrumKit; gain: Tone.Gain; part?: Tone.Part<{ time: string; note: MusicNote }> }
+export interface PreviewTrack { id: string; kind: 'chords' | 'melody' | 'bass' | 'drums'; notes: MusicNote[]; volume: number; muted: boolean; sound?: SoundId }
+interface Voice { synth?: MelodicVoice; drums?: DrumKit; gain: Tone.Gain; part?: Tone.Part<{ time: string; note: MusicNote }> }
 /** Owns the transport while one music workbench is mounted. */
 export class TrackPlayer {
   private tracks: PreviewTrack[] = []
@@ -42,11 +44,8 @@ export class TrackPlayer {
       // Register each resource before building the next one so failures can be cleaned up.
       const voice: Voice = { gain }
       this.voices.set(track.id, voice)
-      if (track.kind === 'drums') voice.drums = new DrumKit(gain)
-      else {
-        voice.synth = new Tone.PolySynth(Tone.Synth, { oscillator: { type: track.kind === 'melody' ? 'sine' : 'triangle' }, envelope: { attack: 0.01, decay: 0.12, sustain: 0.35, release: 0.08 }, volume: track.kind === 'chords' ? -19 : -13 })
-        voice.synth.connect(gain)
-      }
+      if (track.kind === 'drums') voice.drums = new DrumKit(gain, resolveSound('drums', track.sound) as DrumSound)
+      else voice.synth = createMelodicVoice(track.kind, track.sound, gain)
       voice.part = new Tone.Part((time, event: { time: string; note: MusicNote }) => this.attack(voice, event.note, time), track.notes.map(note => ({ time: `${note.start * transport.PPQ}i`, note }))).start(0)
     }
     this.endId = transport.schedule(time => {

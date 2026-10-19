@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { soundSchema, soundsByKind } from '../sounds/catalog'
 import { harmonyKnowledgeSchema } from '../knowledge/schema'
 
 export const keys = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'] as const
@@ -11,7 +12,8 @@ export const drumPatternSchema = z.object({ bars: z.number().int().min(1).max(8)
   if (pattern.lanes.closedHat.some((velocity, index) => velocity > 0 && pattern.lanes.openHat[index] > 0)) ctx.addIssue({ code: 'custom', message: 'El hi-hat abierto y el cerrado no pueden activarse en el mismo paso.' })
 })
 export type DrumPattern = z.infer<typeof drumPatternSchema>
-export const trackSchema = z.object({ id: z.string().max(100), name: z.string().max(100), kind: z.enum(['chords', 'melody', 'bass', 'drums']), channel: z.number().int().min(0).max(15), muted: z.boolean(), volume: z.number().min(0).max(1), notes: z.array(noteSchema).max(50000), chords: z.array(chordSchema).max(10000), sourceHarmony: z.string().max(100).optional(), generation: lineOptionsSchema.optional(), drumPattern: drumPatternSchema.optional(), harmonyKnowledge: harmonyKnowledgeSchema.optional() }).strict().superRefine((track, ctx) => {
+export const trackSchema = z.object({ id: z.string().max(100), name: z.string().max(100), kind: z.enum(['chords', 'melody', 'bass', 'drums']), channel: z.number().int().min(0).max(15), muted: z.boolean(), volume: z.number().min(0).max(1), notes: z.array(noteSchema).max(50000), chords: z.array(chordSchema).max(10000), sourceHarmony: z.string().max(100).optional(), generation: lineOptionsSchema.optional(), drumPattern: drumPatternSchema.optional(), harmonyKnowledge: harmonyKnowledgeSchema.optional(), sound: soundSchema.optional() }).strict().superRefine((track, ctx) => {
+  if (track.sound && !soundsByKind[track.kind].includes(track.sound)) ctx.addIssue({ code: 'custom', message: 'El sonido no corresponde al tipo de pista.' })
   if ((track.kind === 'drums') !== (track.channel === 9)) ctx.addIssue({ code: 'custom', message: 'La batería usa el canal 10 (índice 9), reservado para percusión.' })
   if (track.drumPattern && track.kind !== 'drums') ctx.addIssue({ code: 'custom', message: 'Un patrón de batería solo puede pertenecer a una pista de batería.' })
   if (track.harmonyKnowledge && track.kind !== 'chords') ctx.addIssue({ code: 'custom', message: 'La referencia de receta armónica solo corresponde a acordes.' })

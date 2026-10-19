@@ -1,3 +1,4 @@
+import { midiProgram } from '../sounds/catalog'
 import { Midi } from '@tonejs/midi'
 import { projectSchema, type MusicProject } from '../models/project'
 import { chordsToNotes } from '../music/harmony'
@@ -20,7 +21,7 @@ export function exportTracksMidi(project: MusicProject, ids: string[]): Uint8Arr
     const track = midi.addTrack()
     track.name = source.name
     track.channel = source.channel
-    track.instrument.number = source.kind === 'bass' ? 33 : source.kind === 'melody' ? 80 : 0
+    track.instrument.number = midiProgram(source)
     for (const note of notes) {
       const ticks = Math.round(note.start * midi.header.ppq)
       const durationTicks = Math.max(1, Math.round(note.duration * midi.header.ppq))

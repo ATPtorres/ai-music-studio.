@@ -1,10 +1,12 @@
 import * as Tone from 'tone'
+import { createMelodicVoice, type MelodicVoice } from './MelodicVoice'
+import type { SoundId } from '../sounds/catalog'
 import type { MusicChord } from '../music/harmony'
 
 export type PlaybackState = 'stopped' | 'playing' | 'paused'
 /** One transport owner. Audio nodes are created only after a user gesture. */
 export class ChordPlayer {
-  private synth?: Tone.PolySynth
+  private synth?: MelodicVoice
   private gain?: Tone.Gain
   private part?: Tone.Part<{ pitches: number[]; duration: number }>
   private endId?: number
@@ -12,6 +14,7 @@ export class ChordPlayer {
   private disposed = false
   private request = 0
   private chords: MusicChord[] = []
+  private sound?: SoundId
   private bpm = 100
   private looping = false
   private volume = 0.7
@@ -19,12 +22,13 @@ export class ChordPlayer {
 
   constructor(private onState: (state: PlaybackState) => void) {}
 
-  configure(chords: MusicChord[], bpm: number, loop: boolean, volume: number) {
+  configure(chords: MusicChord[], bpm: number, loop: boolean, volume: number, sound?: SoundId) {
     this.stop()
     this.chords = chords
     this.bpm = bpm
     this.looping = loop
     this.volume = volume
+    this.sound = sound
   }
 
   private build() {
@@ -38,7 +42,7 @@ export class ChordPlayer {
     transport.loopStart = 0
     transport.loopEnd = `${end * transport.PPQ}i`
     this.gain = new Tone.Gain(this.volume).toDestination()
-    this.synth = new Tone.PolySynth(Tone.Synth, { oscillator: { type: 'triangle' }, envelope: { attack: 0.015, decay: 0.18, sustain: 0.35, release: 0.12 }, volume: -15 }).connect(this.gain)
+    this.synth = createMelodicVoice('chords', this.sound, this.gain)
     this.part = new Tone.Part((time, chord: { pitches: number[]; duration: number }) => {
       this.synth?.triggerAttackRelease(chord.pitches.map(pitch => Tone.Frequency(pitch, 'midi').toFrequency()), chord.duration * 60 / this.bpm, time, 0.7)
     }, this.chords.map(chord => ({ time: `${chord.start * transport.PPQ}i`, pitches: chord.pitches, duration: chord.duration }))).start(0)

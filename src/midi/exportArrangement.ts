@@ -1,3 +1,4 @@
+import { midiProgram } from '../sounds/catalog'
 import { Midi } from '@tonejs/midi'
 import { parseMidi, writeMidi } from 'midi-file'
 import type { MusicProject } from '../models/project'
@@ -18,7 +19,7 @@ export function exportArrangementMidi(project: MusicProject): Uint8Array {
   for (const source of sources) {
     const track = midi.addTrack()
     track.name = source.name; track.channel = source.channel
-    track.instrument.number = source.kind === 'bass' ? 33 : source.kind === 'melody' ? 80 : 0
+    track.instrument.number = midiProgram(source)
     for (const note of source.notes) {
       const ticks = Math.round(note.start * midi.header.ppq)
       const section = arrangement.sections.find(item => note.start >= item.start && note.start < item.end)!

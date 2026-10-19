@@ -1,3 +1,4 @@
+import TrackSoundSelector from '../../sounds/TrackSoundSelector'
 import { useEffect, useRef, useState } from 'react'
 import { ArrowDownToLine, ArrowRight, AudioLines, Guitar, Pause, Play, Plus, RefreshCw, Repeat2, Shuffle, Square, Trash2 } from 'lucide-react'
 import type { MusicNote, MusicProject } from '../../models/project'
@@ -30,7 +31,7 @@ export default function LineWorkbench({ kind, project, update, saveStatus, onOpe
   const stale = Boolean(track && track.sourceHarmony !== harmonyFingerprint(project))
   const companionStale = Boolean(withCompanion && companion?.notes.length && companion.sourceHarmony !== harmonyFingerprint(project))
   const selection = [track, withChords ? harmony : undefined, withCompanion ? companion : undefined].filter(item => item && (item.kind === 'chords' ? item.chords.length : item.notes.length))
-  const scoreJson = JSON.stringify(selection.map(item => ({ id: item!.id, kind: item!.kind, notes: item!.kind === 'chords' ? chordsToNotes(item!.chords) : item!.notes, volume: 0, muted: false })))
+  const scoreJson = JSON.stringify(selection.map(item => ({ id: item!.id, kind: item!.kind, sound: item!.sound, notes: item!.kind === 'chords' ? chordsToNotes(item!.chords) : item!.notes, volume: 0, muted: false })))
   const mixJson = JSON.stringify(selection.map(item => ({ id: item!.id, volume: item!.volume, muted: item!.muted })))
   const previewEnd = selection.reduce((last, item) => (item!.kind === 'chords' ? chordsToNotes(item!.chords) : item!.notes).reduce((value, note) => Math.max(value, note.start + note.duration), last), end)
   useEffect(() => { const player = new TrackPlayer(setState); engine.current = player; return () => { player.dispose(); engine.current = null } }, [])
@@ -96,6 +97,7 @@ export default function LineWorkbench({ kind, project, update, saveStatus, onOpe
   return <section className={`line-workbench ${bass ? 'bass-workbench' : 'melody-workbench'}`} aria-label={bass ? 'Generador de bajos' : 'Generador de melodías'}>
     <p className="line-save" role="status">{saveStatus}</p>
     <div className="line-intro"><span className={`icon-box ${bass ? 'pink' : 'blue'}`}>{bass ? <Guitar size={25}/> : <AudioLines size={25}/>}</span><div><div className="eyebrow">{bass ? 'LA BASE DE TU SONIDO' : 'UNA VOZ PARA TU IDEA'} · MOTOR LOCAL</div><h2>{bass ? 'Un pulso con personalidad.' : 'Encuentra la próxima frase.'}</h2><p>{project.parameters.key} {project.parameters.mode === 'major' ? 'mayor' : 'menor natural'} · {project.parameters.genre} · {project.parameters.mood}</p></div></div>
+    <TrackSoundSelector track={track} kind={kind} onChange={sound => { if (track) update({ tracks: project.tracks.map(item => item.id === track.id ? { ...item, sound } : item) }) }}/>
     {!end ? <div className="line-empty"><h3>Primero, un punto de apoyo.</h3><p>Crea una progresión de acordes para generar una línea compatible.</p><button className="button primary" onClick={onOpenChords}>Abrir Acordes <ArrowRight size={15}/></button></div> : <>
       <div className="line-config"><div className="section-heading"><h3>Diseña tu {bass ? 'bajo' : 'melodía'}</h3><span>{getHarmony(project).length} acordes · {end} negras</span></div><div className="line-settings">
         <label>Nota más grave<select aria-label="Nota más grave" value={settings.low} onChange={e => configure('low', Number(e.target.value))}>{Array.from({ length: 128 }, (_, pitch) => <option key={pitch} value={pitch}>{midiToNote(pitch)}</option>)}</select></label>

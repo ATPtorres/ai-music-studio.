@@ -6,6 +6,8 @@ La Fase 5 añade el editor de letras y una conexión opcional de Gemini con cuot
 
 La Fase 6 añade el [arreglo local por secciones](phase6.md) reutilizando JSON v1 y los motores existentes. Ver [comprobaciones y límites](verification-phase6.md).
 
+La versión 0.6.1 incorpora una [paleta de sonidos por pista](sounds.md) con síntesis local, guardado opcional y programas General MIDI.
+
 ## Alcance y decisiones
 
 React + TypeScript estricto + Vite para una SPA estática; Tailwind CSS 4 integrado con Vite y CSS semántico para el diseño de estudio. React hooks para estado: no hace falta Redux ni un router para cuatro vistas sin URL propia. Zod valida fronteras de confianza y deriva tipos compartidos. Vitest y ESLint verifican la base. Iconos Lucide, sin fuentes ni imágenes remotas obligatorias.
