@@ -5,10 +5,12 @@ import { DrumKit } from './DrumKit'
 
 export interface PreviewTrack { id: string; kind: 'chords' | 'melody' | 'bass' | 'drums'; notes: MusicNote[]; volume: number; muted: boolean }
 interface Voice { synth?: Tone.PolySynth; drums?: DrumKit; gain: Tone.Gain; part?: Tone.Part<{ time: string; note: MusicNote }> }
-/** Owns the transport while a line/drum workbench is mounted. */
+/** Owns the transport while one music workbench is mounted. */
 export class TrackPlayer {
   private tracks: PreviewTrack[] = []
   private voices = new Map<string, Voice>()
+  private startBeat = 0
+  private graph = 0
   private endId?: number
   private initialized = false
   private disposed = false
@@ -30,6 +32,7 @@ export class TrackPlayer {
     else voice.synth?.triggerAttackRelease(Tone.Frequency(note.pitch, 'midi').toFrequency(), duration * 60 / this.bpm, time, note.velocity / 127)
   }
   private build() {
+    const graph = ++this.graph
     this.initialized = true
     const transport = Tone.getTransport()
     transport.stop(); transport.ticks = 0; transport.bpm.value = this.bpm
@@ -47,19 +50,20 @@ export class TrackPlayer {
       voice.part = new Tone.Part((time, event: { time: string; note: MusicNote }) => this.attack(voice, event.note, time), track.notes.map(note => ({ time: `${note.start * transport.PPQ}i`, note }))).start(0)
     }
     this.endId = transport.schedule(time => {
-      if (!this.loop) { transport.stop(time); Tone.getDraw().schedule(() => { if (!this.disposed) { this.state = 'stopped'; this.onState(this.state) } }, time) }
+      if (!this.loop) { transport.stop(time); Tone.getDraw().schedule(() => { if (!this.disposed && this.initialized && this.graph === graph) this.stop() }, time) }
     }, `${this.end * transport.PPQ}i`)
+    transport.ticks = this.startBeat * transport.PPQ
   }
   async play() {
     if (this.disposed || this.state === 'playing' || !this.tracks.some(track => track.notes.length)) return
-    if (!Number.isFinite(this.end) || this.end <= 0 || this.end > 65536 || this.bpm < 30 || this.bpm > 300 || this.tracks.length > 4 || this.tracks.reduce((count, track) => count + track.notes.length, 0) > 15000) throw new Error('La selección supera el límite del preview.')
+    if (!Number.isFinite(this.end) || this.end <= 0 || this.end > 65536 || this.bpm < 30 || this.bpm > 300 || this.tracks.length > 16 || this.tracks.reduce((count, track) => count + track.notes.length, 0) > 15000) throw new Error('La selección supera el límite del preview.')
     for (const track of this.tracks) for (const note of track.notes) { noteSchema.parse(note); if (note.start + note.duration > this.end + 1e-8) throw new Error('Una nota excede el final del preview.') }
     const request = ++this.request
     await Tone.start()
     if (this.disposed || request !== this.request) return
     if (!this.initialized) { try { this.build() } catch (error) { this.stop(); throw error } }
     const beat = this.getBeat()
-    if (this.state === 'paused') for (const track of this.tracks) {
+    if (beat > 0) for (const track of this.tracks) {
       const voice = this.voices.get(track.id)!
       if (track.kind !== 'drums') for (const note of track.notes) if (note.start < beat && note.start + note.duration > beat) this.attack(voice, note, Tone.now(), note.start + note.duration - beat)
     }
@@ -73,6 +77,8 @@ export class TrackPlayer {
   }
   stop() {
     this.request++
+    this.graph++
+    this.startBeat = 0
     if (this.initialized) {
       const transport = Tone.getTransport(); transport.stop(); transport.ticks = 0
       if (this.endId !== undefined) transport.clear(this.endId)
@@ -87,6 +93,15 @@ export class TrackPlayer {
     if (track) { track.volume = volume; track.muted = muted }
     this.voices.get(id)?.gain.gain.rampTo(muted ? 0 : volume, 0.03)
   }
-  getBeat() { return this.initialized ? Tone.getTransport().ticks / Tone.getTransport().PPQ : 0 }
+  seek(beat: number) {
+    if (!Number.isFinite(beat) || beat < 0 || beat >= this.end || this.state === 'playing') throw new Error('Detén o pausa el audio y elige una posición dentro del arreglo.')
+    this.request++
+    this.startBeat = beat
+    if (this.initialized) {
+      for (const voice of this.voices.values()) { voice.synth?.releaseAll(); voice.drums?.releaseAll() }
+      Tone.getTransport().ticks = beat * Tone.getTransport().PPQ
+    }
+  }
+  getBeat() { return this.initialized ? Tone.getTransport().ticks / Tone.getTransport().PPQ : this.startBeat }
   dispose() { this.stop(); this.disposed = true }
 }

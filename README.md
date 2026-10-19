@@ -1,6 +1,6 @@
 # AI Music Studio
 
-Asistente de composición musical desarrollado por fases, sin pagos obligatorios. **v0.5.0 — Fase 5: letras y asistencia IA opcional**. Conserva los proyectos JSON v1 anteriores y los generadores de acordes, melodías y bajos.
+Asistente de composición musical desarrollado por fases, sin pagos obligatorios. **v0.6.0 — Fase 6: estudio de arreglo**. Conserva los proyectos JSON v1 anteriores y los generadores de acordes, melodías y bajos.
 
 ## Ejecutar
 
@@ -55,7 +55,7 @@ Ejemplos de esta fase: [proyecto importable con tres pistas](docs/examples/proye
 
 El mapa de seis instrumentos es fijo: kick 36, snare 38, clap 39, hi-hat cerrado 42, abierto 46 y shaker/maracas 70. Los sonidos son sintetizados, sin muestras ni bancos de pago. Para una batería importada sin cuadrícula se conserva preview/MIDI; generar un patrón la reemplaza. Las notas importadas fuera de este mapa se conservan en MIDI, con un aviso de que el preview no las reproduce.
 
-Consulta [detalle de Fase 4](docs/phase4.md) y [verificación y límites](docs/verification-phase4.md). El editor de letras se incorpora en Fase 5; el arreglo por secciones sigue pendiente.
+Consulta [detalle de Fase 4](docs/phase4.md) y [verificación y límites](docs/verification-phase4.md). El editor de letras se incorpora en Fase 5; el arreglo por secciones está disponible en Fase 6.
 
 Ejemplo de esta fase: [proyecto con cuatro pistas](docs/examples/proyecto-fase4.json), [MIDI de batería](docs/examples/bateria-demo.mid) y [MIDI con acompañamiento](docs/examples/fase4-acompanamiento.mid). En el proyecto, abre Batería y selecciona las otras pistas para escuchar el conjunto.
 
@@ -80,8 +80,19 @@ Detalles, compatibilidad y siguientes entregas en [Fase 4.5](docs/phase4.5.md); 
 
 Detalles y activación: [Fase 5](docs/phase5.md). Evidencia y limitaciones: [verificación](docs/verification-phase5.md). No se ha probado todavía una llamada real a Gemini ni un despliegue Netlify: en esta sesión no hay cuentas ni credenciales configuradas.
 
+## Probar la Fase 6
+
+1. Crea pistas o importa [el ejemplo de estudio](docs/examples/proyecto-fase6.json). Abre **Estructura** desde Herramientas o el lateral.
+2. Crea una estructura inicial o usa tus secciones de letras. Pulsa las celdas para vincular pistas: los clips se repiten desde su inicio y se recortan al final de cada sección.
+3. Cambia nombres, compases y orden; duplica o elimina con confirmación. El texto de cada sección viaja con ella. BPM y compases se confirman con Enter o al salir del campo.
+4. Reproduce, pausa, reanuda o empieza desde una sección. Ajusta volumen y silencio mientras suena; editar el arreglo lo detiene.
+5. Descarga el MIDI del arreglo o exporta JSON para conservar letras, vínculos y mezcla. [MIDI de ejemplo](docs/examples/arreglo-demo.mid).
+
+Detalles: [Fase 6](docs/phase6.md). Comprobaciones y límites: [verificación](docs/verification-phase6.md). Funciona localmente sin configurar la IA opcional.
+
 ## Arquitectura vigente
 
+- `src/arrangement/`, `src/features/arrangement/` y `src/midi/exportArrangement.ts`: disposición por secciones, clips vinculados, transporte/mezcla y MIDI completo.
 - `src/features/lyrics/`, `src/services/ai/`, `server/lyrics.ts` y `netlify/functions/lyrics.ts`: edición de letras, proveedores y endpoint con cuotas persistentes.
 - `src/knowledge/` y `src/features/knowledge/`: catálogo validado, búsqueda, selector, contexto acotado y explorador.
 - `src/music/knowledgeHarmony.ts`: préstamos, dominantes aplicadas y conducción de voces.
@@ -98,7 +109,7 @@ Detalles y activación: [Fase 5](docs/phase5.md). Evidencia y limitaciones: [ver
 - `src/music/drums.ts` y `src/features/drums/`: patrones, swing, secuenciador y repetición al acompañar.
 - `src/audio/DrumKit.ts`: seis sonidos de percusión sintetizados y cierre del hi-hat abierto.
 
-Los módulos se cargan bajo demanda. Los motores son locales y no dependen de IA. Se edita la primera pista de cada tipo, conservando las adicionales importadas. El preview de cuatro pistas en Batería es un apoyo para componer; todavía no hay arreglo por secciones ni transporte de un estudio completo. El editor de letras de Fase 5 reutiliza las secciones del proyecto sin arreglar sus clips.
+Los módulos se cargan bajo demanda. Los motores son locales y no dependen de IA. Se edita la primera pista de cada tipo, conservando las adicionales importadas. El preview de cuatro pistas en Batería es un apoyo para componer; Estructura (Fase 6) conecta las pistas por secciones con transporte y mezcla comunes. El transporte pertenece al módulo abierto y se detiene al salir; no hay un transporte persistente entre pantallas.
 
 ## Verificación
 
@@ -108,7 +119,7 @@ npm run lint
 npm run build
 ```
 
-118 pruebas en 20 archivos: biblioteca/selector, armonía ampliada, contexto acotado, teoría, esquemas/persistencia, armonía, melodías/bajos, patrones y swing, generación/edición en DOM simulado, transporte/kit con Tone simulado y lectura binaria de MIDI individual/multipista. Consulta [verificación de Fase 4.5](docs/verification-phase4.5.md) para distinguir lo comprobado de la revisión auditiva, visual y en DAW pendiente. En el aislamiento Windows de esta sesión Vitest requiere permiso para sus temporales; fuera de ese aislamiento `npm test` pasa.
+140 pruebas en 23 archivos: biblioteca/selector, armonía ampliada, contexto acotado, teoría, esquemas/persistencia, armonía, melodías/bajos, patrones y swing, generación/edición en DOM simulado, transporte/kit con Tone simulado, letras/proveedores/límites del servidor, arreglo por secciones y lectura binaria de MIDI individual/multipista. Consulta [verificación de Fase 6](docs/verification-phase6.md) para distinguir lo comprobado de la escucha, los móviles físicos y la importación en DAW pendientes. La validación de 0.6.0 se ejecutó en Linux.
 
 ## Datos y seguridad
 

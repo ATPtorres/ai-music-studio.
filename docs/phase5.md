@@ -1,6 +1,6 @@
 # Fase 5 — Letras e IA opcional
 
-La versión 0.5.0 añade un editor de letras y un proveedor opcional de Gemini. Los motores musicales siguen funcionando sin servidor, sin cuentas y sin pagos obligatorios. No genera voz ni audio a partir de texto. El arreglo de clips y el transporte de estudio completo corresponden a Fase 6.
+La versión 0.5.0 añade un editor de letras y un proveedor opcional de Gemini. Los motores musicales siguen funcionando sin servidor, sin cuentas y sin pagos obligatorios. No genera voz ni audio a partir de texto. El arreglo de clips y su transporte están disponibles en [Fase 6](phase6.md).
 
 ## Uso sin cuentas ni claves
 
@@ -16,7 +16,7 @@ El tema y las opciones del generador son un borrador de sesión y no se guardan 
 
 Se mantiene JSON v1: se reutilizan `name` y `sections[].lyrics`, sin campos nuevos. Un borrador se aplica por posición a las primeras secciones: conserva sus IDs, compases y referencias a pistas, y actualiza nombre y letra. Si faltan secciones, crea nuevas con ocho compases y sin pistas vinculadas. Las secciones adicionales se conservan tal como estaban. No se modifica ninguna pista, nota, acorde, mezcla o parámetro musical.
 
-Eliminar una sección pide confirmación y elimina su letra y sus referencias, sin borrar las pistas. No se implementa todavía un timeline o la repetición de clips.
+Eliminar una sección pide confirmación y elimina su letra y sus referencias, sin borrar las pistas. El timeline y la repetición de clips se incorporan en [Fase 6](phase6.md).
 
 ## Asistencia de Gemini
 

@@ -4,6 +4,8 @@ Actualización histórica Fase 4: armonía, melodías/bajos, secuenciador de bat
 
 La Fase 5 añade el editor de letras y una conexión opcional de Gemini con cuotas persistentes. Ver [arquitectura y activación](phase5.md) y [verificación](verification-phase5.md); las credenciales y el despliegue real siguen pendientes.
 
+La Fase 6 añade el [arreglo local por secciones](phase6.md) reutilizando JSON v1 y los motores existentes. Ver [comprobaciones y límites](verification-phase6.md).
+
 ## Alcance y decisiones
 
 React + TypeScript estricto + Vite para una SPA estática; Tailwind CSS 4 integrado con Vite y CSS semántico para el diseño de estudio. React hooks para estado: no hace falta Redux ni un router para cuatro vistas sin URL propia. Zod valida fronteras de confianza y deriva tipos compartidos. Vitest y ESLint verifican la base. Iconos Lucide, sin fuentes ni imágenes remotas obligatorias.
@@ -39,7 +41,7 @@ Parámetros: tónica cromática C–B con sostenidos, modo major/minor, tempo en
 
 `MusicTrack`: id, nombre, tipo chords/melody/bass/drums, canal 0–15, muted, volumen 0–1, notas y acordes. Canal 9 de índice cero (canal 10 humano) reservado para batería. Mapa GM: kick 36, snare 38, clap 39, closedHat 42, openHat 46, shaker 70. Referencia: [General MIDI percussion map](https://midi.org/general-midi).
 
-`Chord`: id, símbolo, grado, inicio y duración en negras y pitches MIDI. `Section`: id, nombre, compases, referencias a pistas y letra editable. Las secciones se ordenan por posición en el array. El esquema rechaza referencias inexistentes e identificadores duplicados. En fase de arreglo se definirá la repetición y recorte de clips por sección.
+`Chord`: id, símbolo, grado, inicio y duración en negras y pitches MIDI. `Section`: id, nombre, compases, referencias a pistas y letra editable. Las secciones se ordenan por posición en el array. El esquema rechaza referencias inexistentes e identificadores duplicados. La Fase 6 repite los clips vinculados desde su inicio y recorta sus notas al final de cada sección; consulta [la semántica completa](phase6.md).
 
 El formato v1 no permite propiedades desconocidas. Versiones nuevas requerirán migraciones explícitas. Hasta entonces versiones incompatibles se rechazan sin sustituir el proyecto.
 
