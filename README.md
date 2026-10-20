@@ -1,6 +1,6 @@
 # AI Music Studio
 
-Asistente de composición musical desarrollado por fases, sin pagos obligatorios. **v0.6.1 — Estudio con paleta de sonidos**. Conserva los proyectos JSON v1 anteriores y los generadores de acordes, melodías y bajos.
+Asistente de composición musical desarrollado por fases, sin pagos obligatorios. **v0.7.0 — Estructura visual, variantes y paleta de sonidos**. Conserva los proyectos JSON v1 anteriores y los generadores de acordes, melodías y bajos.
 
 ## Ejecutar
 
@@ -83,12 +83,20 @@ Detalles y activación: [Fase 5](docs/phase5.md). Evidencia y limitaciones: [ver
 ## Probar la Fase 6
 
 1. Crea pistas o importa [el ejemplo de estudio](docs/examples/proyecto-fase6.json). Abre **Estructura** desde Herramientas o el lateral.
-2. Crea una estructura inicial o usa tus secciones de letras. Pulsa las celdas para vincular pistas: los clips se repiten desde su inicio y se recortan al final de cada sección.
+2. Crea una estructura inicial o usa tus secciones de letras. Elige V1, una variante o Silencio en los bloques de colores: las frases se repiten desde su inicio y se recortan al final de cada sección.
 3. Cambia nombres, compases y orden; duplica o elimina con confirmación. El texto de cada sección viaja con ella. BPM y compases se confirman con Enter o al salir del campo.
 4. Reproduce, pausa, reanuda o empieza desde una sección. Ajusta volumen y silencio mientras suena; editar el arreglo lo detiene.
 5. Descarga el MIDI del arreglo o exporta JSON para conservar letras, vínculos y mezcla. [MIDI de ejemplo](docs/examples/arreglo-demo.mid).
 
 Detalles: [Fase 6](docs/phase6.md). Comprobaciones y límites: [verificación](docs/verification-phase6.md). Funciona localmente sin configurar la IA opcional.
+
+## Estructura visual y variantes
+
+La vista **Estructura** muestra un Gantt musical con regla de compases, zoom y cursor de reproducción. Los instrumentos mantienen su identidad en toda la interfaz: batería azul, bajo rojo, acordes verde y melodía naranja.
+
+Usa **Aplicar plantilla dinámica** para crear entradas y salidas por sección. En la **Biblioteca de frases**, duplica V1 o crea una variación para conservar versiones independientes (V2, V3…). Puedes editar sus notas y elegir una versión distinta en cada bloque. Las copias se conservan al regenerar la pista original. El audio y el MIDI utilizan las versiones elegidas.
+
+[Guía completa, datos y límites](docs/visual-arrangement.md) · [Proyecto de ejemplo importable](docs/examples/proyecto-estructura-visual.json).
 
 ## Elegir sonidos
 
@@ -129,7 +137,7 @@ npm run lint
 npm run build
 ```
 
-151 pruebas en 25 archivos: biblioteca/selector, armonía ampliada, contexto acotado, teoría, esquemas/persistencia, armonía, melodías/bajos, patrones y swing, generación/edición en DOM simulado, transporte/kit con Tone simulado, letras/proveedores/límites del servidor, arreglo por secciones, selección de sonidos y lectura binaria de MIDI individual/multipista. Consulta [verificación de Fase 6](docs/verification-phase6.md) para distinguir lo comprobado de la escucha, los móviles físicos y la importación en DAW pendientes. La validación de 0.6.1 se ejecutó en Linux.
+164 pruebas en 26 archivos: biblioteca/selector, armonía ampliada, contexto acotado, teoría, esquemas/persistencia, armonía, melodías/bajos, patrones y swing, generación/edición en DOM simulado, transporte/kit con Tone simulado, letras/proveedores/límites del servidor, arreglo por secciones, selección de sonidos y lectura binaria de MIDI individual/multipista. Consulta [verificación de Fase 6](docs/verification-phase6.md) para distinguir lo comprobado de la escucha, los móviles físicos y la importación en DAW pendientes. La validación de 0.7.0 se ejecutó en Linux; consulta también la [verificación del editor visual](docs/visual-arrangement.md#verificación).
 
 ## Datos y seguridad
 

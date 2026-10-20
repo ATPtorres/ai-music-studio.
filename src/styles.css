@@ -36,3 +36,24 @@ input[type=checkbox], input[type=range] { accent-color: var(--studio-blue); }
 .module-card:nth-child(3n+1) { border-top: 4px solid var(--studio-blue); }
 .module-card:nth-child(3n+2) { border-top: 4px solid var(--studio-red); }
 .module-card:nth-child(3n) { border-top: 4px solid var(--studio-yellow); }
+
+/* Instrument identities stay consistent across generators, arrangement and mixer. */
+.instrument-theme[data-instrument=drums]{--instrument-accent:#214fc6;--instrument-soft:#eaf0ff}
+.instrument-theme[data-instrument=bass]{--instrument-accent:#bd263c;--instrument-soft:#fff0f2}
+.instrument-theme[data-instrument=chords]{--instrument-accent:#187044;--instrument-soft:#eaf7ef}
+.instrument-theme[data-instrument=melody]{--instrument-accent:#a7440c;--instrument-soft:#fff1e5}
+.line-workbench.instrument-theme{--line-accent:var(--instrument-accent);--line-bg:var(--instrument-soft)}
+.drum-workbench.instrument-theme{--drum-accent:var(--instrument-accent)}
+.instrument-theme .button.primary{background:var(--instrument-accent);border-color:var(--instrument-accent);color:#fff}
+.instrument-theme .icon-box,.module-card.instrument-theme .icon-box{background:var(--instrument-soft);border-color:var(--instrument-accent);color:var(--instrument-accent)}
+.instrument-theme .chord-intro,.instrument-theme .drum-intro,.instrument-theme .line-intro{background:var(--instrument-soft);border-color:var(--instrument-accent)}
+.instrument-theme .eyebrow,.instrument-theme .text-button{color:var(--instrument-accent)}
+.module-card.instrument-theme{border-top:4px solid var(--instrument-accent)}
+.tool-nav button.instrument-theme{border-left:3px solid var(--instrument-accent)}
+.tool-nav button.instrument-theme>svg{color:var(--instrument-accent)}
+.chord-workbench.instrument-theme .chord-tile{border-top:3px solid var(--instrument-accent)}
+.instrument-theme input[type=checkbox],.instrument-theme input[type=range]{accent-color:var(--instrument-accent)}
+.generator-usage{padding:12px 15px;background:var(--instrument-soft);border-left:3px solid var(--instrument-accent);font-size:11px;line-height:1.8;margin:15px 0}
+
+.chord-workbench.instrument-theme .chord-tile.sounding{background:var(--instrument-soft);border-color:var(--instrument-accent)}
+.chord-workbench.instrument-theme .chord-notes>span{background:var(--instrument-soft);color:var(--instrument-accent);border-color:var(--instrument-accent)}

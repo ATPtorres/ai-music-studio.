@@ -86,9 +86,10 @@ export default function DrumWorkbench({ project, update, saveStatus }: Props) {
   })
   const hasSound = selection.tracks.some(item => item.notes.length)
 
-  return <section className="drum-workbench" aria-label="Secuenciador de batería">
+  return <section className="drum-workbench instrument-theme" data-instrument="drums" aria-label="Secuenciador de batería">
     <p className="drum-save" role="status">{saveStatus}</p>
     <div className="drum-intro"><span className="icon-box orange"><Disc3 size={27}/></span><div><div className="eyebrow">EL PULSO DE TU CANCIÓN · MOTOR LOCAL</div><h2>Un ritmo que lo conecta todo.</h2><p>Seis instrumentos. Cada golpe, en tus manos.</p></div><span className="drum-ready">Fase 4 · Disponible</span></div>
+    {track && project.sections.some(section => section.trackIds.includes(track.id) && !section.variantIds?.[track.id]) && <p className="generator-usage">V1 se utiliza en: {project.sections.filter(section => section.trackIds.includes(track.id) && !section.variantIds?.[track.id]).map(section => section.name).join(', ')}. Editar o regenerar aquí actualiza esos bloques. Puedes conservar una copia desde la biblioteca de Estructura.</p>}
     <TrackSoundSelector track={track} kind="drums" onChange={sound => { if (track) update({ tracks: project.tracks.map(item => item.id === track.id ? { ...item, sound } : item) }) }}/>
     <div className="drum-config"><div className="section-heading"><h3>Elige tu punto de partida</h3><span>Sonidos sintetizados · Sin muestras externas</span></div><div className="drum-settings">
       <label>Patrón por género<select aria-label="Género de batería" value={genre} onChange={e => setGenre(e.target.value as DrumPattern['genre'])}>{drumGenres.map(value => <option key={value}>{value}</option>)}</select></label>

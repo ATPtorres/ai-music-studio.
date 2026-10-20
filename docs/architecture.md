@@ -64,3 +64,7 @@ Cuotas/caídas: desactivar solo asistencia IA y mostrar error; motores locales s
 Audio móvil: requiere gesto del usuario, puede suspenderse en segundo plano y exige liberar nodos; probar con dispositivos reales. Temporización: Tone.js para agenda de audio, no temporizadores de UI. MIDI: PPQ, canales, Note Off, tempo y compás deben verificarse mediante lectura de archivos reales y pruebas en DAW en fase 2. Los previews usarán síntesis sencilla, sin equipararla con audio final.
 
 Sin IA deben funcionar: parámetros, proyectos, teoría, armonía, melodía, bajo, batería, edición de notas, duración, estructura, reproducción y MIDI. Letras y explicaciones podrán usar IA, con edición manual disponible y confirmación antes de reemplazar texto.
+
+## Estructura visual y variantes
+
+El esquema v1 admite campos opcionales `track.variants` y `section.variantIds`; la ausencia de asignación usa la pista original V1. Las copias almacenan eventos y longitud de ciclo, mientras sonido y mezcla siguen perteneciendo a la pista. `arrangement/clips.ts` resuelve clips originales o copias, `arrangement/variants.ts` gestiona copias y asignaciones y `arrangement/render.ts` expande exactamente la versión elegida para preview/MIDI. La interfaz separa regla/filas Gantt y biblioteca editable. [Semántica y compatibilidad](visual-arrangement.md).

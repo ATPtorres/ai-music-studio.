@@ -94,9 +94,10 @@ export default function LineWorkbench({ kind, project, update, saveStatus, onOpe
     setMessage('Archivo MIDI preparado con notas reales, tempo y compás.')
   })
 
-  return <section className={`line-workbench ${bass ? 'bass-workbench' : 'melody-workbench'}`} aria-label={bass ? 'Generador de bajos' : 'Generador de melodías'}>
+  return <section className={`line-workbench instrument-theme ${bass ? 'bass-workbench' : 'melody-workbench'}`} data-instrument={kind} aria-label={bass ? 'Generador de bajos' : 'Generador de melodías'}>
     <p className="line-save" role="status">{saveStatus}</p>
     <div className="line-intro"><span className={`icon-box ${bass ? 'pink' : 'blue'}`}>{bass ? <Guitar size={25}/> : <AudioLines size={25}/>}</span><div><div className="eyebrow">{bass ? 'LA BASE DE TU SONIDO' : 'UNA VOZ PARA TU IDEA'} · MOTOR LOCAL</div><h2>{bass ? 'Un pulso con personalidad.' : 'Encuentra la próxima frase.'}</h2><p>{project.parameters.key} {project.parameters.mode === 'major' ? 'mayor' : 'menor natural'} · {project.parameters.genre} · {project.parameters.mood}</p></div></div>
+    {track && project.sections.some(section => section.trackIds.includes(track.id) && !section.variantIds?.[track.id]) && <p className="generator-usage">V1 se utiliza en: {project.sections.filter(section => section.trackIds.includes(track.id) && !section.variantIds?.[track.id]).map(section => section.name).join(', ')}. Editar o regenerar aquí actualiza esos bloques. Puedes conservar una copia desde la biblioteca de Estructura.</p>}
     <TrackSoundSelector track={track} kind={kind} onChange={sound => { if (track) update({ tracks: project.tracks.map(item => item.id === track.id ? { ...item, sound } : item) }) }}/>
     {!end ? <div className="line-empty"><h3>Primero, un punto de apoyo.</h3><p>Crea una progresión de acordes para generar una línea compatible.</p><button className="button primary" onClick={onOpenChords}>Abrir Acordes <ArrowRight size={15}/></button></div> : <>
       <div className="line-config"><div className="section-heading"><h3>Diseña tu {bass ? 'bajo' : 'melodía'}</h3><span>{getHarmony(project).length} acordes · {end} negras</span></div><div className="line-settings">

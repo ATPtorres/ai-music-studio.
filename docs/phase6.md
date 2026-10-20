@@ -58,3 +58,7 @@ El esquema mantiene hasta 100 secciones y 512 compases por sección. Para render
 Se usa `midi-file`, que ya estaba instalado como dependencia de pruebas y transitiva de `@tonejs/midi`; se declara ahora también como dependencia directa de producción para escribir el final del archivo. No se incorporan paquetes nuevos ni cambian sus versiones resueltas. El encoder de `@tonejs/midi` no escribe `endOfTrackTicks`, por eso se ajusta End Of Track al serializar el SMF final.
 
 Ver [verificación y límites](verification-phase6.md).
+
+## Ampliación v0.7.0
+
+La estructura incorpora un Gantt proporcional, colores por instrumento, plantilla con entradas y salidas y versiones independientes de frases. Los vínculos antiguos continúan reproduciendo V1; los bloques nuevos pueden seleccionar copias. Consulta la [guía de estructura visual](visual-arrangement.md).

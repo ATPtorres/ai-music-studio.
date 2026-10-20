@@ -109,6 +109,6 @@ export function withLineTrack(project: MusicProject, kind: LineKind, notes: Musi
   const used = new Set(project.tracks.filter(track => track.id !== existing?.id).map(track => track.channel))
   const channel = existing?.channel ?? [kind === 'melody' ? 1 : 2, ...Array.from({ length: 16 }, (_, index) => index)].find(value => value !== 9 && !used.has(value))
   if (channel === undefined) throw new Error('No hay un canal MIDI libre para la pista.')
-  const track: MusicTrack = { id: existing?.id ?? crypto.randomUUID(), name: existing?.name ?? (kind === 'melody' ? 'Melodía' : 'Bajo'), kind, channel, muted: existing?.muted ?? false, volume: existing?.volume ?? 0.65, notes, chords: [], ...(existing?.sound ? { sound: existing.sound } : {}), sourceHarmony: harmonyFingerprint(project), ...(generation ?? existing?.generation ? { generation: lineOptionsSchema.parse(generation ?? existing?.generation) } : {}) }
+  const track: MusicTrack = { id: existing?.id ?? crypto.randomUUID(), name: existing?.name ?? (kind === 'melody' ? 'Melodía' : 'Bajo'), kind, channel, muted: existing?.muted ?? false, volume: existing?.volume ?? 0.65, notes, chords: [], ...(existing?.variants ? { variants: existing.variants } : {}), ...(existing?.sound ? { sound: existing.sound } : {}), sourceHarmony: harmonyFingerprint(project), ...(generation ?? existing?.generation ? { generation: lineOptionsSchema.parse(generation ?? existing?.generation) } : {}) }
   return existing ? project.tracks.map(item => item.id === existing.id ? track : item) : [...project.tracks, track]
 }

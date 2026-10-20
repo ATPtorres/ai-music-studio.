@@ -15,8 +15,8 @@ const openLyrics = vi.fn(); const openTools = vi.fn()
 function fixture(): MusicProject {
   return { ...createProject(), tracks: [{ id: 'piano', kind: 'chords', name: 'Piano', channel: 0, volume: 0.7, muted: false, notes: [{ pitch: 60, start: 0, duration: 4, velocity: 90 }], chords: [] }], sections: [{ id: 'verse', name: 'Verso', bars: 2, trackIds: ['piano'], lyrics: 'Letra del verso' }, { id: 'chorus', name: 'Estribillo', bars: 4, trackIds: [], lyrics: 'Letra del estribillo' }] }
 }
-function Harness({ empty = false }: { empty?: boolean }) {
-  const [project, setProject] = useState<MusicProject>(() => empty ? createProject() : fixture())
+function Harness({ empty = false, source }: { empty?: boolean; source?: MusicProject }) {
+  const [project, setProject] = useState<MusicProject>(() => source ?? (empty ? createProject() : fixture()))
   useEffect(() => { latest = project }, [project])
   return <ArrangementWorkbench project={project} update={change => setProject(p => ({ ...p, ...change }))} saveStatus="Guardado" onOpenLyrics={openLyrics} onOpenTools={openTools}/>
 }
@@ -35,13 +35,13 @@ describe('Estudio de arreglo en DOM simulado', () => {
     await act(() => root.render(<Harness/>))
     const original = structuredClone(latest.tracks)
     expect(container.querySelectorAll('.arrangement-timeline thead th')).toHaveLength(3)
-    const link = container.querySelector<HTMLButtonElement>('[aria-label="Vínculo Piano en sección 2: Estribillo"]')!
-    expect(link.getAttribute('aria-pressed')).toBe('false')
-    await act(() => link.click())
+    const link = container.querySelector<HTMLSelectElement>('[aria-label="Frase Piano en sección 2: Estribillo"]')!
+    expect(link.value).toBe('__silence')
+    await act(() => { link.value = ''; link.dispatchEvent(new Event('change', { bubbles: true })) })
     expect(latest.sections[1].trackIds).toEqual(['piano'])
     expect(latest.sections[1].lyrics).toBe('Letra del estribillo'); expect(latest.tracks).toEqual(original)
     expect(audio.configure.mock.calls.at(-1)![0][0].notes.map((n: { start: number }) => n.start)).toEqual([0, 4, 8, 12, 16, 20])
-    await act(() => link.click()); expect(latest.sections[1].trackIds).toEqual([])
+    await act(() => { link.value = '__silence'; link.dispatchEvent(new Event('change', { bubbles: true })) }); expect(latest.sections[1].trackIds).toEqual([])
   })
   it('mueve, duplica y elimina secciones conservando texto, IDs y vínculos', async () => {
     await act(() => root.render(<Harness/>))
@@ -107,10 +107,10 @@ describe('Estudio de arreglo en DOM simulado', () => {
     await act(() => root.render(<Harness empty/>))
     expect(button('Reproducir arreglo').disabled).toBe(true)
     await act(() => button('Crear estructura inicial').click())
-    expect(latest.sections.map(s => s.name)).toEqual(['Intro', 'Verso', 'Estribillo'])
+    expect(latest.sections.map(s => s.name)).toEqual(['Intro', 'Verso 1', 'Coro', 'Break', 'Verso 2', 'Coro final', 'Outro'])
     expect(container.textContent).toContain('Todavía no hay pistas')
-    await act(() => button('Añadir sección').click()); expect(latest.sections).toHaveLength(4)
-    expect(new Set(latest.sections.map(s => s.id)).size).toBe(4)
+    await act(() => button('Añadir sección').click()); expect(latest.sections).toHaveLength(8)
+    expect(new Set(latest.sections.map(s => s.id)).size).toBe(8)
   })
   it('selecciona sonido en la mezcla, reconfigura el preview y conserva los eventos', async () => {
     await act(() => root.render(<Harness/>))
@@ -120,6 +120,47 @@ describe('Estudio de arreglo en DOM simulado', () => {
     expect(latest.tracks[0].sound).toBe('pad')
     expect(latest.tracks[0].notes).toEqual(original)
     expect(audio.configure.mock.calls.at(-1)![0][0].sound).toBe('pad')
+  })
+
+  it('duplica V1, asigna V2 y edita notas sin alterar el original; retirar el bloque conserva la copia', async () => {
+    await act(() => root.render(<Harness/>))
+    const original = structuredClone(latest.tracks[0].notes)
+    await act(() => button('Duplicar para editar').click())
+    const variant = latest.tracks[0].variants![0]
+    expect(variant.name).toBe('V2')
+    await act(() => button('Asignar a Verso').click())
+    expect(latest.sections[0].variantIds).toEqual({ piano: variant.id })
+    const notes = container.querySelector<HTMLSelectElement>('[aria-label="Nota de la variante"]')!
+    await act(() => { notes.value = '0'; notes.dispatchEvent(new Event('change', { bubbles: true })) })
+    const pitch = container.querySelector<HTMLSelectElement>('[aria-label="Altura en variante"]')!
+    await act(() => { pitch.value = '67'; pitch.dispatchEvent(new Event('change', { bubbles: true })) })
+    expect(latest.tracks[0].notes).toEqual(original)
+    expect(latest.tracks[0].variants![0].notes[0].pitch).toBe(67)
+    expect(audio.configure.mock.calls.at(-1)![0][0].notes.map((n: { pitch: number }) => n.pitch)).toEqual([67, 67])
+    const slot = container.querySelector<HTMLSelectElement>('[aria-label="Frase Piano en sección 1: Verso"]')!
+    await act(() => { slot.value = '__silence'; slot.dispatchEvent(new Event('change', { bubbles: true })) })
+    expect(latest.sections[0].trackIds).toEqual([])
+    expect(latest.sections[0].variantIds).toEqual({})
+    expect(latest.tracks[0].variants).toHaveLength(1)
+  })
+  it('confirma antes de reemplazar estructura y protege letras al cancelar', async () => {
+    await act(() => root.render(<Harness/>))
+    const before = structuredClone(latest)
+    vi.mocked(window.confirm).mockReturnValueOnce(false)
+    await act(() => button('Aplicar plantilla dinámica').click())
+    expect(latest).toEqual(before)
+    await act(() => button('Aplicar plantilla dinámica').click())
+    expect(latest.sections).toHaveLength(7)
+    expect(latest.tracks).toEqual(before.tracks)
+  })
+
+  it('mantiene el editor utilizable cuando un clip importado supera los límites', async () => {
+    const source = fixture()
+    source.tracks[0].notes[0].start = 1e10
+    await act(() => root.render(<Harness source={source}/>))
+    expect(container.textContent).toContain('supera el límite')
+    expect(container.querySelector('[aria-label="Instrumento de la biblioteca"]')).not.toBeNull()
+    expect(button('Reproducir arreglo').disabled).toBe(true)
   })
 
 })

@@ -84,6 +84,6 @@ export function retimeChords(chords: MusicChord[]): MusicChord[] {
 
 export function withChordTrack(project: MusicProject, chords: MusicChord[], name: string, knowledge?: HarmonyKnowledge): MusicTrack[] {
   const existing = project.tracks.find(track => track.kind === 'chords')
-  const track: MusicTrack = { id: existing?.id ?? crypto.randomUUID(), name, kind: 'chords', channel: existing?.channel ?? 0, muted: existing?.muted ?? false, volume: existing?.volume ?? 0.7, chords, notes: chordsToNotes(chords), ...(existing?.sound ? { sound: existing.sound } : {}), ...(knowledge ? { harmonyKnowledge: knowledge } : {}) }
+  const track: MusicTrack = { id: existing?.id ?? crypto.randomUUID(), name, kind: 'chords', channel: existing?.channel ?? 0, muted: existing?.muted ?? false, volume: existing?.volume ?? 0.7, chords, notes: chordsToNotes(chords), ...(existing?.variants ? { variants: existing.variants } : {}), ...(existing?.sound ? { sound: existing.sound } : {}), ...(knowledge ? { harmonyKnowledge: knowledge } : {}) }
   return existing ? project.tracks.map(item => item.id === existing.id ? track : item) : [...project.tracks, track]
 }

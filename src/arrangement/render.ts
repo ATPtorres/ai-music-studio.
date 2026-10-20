@@ -1,18 +1,12 @@
 import { projectSchema, type MusicNote, type MusicProject, type MusicTrack } from '../models/project'
-import { chordsToNotes } from '../music/harmony'
-import { drumPatternEnd, drumPatternNotes } from '../music/drums'
+import { variantClip } from './clips'
+import { harmonyFingerprint } from '../music/lines'
+export { sourceClip } from './clips'
 import { barBeats } from '../music/theory'
 
 export const arrangementLimits = { beats: 4096, notes: 15000, tracks: 16 } as const
 export interface TimelineSection { id: string; name: string; index: number; start: number; end: number; firstBar: number; bars: number }
 export interface Arrangement { sections: TimelineSection[]; tracks: MusicTrack[]; end: number; bars: number; seconds: number; warnings: string[] }
-export function sourceClip(track: MusicTrack, signature: MusicProject['parameters']['timeSignature']) {
-  const notes = track.kind === 'chords' && track.chords.length ? chordsToNotes(track.chords) : track.kind === 'drums' && track.drumPattern ? drumPatternNotes(track.drumPattern) : track.notes
-  const last = notes.reduce((end, note) => Math.max(end, note.start + note.duration), 0)
-  const period = track.kind === 'drums' && track.drumPattern ? drumPatternEnd(track.drumPattern) : Math.ceil(last / barBeats(signature)) * barBeats(signature)
-  if (!Number.isFinite(period) || period > arrangementLimits.beats || notes.length > arrangementLimits.notes) throw new Error(`El clip «${track.name}» supera el límite de duración o notas del arreglo.`)
-  return { notes, period }
-}
 /** Layout remains available even when a preview exceeds resource limits. */
 export function layoutSections(project: MusicProject): TimelineSection[] {
   const beats = barBeats(project.parameters.timeSignature)
@@ -38,13 +32,19 @@ export function renderArrangement(input: MusicProject): Arrangement {
   const warnings: string[] = []
   let total = 0
   const tracks = sources.map(track => {
-    const clip = sourceClip(track, project.parameters.timeSignature)
-    if (!clip.notes.length) warnings.push(`«${track.name}» está vinculada pero no contiene notas.`)
     if (track.drumPattern && track.drumPattern.signature.join('/') !== project.parameters.timeSignature.join('/')) warnings.push(`«${track.name}» conserva el ciclo de batería en ${track.drumPattern.signature.join('/')}; el arreglo usa ${project.parameters.timeSignature.join('/')}.`)
-    if (track.kind === 'drums' && clip.notes.some(note => ![36, 38, 39, 42, 46, 70].includes(note.pitch))) warnings.push(`«${track.name}» contiene percusión que el preview no sintetiza; se conserva en MIDI.`)
     const notes: MusicNote[] = []
     for (const section of sections) {
-      if (!project.sections[section.index].trackIds.includes(track.id) || !clip.notes.length || clip.period <= 0) continue
+      const source = project.sections[section.index]
+      if (!source.trackIds.includes(track.id)) continue
+      const variantId = source.variantIds?.[track.id]
+      const clip = variantClip(track, project.parameters.timeSignature, variantId)
+      if (!clip.notes.length) warnings.push(`«${track.name}» en ${section.name} no contiene notas.`)
+      const provenance = variantId ? track.variants?.find(variant => variant.id === variantId)?.sourceHarmony : track.sourceHarmony
+      if ((track.kind === 'bass' || track.kind === 'melody') && provenance !== harmonyFingerprint(project)) warnings.push(`Revisa ${track.name} en ${section.name}: la armonía cambió o la frase fue editada manualmente.`)
+      if (track.kind === 'chords' && variantId && source.trackIds.some(id => project.tracks.some(t => t.id === id && (t.kind === 'bass' || t.kind === 'melody')))) warnings.push(`Revisa bajo y melodía en ${section.name}: utiliza una variante de acordes.`)
+      if (track.kind === 'drums' && clip.notes.some(note => ![36, 38, 39, 42, 46, 70].includes(note.pitch))) warnings.push(`«${track.name}» contiene percusión que el preview no sintetiza; se conserva en MIDI.`)
+      if (!clip.notes.length || clip.period <= 0) continue
       const duration = section.end - section.start
       for (let offset = 0; offset < duration; offset += clip.period) for (const note of clip.notes) {
         const local = offset + note.start
@@ -55,9 +55,9 @@ export function renderArrangement(input: MusicProject): Arrangement {
     }
     notes.sort((a, b) => a.start - b.start || a.pitch - b.pitch)
     // Strip source-only generators: exporters must use these rendered events.
-    return { ...track, notes, chords: [], drumPattern: undefined, harmonyKnowledge: undefined, sourceHarmony: undefined, generation: undefined }
+    return { ...track, notes, chords: [], drumPattern: undefined, harmonyKnowledge: undefined, sourceHarmony: undefined, generation: undefined, variants: undefined }
   })
-  return { sections, tracks, end, bars, seconds: end * 60 / project.parameters.bpm, warnings }
+  return { sections, tracks, end, bars, seconds: end * 60 / project.parameters.bpm, warnings: [...new Set(warnings)] }
 }
 export function moveSection(sections: MusicProject['sections'], id: string, direction: -1 | 1) {
   const index = sections.findIndex(section => section.id === id)
