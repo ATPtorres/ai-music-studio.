@@ -19,6 +19,17 @@ function fixture(): MusicProject {
   return project
 }
 describe('Catálogo de sonidos y compatibilidad de proyectos', () => {
+  it('retira piano de Acordes y LinnDrum de Batería sin perder proyectos antiguos', () => {
+    expect(soundsByKind.chords).not.toContain('piano')
+    expect(soundsByKind.melody).toContain('piano')
+    expect(soundsByKind.drums).toEqual(['kit-707', 'kit-808', 'kit-909'])
+    const old = fixture(); old.tracks[0].sound = 'piano'; old.tracks[3].sound = 'kit-linn'
+    const restored = parseProject(JSON.stringify(old))
+    expect(restored).toEqual(old)
+    expect(resolveSound('chords', restored.tracks[0].sound)).toBe('electric-piano')
+    expect(resolveSound('drums', restored.tracks[3].sound)).toBe('kit-707')
+    expect(new Midi(exportChordsMidi(restored, restored.tracks[0].id)).tracks[0].instrument.number).toBe(4)
+  })
   it('valida cada opción permitida y rechaza sonidos ajenos al tipo de pista', () => {
     const project = fixture()
     expect(soundIds).toHaveLength(new Set(soundIds).size)
@@ -38,7 +49,7 @@ describe('Catálogo de sonidos y compatibilidad de proyectos', () => {
     const recovered = parseProject(JSON.stringify(old))
     expect(recovered).toEqual(old); expect(recovered.version).toBe(1)
     for (const track of recovered.tracks) expect(resolveSound(track.kind, track.sound)).toBe(track.sound)
-    expect(defaultSounds).toEqual({ chords: 'piano', melody: 'lead', bass: 'electric-bass', drums: 'kit-707' })
+    expect(defaultSounds).toEqual({ chords: 'electric-piano', melody: 'lead', bass: 'electric-bass', drums: 'kit-707' })
   })
   it('conserva selección al regenerar acordes, líneas y batería y al renderizar el arreglo', () => {
     const project = fixture()
@@ -70,7 +81,7 @@ describe('Programas MIDI según el sonido de la pista', () => {
   })
   it('aplica los sonidos al MIDI completo y mantiene los programas previos sin selección', () => {
     const project = fixture()
-    expect(project.tracks.map(midiProgram)).toEqual([0, 80, 33, 0])
+    expect(project.tracks.map(midiProgram)).toEqual([4, 80, 33, 0])
     project.tracks.forEach((track, i) => { track.sound = (['pad', 'acoustic-guitar', 'synth-bass', 'kit-808'] as const)[i] })
     const midi = new Midi(exportArrangementMidi(project))
     expect(midi.tracks.map(track => track.instrument.number)).toEqual([89, 24, 38, 25])

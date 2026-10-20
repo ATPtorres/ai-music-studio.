@@ -4,7 +4,7 @@ export const soundIds = ['piano', 'electric-piano', 'pad', 'strings', 'acoustic-
 export const soundSchema = z.enum(soundIds)
 export type SoundId = z.infer<typeof soundSchema>
 export type TrackKind = 'chords' | 'melody' | 'bass' | 'drums'
-export type DrumSound = Extract<SoundId, `kit-${string}`>
+export type DrumSound = Exclude<Extract<SoundId, `kit-${string}`>, 'kit-linn'>
 export const sounds: Record<SoundId, { name: string; program: number }> = {
   piano: { name: 'Piano', program: 0 },
   'electric-piano': { name: 'Piano eléctrico', program: 4 },
@@ -24,14 +24,18 @@ export const sounds: Record<SoundId, { name: string; program: number }> = {
   'kit-linn': { name: 'LinnDrum · pop ochentero', program: 8 },
 }
 export const soundsByKind: Record<TrackKind, readonly SoundId[]> = {
-  chords: ['piano', 'electric-piano', 'pad', 'strings', 'acoustic-guitar', 'electric-guitar'],
+  chords: ['electric-piano', 'pad', 'strings', 'acoustic-guitar', 'electric-guitar'],
   melody: ['pluck', 'acoustic-guitar', 'electric-guitar', 'piano', 'lead', 'flute'],
   bass: ['electric-bass', 'synth-bass', 'acoustic-bass'],
-  drums: ['kit-707', 'kit-808', 'kit-909', 'kit-linn'],
+  drums: ['kit-707', 'kit-808', 'kit-909'],
 }
-export const defaultSounds: Record<TrackKind, SoundId> = { chords: 'piano', melody: 'lead', bass: 'electric-bass', drums: 'kit-707' }
+export const defaultSounds: Record<TrackKind, SoundId> = { chords: 'electric-piano', melody: 'lead', bass: 'electric-bass', drums: 'kit-707' }
+/** Keep old JSON readable; retired choices resolve to their current replacement. */
+export function compatibleSound(kind: TrackKind, sound: SoundId) {
+  return soundsByKind[kind].includes(sound) || (kind === 'chords' && sound === 'piano') || (kind === 'drums' && sound === 'kit-linn')
+}
 export function resolveSound(kind: TrackKind, sound?: SoundId): SoundId {
-  const chosen = sound ?? defaultSounds[kind]
+  const chosen = kind === 'chords' && sound === 'piano' ? 'electric-piano' : kind === 'drums' && sound === 'kit-linn' ? 'kit-707' : sound ?? defaultSounds[kind]
   if (!soundsByKind[kind].includes(chosen)) throw new Error('El sonido no es compatible con este tipo de pista.')
   return chosen
 }

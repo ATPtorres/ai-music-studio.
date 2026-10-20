@@ -33,9 +33,9 @@ describe('Kit sintetizado (Tone simulado)', () => {
     expect(fake.instruments[0].dispose).toHaveBeenCalledOnce()
     expect(fake.filters[0].dispose).toHaveBeenCalledOnce()
   })
-  it('diferencia los cuatro kicks y libera cada kit después del cambio', () => {
+  it('diferencia los tres kicks y libera cada kit después del cambio', () => {
     const choices = [
-      ['kit-707', 'C1', 0.12], ['kit-808', 'A0', 0.65], ['kit-909', 'D1', 0.24], ['kit-linn', 'G1', 0.1],
+      ['kit-707', 'C1', 0.12], ['kit-808', 'A0', 0.65], ['kit-909', 'D1', 0.24],
     ] as const
     for (const [id, pitch, duration] of choices) {
       const index = fake.instruments.length
@@ -47,5 +47,6 @@ describe('Kit sintetizado (Tone simulado)', () => {
     expect(fake.instruments.every(instrument => instrument.dispose.mock.calls.length === 1)).toBe(true)
     expect(fake.filters.every(filter => filter.dispose.mock.calls.length === 1)).toBe(true)
   })
+
 
 })

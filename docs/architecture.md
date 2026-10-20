@@ -68,3 +68,7 @@ Sin IA deben funcionar: parámetros, proyectos, teoría, armonía, melodía, baj
 ## Estructura visual y variantes
 
 El esquema v1 admite campos opcionales `track.variants` y `section.variantIds`; la ausencia de asignación usa la pista original V1. Las copias almacenan eventos y longitud de ciclo, mientras sonido y mezcla siguen perteneciendo a la pista. `arrangement/clips.ts` resuelve clips originales o copias, `arrangement/variants.ts` gestiona copias y asignaciones y `arrangement/render.ts` expande exactamente la versión elegida para preview/MIDI. La interfaz separa regla/filas Gantt y biblioteca editable. [Semántica y compatibilidad](visual-arrangement.md).
+
+## Generador estructural ampliado
+
+`knowledge/data/structures.v1.json` aporta 24 recetas originales validadas por `structureSchema.ts`. `arrangement/structure.ts` selecciona con semilla, género/emoción y exploración, realiza capas/variantes por grupo y ajusta proporciones al límite del renderer. `structureGeneration` es un metadato opcional de proyecto v1; las secciones siguen siendo la fuente musical editable. [Detalles y límites](random-structures.md).

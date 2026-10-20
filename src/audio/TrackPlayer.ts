@@ -4,6 +4,7 @@ import type { PlaybackState } from './ChordPlayer'
 import { DrumKit } from './DrumKit'
 import { createMelodicVoice, type MelodicVoice } from './MelodicVoice'
 import { resolveSound, type SoundId, type DrumSound } from '../sounds/catalog'
+import { previewTime } from './previewTiming'
 
 export interface PreviewTrack { id: string; kind: 'chords' | 'melody' | 'bass' | 'drums'; notes: MusicNote[]; volume: number; muted: boolean; sound?: SoundId }
 interface Voice { synth?: MelodicVoice; drums?: DrumKit; gain: Tone.Gain; part?: Tone.Part<{ time: string; note: MusicNote }> }
@@ -38,7 +39,7 @@ export class TrackPlayer {
     this.initialized = true
     const transport = Tone.getTransport()
     transport.stop(); transport.ticks = 0; transport.bpm.value = this.bpm
-    transport.loop = this.loop; transport.loopStart = 0; transport.loopEnd = `${this.end * transport.PPQ}i`
+    transport.loop = this.loop; transport.loopStart = 0; transport.loopEnd = previewTime(this.end, transport.PPQ)
     for (const track of this.tracks) {
       const gain = new Tone.Gain(track.muted ? 0 : track.volume).toDestination()
       // Register each resource before building the next one so failures can be cleaned up.
@@ -46,12 +47,12 @@ export class TrackPlayer {
       this.voices.set(track.id, voice)
       if (track.kind === 'drums') voice.drums = new DrumKit(gain, resolveSound('drums', track.sound) as DrumSound)
       else voice.synth = createMelodicVoice(track.kind, track.sound, gain)
-      voice.part = new Tone.Part((time, event: { time: string; note: MusicNote }) => this.attack(voice, event.note, time), track.notes.map(note => ({ time: `${note.start * transport.PPQ}i`, note }))).start(0)
+      voice.part = new Tone.Part((time, event: { time: string; note: MusicNote }) => this.attack(voice, event.note, time), track.notes.map(note => ({ time: previewTime(note.start, transport.PPQ), note }))).start(0)
     }
     this.endId = transport.schedule(time => {
       if (!this.loop) { transport.stop(time); Tone.getDraw().schedule(() => { if (!this.disposed && this.initialized && this.graph === graph) this.stop() }, time) }
-    }, `${this.end * transport.PPQ}i`)
-    transport.ticks = this.startBeat * transport.PPQ
+    }, previewTime(this.end, transport.PPQ))
+    transport.ticks = Math.round(this.startBeat * transport.PPQ)
   }
   async play() {
     if (this.disposed || this.state === 'playing' || !this.tracks.some(track => track.notes.length)) return
@@ -98,7 +99,7 @@ export class TrackPlayer {
     this.startBeat = beat
     if (this.initialized) {
       for (const voice of this.voices.values()) { voice.synth?.releaseAll(); voice.drums?.releaseAll() }
-      Tone.getTransport().ticks = beat * Tone.getTransport().PPQ
+      Tone.getTransport().ticks = Math.round(beat * Tone.getTransport().PPQ)
     }
   }
   getBeat() { return this.initialized ? Tone.getTransport().ticks / Tone.getTransport().PPQ : this.startBeat }

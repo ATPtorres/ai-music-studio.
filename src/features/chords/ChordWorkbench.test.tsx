@@ -114,6 +114,9 @@ describe('Interacciones del editor en DOM simulado', () => {
   })
   it('cambia el sonido sin alterar notas y lo conserva al regenerar', async () => {
     await click('Generar progresión')
+    const options = Array.from(container.querySelectorAll<HTMLOptionElement>('select[aria-label="Sonido de acordes"] option')).map(option => option.value)
+    expect(options).not.toContain('piano')
+    expect(options).toContain('electric-piano')
     const before = structuredClone(readProject().tracks[0].notes)
     await select('Sonido de acordes', 'electric-piano')
     expect(readProject().tracks[0].sound).toBe('electric-piano')

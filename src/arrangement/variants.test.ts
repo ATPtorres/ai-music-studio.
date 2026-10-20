@@ -135,11 +135,11 @@ describe('Biblioteca y asignación de variantes', () => {
   it('la plantilla alterna instrumentos, usa V2 si existe y conserva las fuentes', () => {
     const project = fixture(); project.tracks = duplicateVariant(project, project.tracks[1].id).tracks
     const before = structuredClone(project)
-    const sections = createDynamicStructure(project)
-    expect(sections.map(s => s.bars)).toEqual([4, 8, 8, 4, 8, 8, 4])
-    expect(sections[0].trackIds.map(id => project.tracks.find(t => t.id === id)!.kind)).toEqual(['chords', 'melody'])
-    expect(sections[3].trackIds).toEqual([project.tracks[0].id])
-    expect(sections[4].variantIds![project.tracks[1].id]).toBe(project.tracks[1].variants![0].id)
+    const sections = createDynamicStructure(project, { family: 'verse-chorus', recipeId: 'pop-return', phraseBars: 8, exploration: 50 }, 42)
+    expect(sections.map(s => s.bars)).toEqual([4, 8, 8, 8, 8, 8, 8, 4])
+    expect(sections[0].trackIds).toContain(project.tracks[0].id)
+    expect(sections[2].trackIds).toHaveLength(4)
+    expect(sections[2].variantIds![project.tracks[1].id]).toBe(project.tracks[1].variants![0].id)
     expect(project).toEqual(before)
     expect(projectSchema.safeParse({ ...project, sections }).success).toBe(true)
     const lyrics = applyLyricsDraft({ ...project, sections }, { title: 'Nuevo título', sections: [{ name: 'Intro nueva', lyrics: 'Hola' }] })

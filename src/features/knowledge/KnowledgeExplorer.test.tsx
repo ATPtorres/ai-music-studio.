@@ -15,8 +15,8 @@ describe('Explorador de conocimiento en DOM simulado', () => {
     await act(() => root.render(<KnowledgeExplorer onUseRecipe={onUseRecipe}/>))
   })
   afterEach(async () => { await act(() => root.unmount()); container.remove(); vi.unstubAllGlobals() })
-  it('ofrece 68 recursos, distingue consulta y prepara una receta compatible', async () => {
-    expect(container.querySelectorAll('.knowledge-card')).toHaveLength(68)
+  it('ofrece 92 recursos, distingue consulta y prepara una receta compatible', async () => {
+    expect(container.querySelectorAll('.knowledge-card')).toHaveLength(92)
     expect(container.querySelectorAll('.knowledge-card button')).toHaveLength(36)
     const button = container.querySelector<HTMLButtonElement>('.knowledge-card button')!
     await act(() => button.click())
@@ -36,5 +36,16 @@ describe('Explorador de conocimiento en DOM simulado', () => {
     })
     expect(container.querySelectorAll('.knowledge-card')).toHaveLength(0)
     expect(container.textContent).toContain('No hay coincidencias')
+  })
+  it('permite consultar las 24 formas y abrir el generador desde la categoría Estructura', async () => {
+    const open = vi.fn()
+    await act(() => root.render(<KnowledgeExplorer onUseRecipe={onUseRecipe} onOpenStructures={open}/>))
+    const category = container.querySelector<HTMLSelectElement>('[aria-label="Categoría de biblioteca"]')!
+    await act(() => { category.value = 'form'; category.dispatchEvent(new Event('change', { bubbles: true })) })
+    expect(container.querySelectorAll('.knowledge-card')).toHaveLength(28)
+    expect(container.querySelectorAll('.knowledge-card button')).toHaveLength(24)
+    await act(() => container.querySelector<HTMLButtonElement>('.knowledge-card button')!.click())
+    expect(open).toHaveBeenCalledOnce()
+    expect(container.textContent).toContain('ABACA')
   })
 })

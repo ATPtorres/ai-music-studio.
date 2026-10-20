@@ -18,7 +18,7 @@ Abre la URL que imprime Vite (normalmente http://127.0.0.1:5173/). Aunque la car
 1. Abre **Acordes** en el lateral o su tarjeta en Estudio/Herramientas.
 2. Elige tonalidad, mayor/menor natural, género, emoción, 2–16 compases, complejidad, tríadas/séptimas y compás. Pulsa **Generar progresión**. Los ajustes se aplican al generar, sustituyendo la progresión anterior.
 3. Cada tarjeta muestra símbolo, grado, notas y duración. Cambia el grado y la duración; las notas y los inicios siguientes se actualizan. Medio compás y compases extendidos son válidos.
-4. Pulsa **Reproducir** tras un gesto de usuario. Prueba **Pausar**, **Reanudar**, **Detener**, repetición y volumen. Elige el timbre en Sonido de acordes: piano, eléctrico, pad, strings o guitarras. Son aproximaciones por síntesis local.
+4. Pulsa **Reproducir** tras un gesto de usuario. Prueba **Pausar**, **Reanudar**, **Detener**, repetición y volumen. Elige el timbre en Sonido de acordes: eléctrico, pad, strings o guitarras. Son aproximaciones por síntesis local.
 5. Cambia BPM (30–300) y confirma con Enter o saliendo del campo. Editar acordes o tempo detiene la reproducción. Volumen y loop se pueden cambiar durante la escucha. Abandonar el módulo detiene y libera sus nodos.
 6. **Descargar MIDI** produce un `.mid` SMF de acordes con tempo, compás, programa GM del sonido elegido y canal. Se puede importar en un DAW. Es información musical, no audio WAV/MP3.
 7. Recarga y vuelve a Acordes: la pista permanece en el proyecto. Exporta JSON desde Proyectos, crea otro proyecto e importa la copia para restaurar sus notas y parámetros.
@@ -94,16 +94,16 @@ Detalles: [Fase 6](docs/phase6.md). Comprobaciones y límites: [verificación](d
 
 La vista **Estructura** muestra un Gantt musical con regla de compases, zoom y cursor de reproducción. Los instrumentos mantienen su identidad en toda la interfaz: batería azul, bajo rojo, acordes verde y melodía naranja.
 
-Usa **Aplicar plantilla dinámica** para crear entradas y salidas por sección. En la **Biblioteca de frases**, duplica V1 o crea una variación para conservar versiones independientes (V2, V3…). Puedes editar sus notas y elegir una versión distinta en cada bloque. Las copias se conservan al regenerar la pista original. El audio y el MIDI utilizan las versiones elegidas.
+Usa **Generar estructura aleatoria** para elegir entre 24 recetas en ocho familias, o fija una familia/receta. Ajusta fraseo (4, 8 o 16 compases) y exploración; **Generar otra estructura** evita repetir la última receta en modo automático. La selección considera género/emoción y organiza las entradas y salidas de instrumentos. En la **Biblioteca de frases**, duplica V1 o crea una variación para conservar versiones independientes (V2, V3…). Puedes editar sus notas y elegir una versión distinta en cada bloque. Las copias se conservan al regenerar la pista original. El audio y el MIDI utilizan las versiones elegidas.
 
-[Guía completa, datos y límites](docs/visual-arrangement.md) · [Proyecto de ejemplo importable](docs/examples/proyecto-estructura-visual.json).
+[Generador aleatorio y conocimiento musical](docs/random-structures.md) · [Guía completa, datos y límites](docs/visual-arrangement.md) · [Proyecto de ejemplo importable](docs/examples/proyecto-estructura-visual.json).
 
 ## Elegir sonidos
 
-- **Acordes:** piano, piano eléctrico, pad, strings, guitarra acústica y eléctrica limpia.
+- **Acordes:** piano eléctrico, pad, strings, guitarra acústica y eléctrica limpia.
 - **Melodía:** pluck, guitarras acústica/eléctrica, piano, lead suave y flauta sintética.
 - **Bajo:** eléctrico, sintetizado y contrabajo.
-- **Batería:** cuatro kits de síntesis inspirados en 707, 808, 909 y LinnDrum.
+- **Batería:** tres kits de síntesis inspirados en 707, 808 y 909.
 
 Genera la pista y usa su selector de sonido, o cámbialo desde la mezcla de Estructura. Se conserva al regenerar y viaja en el JSON. Cambiarlo detiene el preview, manteniendo notas y patrones. Los kits son aproximaciones, sin muestras originales; el MIDI guarda un programa GM equivalente, cuyo sonido depende del DAW. [Detalles, compatibilidad y comprobaciones](docs/sounds.md).
 
@@ -146,3 +146,7 @@ Un proyecto activo por navegador en localStorage, con importación validada hast
 El editor manual, la guía local y los motores musicales no requieren variables. Gemini es opcional: `GEMINI_API_KEY`, `GEMINI_MODEL`, `UPSTASH_REDIS_REST_URL` y `UPSTASH_REDIS_REST_TOKEN` se configuran solo en Netlify Functions. La IA permanece bloqueada sin cuotas persistentes y credenciales válidas. Nunca usar `VITE_` para secretos. `.env` está excluido de Git. Ver [Fase 5](docs/phase5.md).
 
 Más documentación: [arquitectura y riesgos](docs/architecture.md), [plan por fases](docs/roadmap.md), [GitHub y Netlify](docs/deployment.md).
+
+### Ajustes de audio del 20 de octubre de 2026
+
+Se retiraron Piano de Acordes y LinnDrum de Batería; los proyectos anteriores resuelven esas elecciones a Piano eléctrico y 707. Se equilibró la ganancia de los presets de Acordes y Bajo y se corrigieron las semicorcheas pares que se omitían al activar swing. Los cambios afectan también al preview del arreglo. [Mediciones y verificación](docs/verification-audio-fixes.md).

@@ -1,17 +1,17 @@
-# Paleta de sonidos — v0.6.1
+# Paleta de sonidos — revisión del 20 de octubre de 2026
 
-La paleta amplía el preview local con seis opciones de acordes, seis de melodía, tres bajos y cuatro kits de batería. No requiere descargas de muestras, servicios, cuentas, claves ni paquetes nuevos. Se mantiene el tema claro con bordes rectos y colores sólidos.
+La paleta amplía el preview local con cinco opciones de acordes, seis de melodía, tres bajos y tres kits de batería. No requiere descargas de muestras, servicios, cuentas, claves ni paquetes nuevos. Se mantiene el tema claro con bordes rectos y colores sólidos.
 
 ## Opciones
 
 | Pista | Sonidos |
 | --- | --- |
-| Acordes | Piano, piano eléctrico, pad cálido, strings, guitarra acústica, guitarra eléctrica limpia |
+| Acordes | Piano eléctrico, pad cálido, strings, guitarra acústica, guitarra eléctrica limpia |
 | Melodía | Pluck, guitarra acústica, guitarra eléctrica limpia, piano, lead suave, flauta sintética |
 | Bajo | Bajo eléctrico, bajo sintetizado, contrabajo |
-| Batería | 707, 808, 909, LinnDrum |
+| Batería | 707, 808, 909 |
 
-Los instrumentos acústicos son **aproximaciones por síntesis**. Los kits son recetas originales inspiradas en características generales de esas máquinas: 707 seca/compacta, 808 grave con cola larga, 909 con pegada brillante y LinnDrum breve y percusiva. No contienen grabaciones originales, bancos de muestras ni emulaciones certificadas de los equipos. No se afirma fidelidad acústica o histórica. Para pianos/guitarras realistas o máquinas originales habría que incorporar bancos de muestras con permisos de distribución y presupuestar su descarga y memoria.
+Los instrumentos acústicos son **aproximaciones por síntesis**. Los kits son recetas originales inspiradas en características generales de esas máquinas: 707 seca/compacta, 808 grave con cola larga, 909 con pegada brillante. No contienen grabaciones originales, bancos de muestras ni emulaciones certificadas de los equipos. No se afirma fidelidad acústica o histórica. Para pianos/guitarras realistas o máquinas originales habría que incorporar bancos de muestras con permisos de distribución y presupuestar su descarga y memoria.
 
 ## Uso
 
@@ -25,7 +25,7 @@ Los acompañamientos respetan el sonido de cada fuente, aunque se reproduzcan de
 
 ## Guardado y compatibilidad
 
-Cada pista incorpora un campo opcional `sound` con ID de un catálogo cerrado. Sigue siendo JSON v1; los archivos anteriores sin ese campo se importan sin añadirlo automáticamente. Por defecto se resuelven Piano para acordes, Lead suave para melodía, Bajo eléctrico para bajo y 707 para batería. Los programas MIDI predeterminados previos se conservan (0/80/33/0, índice cero).
+Cada pista incorpora un campo opcional `sound` con ID de un catálogo cerrado. Sigue siendo JSON v1; los archivos anteriores sin ese campo se importan sin añadirlo automáticamente. Por defecto se resuelven Piano eléctrico para acordes, Lead suave para melodía, Bajo eléctrico para bajo y 707 para batería. Los programas MIDI predeterminados actuales son 4/80/33/0 (índice cero). Las selecciones antiguas de Piano en acordes y LinnDrum se aceptan para recuperar proyectos, pero se resuelven a Piano eléctrico y 707 tanto en preview como en exportación MIDI. No se ofrecen en los selectores; Piano permanece disponible en Melodía.
 
 El esquema comprueba que el ID exista y corresponda al tipo de pista: un kit no puede asignarse a acordes ni un piano a batería. Los lectores antiguos con esquema estricto pueden rechazar archivos que ya incluyan `sound`; la compatibilidad de lectura es hacia atrás desde esta versión. Una selección no cambia referencias armónicas, notas, mezcla, letra o vínculos de secciones.
 
@@ -46,7 +46,7 @@ Los exportadores de acordes, pistas y arreglo escriben el programa GM selecciona
 
 Piano 0; eléctrico 4; pad 89; strings 48; acústica 24; eléctrica limpia 27; pluck 10; lead 80; flauta 73; bajo eléctrico 33; sintetizado 38; contrabajo 32. Volumen/silencio siguen afectando solo al preview, conservando las velocidades y notas exportadas, como en las fases anteriores.
 
-## Verificación — 19 de octubre de 2026
+## Verificación histórica — 19 de octubre de 2026
 
 - **151 pruebas en 25 archivos**: 140 previas y 11 nuevas. Esquema/compatibilidad, persistencia, regeneración, propagación al render, programas reales de los tres exportadores y canales/velocidades intactos. Voces polifónicas, familias FM/filtrado, recetas distintas, cambios de kits y limpieza de recursos. Selectores en acordes y mezcla con comprobación de datos conservados.
 - `npm run lint`, `npm run build` y `git diff --check`: correctos. Persisten los avisos no bloqueantes de anotaciones de optimización de Zod.
@@ -56,3 +56,11 @@ Piano 0; eléctrico 4; pad 89; strings 48; acústica 24; eléctrica limpia 27; p
 - Capturas de escritorio y viewport móvil a 390 px revisadas, sin desbordamiento horizontal del documento ni errores JavaScript.
 
 Pendiente: escucha humana para valorar carácter y balance, comparación con equipos reales, móvil físico/Safari y revisión de los programas/kits en un DAW. Los controles de volumen permiten ajustar diferencias de nivel percibido entre instrumentos sostenidos y percusivos.
+
+## Correcciones del 20 de octubre de 2026
+
+La ganancia de cada preset de Acordes y Bajo se ajusta en `previewLevels.ts`, compartida por los generadores, acompañamientos y el arreglo. La comparación usa las mismas notas, velocidad, duración y fader; conserva el carácter de ataque/caída, la dinámica MIDI y el volumen que eligió el usuario. No es normalización LUFS ni garantiza igual sonoridad para cualquier registro o frase.
+
+Se corrigieron los pasos pares con swing: Tone Transport omite eventos expresados como ticks fraccionarios. Los inicios, final y loop se convierten ahora a ticks enteros al programar el preview. El patrón guardado y sus tiempos MIDI no se modifican.
+
+Consulta [mediciones y regresiones](verification-audio-fixes.md) para el caso reproducido, resultados y comprobación opcional con Web Audio real.

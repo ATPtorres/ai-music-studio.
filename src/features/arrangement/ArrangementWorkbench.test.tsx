@@ -106,11 +106,13 @@ describe('Estudio de arreglo en DOM simulado', () => {
   it('crea una estructura solo cuando está vacío y admite añadir una sección sin pistas', async () => {
     await act(() => root.render(<Harness empty/>))
     expect(button('Reproducir arreglo').disabled).toBe(true)
-    await act(() => button('Crear estructura inicial').click())
-    expect(latest.sections.map(s => s.name)).toEqual(['Intro', 'Verso 1', 'Coro', 'Break', 'Verso 2', 'Coro final', 'Outro'])
+    await act(() => button('Generar estructura aleatoria').click())
+    expect(latest.sections.length).toBeGreaterThanOrEqual(3)
+    const originalCount = latest.sections.length
+    expect(latest.structureGeneration?.recipeId).toBeTruthy()
     expect(container.textContent).toContain('Todavía no hay pistas')
-    await act(() => button('Añadir sección').click()); expect(latest.sections).toHaveLength(8)
-    expect(new Set(latest.sections.map(s => s.id)).size).toBe(8)
+    await act(() => button('Añadir sección').click()); expect(latest.sections).toHaveLength(originalCount + 1)
+    expect(new Set(latest.sections.map(s => s.id)).size).toBe(originalCount + 1)
   })
   it('selecciona sonido en la mezcla, reconfigura el preview y conserva los eventos', async () => {
     await act(() => root.render(<Harness/>))
@@ -147,10 +149,11 @@ describe('Estudio de arreglo en DOM simulado', () => {
     await act(() => root.render(<Harness/>))
     const before = structuredClone(latest)
     vi.mocked(window.confirm).mockReturnValueOnce(false)
-    await act(() => button('Aplicar plantilla dinámica').click())
+    await act(() => button('Generar otra estructura').click())
     expect(latest).toEqual(before)
-    await act(() => button('Aplicar plantilla dinámica').click())
-    expect(latest.sections).toHaveLength(7)
+    await act(() => button('Generar otra estructura').click())
+    expect(latest.sections.length).toBeGreaterThanOrEqual(3)
+    expect(latest.structureGeneration).toBeTruthy()
     expect(latest.tracks).toEqual(before.tracks)
   })
 
@@ -161,6 +164,26 @@ describe('Estudio de arreglo en DOM simulado', () => {
     expect(container.textContent).toContain('supera el límite')
     expect(container.querySelector('[aria-label="Instrumento de la biblioteca"]')).not.toBeNull()
     expect(button('Reproducir arreglo').disabled).toBe(true)
+  })
+
+  it('prepara una familia y receta sin escribir el proyecto, genera AABA y ofrece otra forma al volver a aleatorio', async () => {
+    await act(() => root.render(<Harness empty/>))
+    const choose = async (label: string, value: string) => {
+      const select = container.querySelector<HTMLSelectElement>(`[aria-label="${label}"]`)!
+      await act(() => { select.value = value; select.dispatchEvent(new Event('change', { bubbles: true })) })
+    }
+    await choose('Familia de estructura', 'songbook')
+    await choose('Receta de estructura', 'songbook-aaba')
+    await choose('Compases de frase principal', '4')
+    expect(latest.sections).toHaveLength(0)
+    await act(() => button('Generar estructura aleatoria').click())
+    expect(latest.structureGeneration?.recipeId).toBe('songbook-aaba')
+    expect(latest.sections.slice(1, 5).map(s => s.bars)).toEqual([4, 4, 4, 4])
+    expect(container.textContent).toContain('Recurso de partida: AABA')
+    await choose('Receta de estructura', 'auto')
+    await act(() => button('Generar otra estructura').click())
+    expect(latest.structureGeneration?.recipeId).not.toBe('songbook-aaba')
+    expect(latest.structureGeneration?.options.phraseBars).toBe(4)
   })
 
 })

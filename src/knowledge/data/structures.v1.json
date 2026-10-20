@@ -1,0 +1,1774 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "project-structures",
+      "name": "AI Music Studio — recetas estructurales originales",
+      "rights": "Formas, explicaciones y ejercicios redactados para este proyecto. Sin transcribir canciones ni copiar ejemplos musicales. Las variantes de diseño son propuestas editoriales, no reglas universales de estilo. La licencia de distribución corresponde al propietario del proyecto.",
+      "references": [
+        "https://learningmusic.ableton.com/song-structure/song-structure.html",
+        "https://musictheory.pugetsound.edu/mt21c/AABAForm.html",
+        "https://viva.pressbooks.pub/openmusictheory/chapter/intro-to-form-in-popular-music/",
+        "https://musictheory.pugetsound.edu/mt21c/RondoForm.html",
+        "https://musictheory.pugetsound.edu/mt21c/BinaryAndTernaryForms.html"
+      ]
+    }
+  ],
+  "recipes": [
+    {
+      "id": "pop-return",
+      "title": "Verso y coro con regreso",
+      "family": "verse-chorus",
+      "genres": [
+        "pop",
+        "rock",
+        "latin"
+      ],
+      "moods": [
+        "alegre",
+        "nostalgico"
+      ],
+      "novelty": 10,
+      "explanation": "Dos ciclos presentan la idea y un puente abre espacio antes del último coro. La vuelta permite reconocer el material principal.",
+      "practice": "Reserva una frase reconocible para los coros y usa el puente como contraste.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Verso 1",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "chorus",
+          "group": "B",
+          "label": "Coro",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Verso 2",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "chorus",
+          "group": "B",
+          "label": "Coro",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "bridge",
+          "group": "C",
+          "label": "Puente",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "chorus",
+          "group": "B",
+          "label": "Coro final",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "pop-lift",
+      "title": "Preparación antes del coro",
+      "family": "verse-chorus",
+      "genres": [
+        "pop",
+        "rnb",
+        "latin"
+      ],
+      "moods": [
+        "energico",
+        "alegre"
+      ],
+      "novelty": 20,
+      "explanation": "El pre-coro aparece antes de cada llegada importante. Su longitud menor ayuda a diferenciar preparación y estribillo.",
+      "practice": "Crea una variante de melodía para el pre-coro sin cambiar la armonía de apoyo.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Verso 1",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "prechorus",
+          "group": "P",
+          "label": "Pre-coro",
+          "units": 0.5,
+          "energy": 2
+        },
+        {
+          "role": "chorus",
+          "group": "B",
+          "label": "Coro",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Verso 2",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "prechorus",
+          "group": "P",
+          "label": "Pre-coro",
+          "units": 0.5,
+          "energy": 2
+        },
+        {
+          "role": "chorus",
+          "group": "B",
+          "label": "Coro",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "bridge",
+          "group": "C",
+          "label": "Puente",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "prechorus",
+          "group": "P",
+          "label": "Pre-coro",
+          "units": 0.5,
+          "energy": 2
+        },
+        {
+          "role": "chorus",
+          "group": "B",
+          "label": "Coro final",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "pop-hook-first",
+      "title": "El gancho al comienzo",
+      "family": "verse-chorus",
+      "genres": [
+        "pop",
+        "urban"
+      ],
+      "moods": [
+        "energico",
+        "alegre"
+      ],
+      "novelty": 35,
+      "explanation": "La canción presenta el coro antes de contar el primer verso. El material familiar reaparece después del contraste.",
+      "practice": "Prueba una melodía clara desde la primera sección y reduce capas en el verso.",
+      "steps": [
+        {
+          "role": "chorus",
+          "group": "B",
+          "label": "Coro de entrada",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Verso 1",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "chorus",
+          "group": "B",
+          "label": "Coro",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Verso 2",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "bridge",
+          "group": "C",
+          "label": "Puente",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "chorus",
+          "group": "B",
+          "label": "Coro final",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "pop-postchorus",
+      "title": "Un eco después del coro",
+      "family": "verse-chorus",
+      "genres": [
+        "pop",
+        "electronic",
+        "rnb"
+      ],
+      "moods": [
+        "alegre",
+        "energico"
+      ],
+      "novelty": 40,
+      "explanation": "El post-coro prolonga la llegada sin sustituir al verso. Un break despeja el espacio antes de recuperar el ciclo.",
+      "practice": "Usa un motivo instrumental breve en los post-coros.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Verso 1",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "chorus",
+          "group": "B",
+          "label": "Coro",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "postchorus",
+          "group": "H",
+          "label": "Post-coro",
+          "units": 0.5,
+          "energy": 2
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Verso 2",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "chorus",
+          "group": "B",
+          "label": "Coro",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "postchorus",
+          "group": "H",
+          "label": "Post-coro",
+          "units": 0.5,
+          "energy": 2
+        },
+        {
+          "role": "break",
+          "group": "K",
+          "label": "Break",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "chorus",
+          "group": "B",
+          "label": "Coro final",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "postchorus",
+          "group": "H",
+          "label": "Post-coro",
+          "units": 0.5,
+          "energy": 2
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "pop-double-final",
+      "title": "Último coro en dos vueltas",
+      "family": "verse-chorus",
+      "genres": [
+        "pop",
+        "rock"
+      ],
+      "moods": [
+        "energico",
+        "nostalgico"
+      ],
+      "novelty": 25,
+      "explanation": "La repetición final conserva la longitud del coro y da dos oportunidades de cerrar. El puente separa la narración de esa llegada.",
+      "practice": "Mantén la misma frase en los dos coros finales y modifica manualmente la última repetición si lo pide el oído.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Verso 1",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "chorus",
+          "group": "B",
+          "label": "Coro",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Verso 2",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "chorus",
+          "group": "B",
+          "label": "Coro",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "bridge",
+          "group": "C",
+          "label": "Puente",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "chorus",
+          "group": "B",
+          "label": "Coro final 1",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "chorus",
+          "group": "B",
+          "label": "Coro final 2",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "pop-compact",
+      "title": "Dos ciclos directos",
+      "family": "verse-chorus",
+      "genres": [
+        "pop",
+        "urban",
+        "latin"
+      ],
+      "moods": [
+        "alegre",
+        "sereno"
+      ],
+      "novelty": 5,
+      "explanation": "Una forma breve alterna verso y coro sin exigir puente ni introducción. Cada regreso es fácil de seguir.",
+      "practice": "Compara cuánto cambia la sensación si el segundo verso utiliza otra frase.",
+      "steps": [
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Verso 1",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "chorus",
+          "group": "B",
+          "label": "Coro",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Verso 2",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "chorus",
+          "group": "B",
+          "label": "Coro final",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "songbook-aaba",
+      "title": "AABA: contraste y regreso",
+      "family": "songbook",
+      "genres": [
+        "jazz",
+        "rnb",
+        "pop"
+      ],
+      "moods": [
+        "sereno",
+        "nostalgico"
+      ],
+      "novelty": 30,
+      "explanation": "Tres apariciones de A enmarcan una sección B diferente. Los cuatro bloques centrales tienen la misma longitud.",
+      "practice": "Para un contraste melódico real, prepara una variante para B; la forma por sí sola no escribe una melodía nueva.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "A · presentación",
+          "units": 1,
+          "energy": 2
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "A · repetición",
+          "units": 1,
+          "energy": 2
+        },
+        {
+          "role": "episode",
+          "group": "B",
+          "label": "B · puente",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "A · regreso",
+          "units": 1,
+          "energy": 2
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "songbook-reprise",
+      "title": "AABA con reprise abreviada",
+      "family": "songbook",
+      "genres": [
+        "jazz",
+        "rnb"
+      ],
+      "moods": [
+        "nostalgico",
+        "melancolico"
+      ],
+      "novelty": 50,
+      "explanation": "Después del ciclo AABA, una nueva visita a B prepara el último regreso de A. Es una extensión editorial, no una forma obligatoria del género.",
+      "practice": "Comprueba que la repetición adicional aporte algo a la historia o al solo.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Tema A",
+          "units": 1,
+          "energy": 2
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Tema A",
+          "units": 1,
+          "energy": 2
+        },
+        {
+          "role": "episode",
+          "group": "B",
+          "label": "Episodio B",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Tema A",
+          "units": 1,
+          "energy": 2
+        },
+        {
+          "role": "episode",
+          "group": "B",
+          "label": "Episodio B",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "A · cierre",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "songbook-abac",
+      "title": "ABAC: regreso con otra salida",
+      "family": "songbook",
+      "genres": [
+        "jazz",
+        "pop"
+      ],
+      "moods": [
+        "sereno",
+        "nostalgico"
+      ],
+      "novelty": 55,
+      "explanation": "La sección A vuelve después de B, pero la segunda salida conduce a C. Reconocimiento y cambio comparten el recorrido.",
+      "practice": "Diferencia B y C con variantes o capas; escucha si la última parte funciona como cierre.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Tema A",
+          "units": 1,
+          "energy": 2
+        },
+        {
+          "role": "episode",
+          "group": "B",
+          "label": "Episodio B",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "A · retorno",
+          "units": 1,
+          "energy": 2
+        },
+        {
+          "role": "episode",
+          "group": "C",
+          "label": "C · cierre",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "strophic-three",
+      "title": "Tres estrofas sobre una misma base",
+      "family": "strophic",
+      "genres": [
+        "folk",
+        "pop",
+        "latin"
+      ],
+      "moods": [
+        "sereno",
+        "nostalgico"
+      ],
+      "novelty": 15,
+      "explanation": "La forma estrófica repite una misma unidad musical y deja que avance el texto. La instrumentación puede crecer sin inventar un coro.",
+      "practice": "Escribe una imagen distinta en cada estrofa conservando la misma frase musical.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Estrofa 1",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Estrofa 2",
+          "units": 1,
+          "energy": 2
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Estrofa 3",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "strophic-refrain",
+      "title": "Estrofas con respuesta breve",
+      "family": "strophic",
+      "genres": [
+        "folk",
+        "latin",
+        "pop"
+      ],
+      "moods": [
+        "sereno",
+        "alegre"
+      ],
+      "novelty": 30,
+      "explanation": "Cada estrofa desemboca en una respuesta corta. El regreso del remate conecta versos diferentes sin convertirlo en un coro largo.",
+      "practice": "Prueba una línea de letra que pueda repetirse al final de cada estrofa.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Verso 1",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "response",
+          "group": "R",
+          "label": "Remate",
+          "units": 0.5,
+          "energy": 2
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Verso 2",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "response",
+          "group": "R",
+          "label": "Remate",
+          "units": 0.5,
+          "energy": 2
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Verso 3",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "response",
+          "group": "R",
+          "label": "Remate final",
+          "units": 0.5,
+          "energy": 3
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "strophic-interlude",
+      "title": "Estrofas con interludios",
+      "family": "strophic",
+      "genres": [
+        "folk",
+        "latin",
+        "rock"
+      ],
+      "moods": [
+        "nostalgico",
+        "sereno"
+      ],
+      "novelty": 40,
+      "explanation": "Un interludio separa las estrofas y deja respirar la narración. La última estrofa recupera la unidad original.",
+      "practice": "Prepara una frase instrumental para el interludio en vez de repetir la voz del verso.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Verso 1",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "episode",
+          "group": "B",
+          "label": "Interludio",
+          "units": 0.5,
+          "energy": 2
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Verso 2",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "episode",
+          "group": "B",
+          "label": "Interludio",
+          "units": 0.5,
+          "energy": 2
+        },
+        {
+          "role": "verse",
+          "group": "A",
+          "label": "Verso 3",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "ternary-return",
+      "title": "ABA: salir y volver",
+      "family": "ternary",
+      "genres": [
+        "pop",
+        "ambient",
+        "jazz"
+      ],
+      "moods": [
+        "sereno",
+        "melancolico"
+      ],
+      "novelty": 45,
+      "explanation": "A enmarca una única zona de contraste B. Es un arco corto y reconocible para una pieza instrumental o vocal.",
+      "practice": "Escucha A después de B y decide si necesita menos capas para sentirse como un regreso.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "A · inicio",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "episode",
+          "group": "B",
+          "label": "B · contraste",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "A · regreso",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "ternary-coda",
+      "title": "ABA con coda",
+      "family": "ternary",
+      "genres": [
+        "ambient",
+        "jazz",
+        "rock"
+      ],
+      "moods": [
+        "nostalgico",
+        "sereno"
+      ],
+      "novelty": 60,
+      "explanation": "Tras recuperar A, una coda distingue el cierre de una nueva repetición. El tramo final puede concentrarse en un motivo.",
+      "practice": "Retira batería o melodía en la coda para escuchar el motivo que queda.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Tema A",
+          "units": 1,
+          "energy": 2
+        },
+        {
+          "role": "episode",
+          "group": "B",
+          "label": "Episodio B",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "A · regreso",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "coda",
+          "group": "C",
+          "label": "Coda",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "rondo-abaca",
+      "title": "ABACA: un tema entre dos episodios",
+      "family": "rondo",
+      "genres": [
+        "instrumental",
+        "jazz",
+        "pop"
+      ],
+      "moods": [
+        "alegre",
+        "sereno"
+      ],
+      "novelty": 65,
+      "explanation": "El tema A reaparece entre dos episodios distintos. Cada regreso ofrece un punto de orientación al oyente.",
+      "practice": "Crea variantes diferentes para los dos episodios; A conserva su identidad.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Tema A",
+          "units": 1,
+          "energy": 2
+        },
+        {
+          "role": "episode",
+          "group": "B",
+          "label": "Episodio B",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Tema A",
+          "units": 1,
+          "energy": 2
+        },
+        {
+          "role": "episode",
+          "group": "C",
+          "label": "Episodio C",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "A · final",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "rondo-abacaba",
+      "title": "ABACABA: arco de retornos",
+      "family": "rondo",
+      "genres": [
+        "instrumental",
+        "jazz"
+      ],
+      "moods": [
+        "sereno",
+        "energico"
+      ],
+      "novelty": 80,
+      "explanation": "La secuencia devuelve B después del episodio central C y termina en A. Los bloques iguales mantienen proporciones claras.",
+      "practice": "Compara la segunda visita a B con la primera antes de añadir más secciones.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Tema A",
+          "units": 1,
+          "energy": 2
+        },
+        {
+          "role": "episode",
+          "group": "B",
+          "label": "Episodio B",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Tema A",
+          "units": 1,
+          "energy": 2
+        },
+        {
+          "role": "episode",
+          "group": "C",
+          "label": "Episodio C",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Tema A",
+          "units": 1,
+          "energy": 2
+        },
+        {
+          "role": "episode",
+          "group": "B",
+          "label": "Episodio B",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "A · final",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "electronic-two-drops",
+      "title": "Dos llegadas con descanso",
+      "family": "electronic",
+      "genres": [
+        "electronic",
+        "urban"
+      ],
+      "moods": [
+        "energico",
+        "alegre"
+      ],
+      "novelty": 30,
+      "explanation": "Dos pares de subida y drop rodean un descanso. Las subidas conducen directamente a su llegada.",
+      "practice": "Usa el break para retirar el pulso y contrasta con la entrada completa del drop.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Groove",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "build",
+          "group": "U",
+          "label": "Subida",
+          "units": 0.5,
+          "energy": 2
+        },
+        {
+          "role": "drop",
+          "group": "D",
+          "label": "Drop 1",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "break",
+          "group": "K",
+          "label": "Break",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "build",
+          "group": "U",
+          "label": "Subida",
+          "units": 0.5,
+          "energy": 2
+        },
+        {
+          "role": "drop",
+          "group": "D",
+          "label": "Drop 2",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "electronic-three-waves",
+      "title": "Tres olas de energía",
+      "family": "electronic",
+      "genres": [
+        "electronic"
+      ],
+      "moods": [
+        "energico"
+      ],
+      "novelty": 65,
+      "explanation": "Tres llegadas repiten una lógica de preparación y descarga. El segundo descanso cambia la proporción antes del clímax.",
+      "practice": "Prueba una variante de batería en cada llegada sin alterar el compás.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "build",
+          "group": "U",
+          "label": "Subida",
+          "units": 0.5,
+          "energy": 2
+        },
+        {
+          "role": "drop",
+          "group": "D",
+          "label": "Drop 1",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "break",
+          "group": "K",
+          "label": "Break",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "build",
+          "group": "U",
+          "label": "Subida",
+          "units": 0.5,
+          "energy": 2
+        },
+        {
+          "role": "drop",
+          "group": "D",
+          "label": "Drop 2",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "break",
+          "group": "L",
+          "label": "Descanso largo",
+          "units": 1,
+          "energy": 0
+        },
+        {
+          "role": "build",
+          "group": "U",
+          "label": "Subida",
+          "units": 0.5,
+          "energy": 2
+        },
+        {
+          "role": "drop",
+          "group": "D",
+          "label": "Drop final",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "electronic-progressive",
+      "title": "Crecimiento por capas",
+      "family": "electronic",
+      "genres": [
+        "electronic",
+        "ambient"
+      ],
+      "moods": [
+        "sereno",
+        "energico"
+      ],
+      "novelty": 55,
+      "explanation": "La primera mitad acumula capas; una pausa separa el crecimiento del regreso completo. Los bloques no necesitan llamarse verso o coro.",
+      "practice": "Escucha si cada entrada aporta una función diferente, no solo más volumen.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Base",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "development",
+          "group": "B",
+          "label": "Expansión",
+          "units": 1,
+          "energy": 2
+        },
+        {
+          "role": "build",
+          "group": "U",
+          "label": "Subida",
+          "units": 0.5,
+          "energy": 2
+        },
+        {
+          "role": "drop",
+          "group": "D",
+          "label": "Llegada",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "break",
+          "group": "K",
+          "label": "Break",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "development",
+          "group": "C",
+          "label": "Reconstrucción",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "build",
+          "group": "U",
+          "label": "Subida",
+          "units": 0.5,
+          "energy": 2
+        },
+        {
+          "role": "drop",
+          "group": "D",
+          "label": "Regreso completo",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "electronic-club",
+      "title": "Entrada y salida para mezclar",
+      "family": "electronic",
+      "genres": [
+        "electronic"
+      ],
+      "moods": [
+        "energico",
+        "sereno"
+      ],
+      "novelty": 45,
+      "explanation": "Una introducción y una salida de frase completa rodean dos ciclos. La longitud facilita ubicar entradas y salidas instrumentales.",
+      "practice": "Mantén el pulso en los extremos si preparas una mezcla; puedes reasignar batería manualmente.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro de mezcla",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Groove",
+          "units": 2,
+          "energy": 2
+        },
+        {
+          "role": "build",
+          "group": "U",
+          "label": "Subida",
+          "units": 0.5,
+          "energy": 2
+        },
+        {
+          "role": "drop",
+          "group": "D",
+          "label": "Drop",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "break",
+          "group": "K",
+          "label": "Break",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "build",
+          "group": "U",
+          "label": "Subida",
+          "units": 0.5,
+          "energy": 2
+        },
+        {
+          "role": "drop",
+          "group": "D",
+          "label": "Drop final",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Salida de mezcla",
+          "units": 1,
+          "energy": 1
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "through-linear",
+      "title": "Desarrollo sin vuelta literal",
+      "family": "through",
+      "genres": [
+        "ambient",
+        "instrumental",
+        "rock"
+      ],
+      "moods": [
+        "melancolico",
+        "sereno"
+      ],
+      "novelty": 90,
+      "explanation": "Cada zona tiene un grupo diferente: presentación, desarrollo, expansión y cierre. La continuidad depende de un motivo o textura compartida.",
+      "practice": "Prepara varias frases antes de usar esta forma; repetir V1 en todos los bloques no crea desarrollo melódico por sí solo.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Presentación",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "development",
+          "group": "B",
+          "label": "Desarrollo",
+          "units": 1,
+          "energy": 2
+        },
+        {
+          "role": "development",
+          "group": "C",
+          "label": "Expansión",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "episode",
+          "group": "D",
+          "label": "Perspectiva",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "coda",
+          "group": "E",
+          "label": "Cierre",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "through-arch",
+      "title": "Arco de acumulación y retirada",
+      "family": "through",
+      "genres": [
+        "ambient",
+        "instrumental"
+      ],
+      "moods": [
+        "sereno",
+        "melancolico"
+      ],
+      "novelty": 85,
+      "explanation": "Cinco zonas diferentes dibujan una subida de capas y una retirada posterior. Se trata de un plan de textura, no de una nueva armonización.",
+      "practice": "Conserva un detalle reconocible mientras cambias los demás materiales.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Semilla",
+          "units": 1,
+          "energy": 0
+        },
+        {
+          "role": "development",
+          "group": "B",
+          "label": "Apertura",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "development",
+          "group": "C",
+          "label": "Centro",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "development",
+          "group": "D",
+          "label": "Retirada",
+          "units": 1,
+          "energy": 2
+        },
+        {
+          "role": "coda",
+          "group": "E",
+          "label": "Huella",
+          "units": 1,
+          "energy": 0
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "response-dialogue",
+      "title": "Pregunta y respuesta con respiro",
+      "family": "response",
+      "genres": [
+        "latin",
+        "rnb",
+        "jazz"
+      ],
+      "moods": [
+        "alegre",
+        "sereno"
+      ],
+      "novelty": 45,
+      "explanation": "Dos ciclos de llamada y respuesta se separan de un tercero por un interludio. Las respuestas conservan su longitud.",
+      "practice": "Asigna frases distintas a llamada y respuesta; puedes retirar el lead de una de las dos.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Llamada",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "response",
+          "group": "B",
+          "label": "Respuesta",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Llamada",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "response",
+          "group": "B",
+          "label": "Respuesta",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "break",
+          "group": "K",
+          "label": "Break",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Última llamada",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "response",
+          "group": "B",
+          "label": "Respuesta final",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    },
+    {
+      "id": "response-solo",
+      "title": "Diálogo con zona de solo",
+      "family": "response",
+      "genres": [
+        "latin",
+        "jazz",
+        "rnb"
+      ],
+      "moods": [
+        "energico",
+        "alegre"
+      ],
+      "novelty": 70,
+      "explanation": "La pareja llamada-respuesta presenta y cierra el recorrido. Una zona de solo en medio permite desarrollar otro material.",
+      "practice": "Elige una variante melódica para el solo y deja estable su acompañamiento armónico.",
+      "steps": [
+        {
+          "role": "intro",
+          "group": "I",
+          "label": "Intro",
+          "units": 0.5,
+          "energy": 0
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Llamada",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "response",
+          "group": "B",
+          "label": "Respuesta",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "solo",
+          "group": "C",
+          "label": "Solo",
+          "units": 2,
+          "energy": 2
+        },
+        {
+          "role": "theme",
+          "group": "A",
+          "label": "Llamada de regreso",
+          "units": 1,
+          "energy": 1
+        },
+        {
+          "role": "response",
+          "group": "B",
+          "label": "Respuesta final",
+          "units": 1,
+          "energy": 3
+        },
+        {
+          "role": "outro",
+          "group": "O",
+          "label": "Outro",
+          "units": 0.5,
+          "energy": 0
+        }
+      ],
+      "sourceId": "project-structures"
+    }
+  ]
+}

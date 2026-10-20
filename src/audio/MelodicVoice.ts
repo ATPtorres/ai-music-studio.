@@ -1,5 +1,6 @@
 import * as Tone from 'tone'
 import { resolveSound, type SoundId, type TrackKind } from '../sounds/catalog'
+import { previewTrimDb } from './previewLevels'
 
 /** Common polyphonic interface: every preset can play chords and sustained resumes. */
 export interface MelodicVoice {
@@ -9,7 +10,7 @@ export interface MelodicVoice {
 }
 export function createMelodicVoice(kind: Exclude<TrackKind, 'drums'>, sound: SoundId | undefined, output: Tone.Gain): MelodicVoice {
   const id = resolveSound(kind, sound)
-  const volume = kind === 'chords' ? -19 : -13
+  const volume = (kind === 'chords' ? -19 : -13) + previewTrimDb(kind, id)
   let voice: Tone.PolySynth<Tone.Synth> | Tone.PolySynth<Tone.FMSynth> | Tone.PolySynth<Tone.MonoSynth>
   if (id === 'piano' || id === 'electric-piano' || id === 'electric-bass') {
     const electric = id === 'electric-piano'

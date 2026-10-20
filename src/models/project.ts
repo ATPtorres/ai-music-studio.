@@ -1,6 +1,7 @@
 import { z } from 'zod'
-import { soundSchema, soundsByKind } from '../sounds/catalog'
+import { soundSchema, compatibleSound } from '../sounds/catalog'
 import { harmonyKnowledgeSchema } from '../knowledge/schema'
+import { structureGenerationSchema } from '../knowledge/structureSchema'
 
 export const keys = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'] as const
 export const noteSchema = z.object({ pitch: z.number().int().min(0).max(127), start: z.number().min(0), duration: z.number().positive(), velocity: z.number().int().min(1).max(127) }).strict()
@@ -37,7 +38,7 @@ export const trackSchema = z.object({ id: z.string().max(100), name: z.string().
     })
   })) ctx.addIssue({ code: 'custom', message: 'El hi-hat abierto y el cerrado no pueden empezar juntos.' })
   if (track.kind === 'drums' && track.variants?.some(variant => variant.notes.some(note => ![36, 38, 39, 42, 46, 70].includes(note.pitch)))) ctx.addIssue({ code: 'custom', message: 'La variante de batería contiene una nota de percusión no compatible.' })
-  if (track.sound && !soundsByKind[track.kind].includes(track.sound)) ctx.addIssue({ code: 'custom', message: 'El sonido no corresponde al tipo de pista.' })
+  if (track.sound && !compatibleSound(track.kind, track.sound)) ctx.addIssue({ code: 'custom', message: 'El sonido no corresponde al tipo de pista.' })
   if ((track.kind === 'drums') !== (track.channel === 9)) ctx.addIssue({ code: 'custom', message: 'La batería usa el canal 10 (índice 9), reservado para percusión.' })
   if (track.drumPattern && track.kind !== 'drums') ctx.addIssue({ code: 'custom', message: 'Un patrón de batería solo puede pertenecer a una pista de batería.' })
   if (track.harmonyKnowledge && track.kind !== 'chords') ctx.addIssue({ code: 'custom', message: 'La referencia de receta armónica solo corresponde a acordes.' })
@@ -46,7 +47,7 @@ const sectionSchema = z.object({ id: z.string().max(100), name: z.string().max(1
 export const projectSchema = z.object({
   version: z.literal(1), id: z.string().min(1).max(100), name: z.string().trim().min(1).max(100), createdAt: z.iso.datetime(), updatedAt: z.iso.datetime(),
   parameters: z.object({ key: z.enum(keys), mode: z.enum(['major', 'minor']), bpm: z.number().int().min(30).max(300), timeSignature: z.tuple([z.number().int().min(1).max(12), z.union([z.literal(2), z.literal(4), z.literal(8), z.literal(16)])]), genre: z.string().max(100), mood: z.string().max(100), complexity: z.enum(['simple', 'intermediate', 'advanced']), instruments: z.array(z.string().max(100)).max(20), references: z.string().max(1000), theme: z.string().max(5000), targetSeconds: z.number().int().min(15).max(3600) }).strict(),
-  tracks: z.array(trackSchema).max(100), sections: z.array(sectionSchema).max(100),
+  tracks: z.array(trackSchema).max(100), sections: z.array(sectionSchema).max(100), structureGeneration: structureGenerationSchema.optional(),
 }).strict().superRefine((project, ctx) => {
   const ids = project.tracks.map(track => track.id)
   if (new Set(ids).size !== ids.length || new Set(project.sections.map(section => section.id)).size !== project.sections.length) ctx.addIssue({ code: 'custom', message: 'Los identificadores deben ser únicos.' })

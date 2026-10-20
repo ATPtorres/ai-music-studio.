@@ -25,7 +25,7 @@ describe('MIDI del arreglo completo', () => {
       const source = rendered.tracks[index]
       expect(track.channel).toBe(source.channel)
       expect(track.notes).toHaveLength(source.notes.length)
-      expect(track.instrument.number).toBe(source.kind === 'melody' ? 80 : source.kind === 'bass' ? 33 : 0)
+      expect(track.instrument.number).toBe(source.kind === 'melody' ? 80 : source.kind === 'bass' ? 33 : source.kind === 'chords' ? 4 : 0)
       for (const [i, note] of track.notes.entries()) {
         const actual = source.notes[i]
         expect(note.midi).toBe(actual.pitch)

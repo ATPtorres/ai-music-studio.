@@ -7,7 +7,10 @@ import { TrackPlayer, type PreviewTrack } from '../../audio/TrackPlayer'
 import type { PlaybackState } from '../../audio/ChordPlayer'
 import { downloadArrangementMidi } from '../../midi/exportArrangement'
 import { barBeats } from '../../music/theory'
-import { assignVariant, createDynamicStructure, instrumentNames, instrumentOrder } from '../../arrangement/variants'
+import { assignVariant, instrumentNames, instrumentOrder } from '../../arrangement/variants'
+import { generateStructure } from '../../arrangement/structure'
+import { defaultStructureOptions } from '../../knowledge/structureSchema'
+import StructureGenerator from './StructureGenerator'
 import ArrangementTimeline from './ArrangementTimeline'
 import VariantLibrary from './VariantLibrary'
 import './arrangement.css'
@@ -34,6 +37,7 @@ function SectionEditor({ section, edit, report }: { section: Section; edit: (cha
   return <><div className="arrangement-section-fields"><label>Nombre de la sección<input maxLength={100} value={section.name} onChange={e => edit({ name: e.target.value })}/></label><label>Compases de la sección<input type="number" min={1} max={512} value={bars} onChange={e => setBars(e.target.value)} onBlur={commitBars} onKeyDown={e => { if (e.key === 'Enter') e.currentTarget.blur() }}/></label></div><label>Letra de esta sección<textarea aria-label="Letra de esta sección" maxLength={20000} rows={4} value={section.lyrics} onChange={e => edit({ lyrics: e.target.value })} placeholder="La letra del editor de Fase 5 se conserva aquí."/></label></>
 }
 export default function ArrangementWorkbench({ project, update, saveStatus, onOpenLyrics, onOpenTools }: Props) {
+  const [structureOptions, setStructureOptions] = useState(project.structureGeneration?.options ?? defaultStructureOptions)
   const [selected, setSelected] = useState(project.sections[0]?.id ?? '')
   const [zoom, setZoom] = useState(36)
   const [librarySelection, setLibrarySelection] = useState({ trackId: project.tracks[0]?.id ?? '', variantId: '' })
@@ -91,11 +95,12 @@ export default function ArrangementWorkbench({ project, update, saveStatus, onOp
     edit({ trackIds: project.tracks.map(track => track.id) })
   }
   const createStructure = () => {
-    if (project.sections.length && !window.confirm('¿Reemplazar la estructura y sus letras por la plantilla? Exporta una copia JSON si quieres conservarla. Las pistas y variantes se conservan.')) return
-    const sections = createDynamicStructure(project)
-    commit(sections); setSelected(sections[0].id)
-    const missing = instrumentOrder.filter(kind => !project.tracks.some(track => track.kind === kind)).map(kind => instrumentNames[kind])
-    setMessage(`Plantilla creada con entradas y salidas por sección.${missing.length ? ` Instrumentos por generar: ${missing.join(', ')}.` : ''} Verso 2 usa la primera variante de bajo y melodía si existe; puedes crearla en la biblioteca.`)
+    if (project.sections.length && !window.confirm('¿Reemplazar la estructura y sus letras por otra propuesta? Exporta una copia JSON si quieres conservarla. Las pistas y variantes se conservan.')) return
+    try {
+      const result = generateStructure(project, structureOptions)
+      engine.current?.stop(); update({ sections: result.sections, structureGeneration: result.structureGeneration }); setSelected(result.sections[0].id)
+      setMessage(`Estructura creada: ${result.recipe.title}. ${result.warnings.join(' ')}`)
+    } catch (error) { setMessage(error instanceof Error ? error.message : 'No se pudo generar la estructura.') }
   }
   const changeLibrary = (change: Partial<MusicProject>) => { engine.current?.stop(); update(change) }
   const mix = (id: string, change: Partial<MusicProject['tracks'][number]>) => update({ tracks: project.tracks.map(track => track.id === id ? { ...track, ...change } : track) })
@@ -110,10 +115,11 @@ export default function ArrangementWorkbench({ project, update, saveStatus, onOp
     {rendered.error && <p className="arrangement-error" role="alert">{rendered.error}</p>}
     {message && <p className="arrangement-message" role="status">{message}</p>}
     {arrangement?.warnings.map(warning => <p className="arrangement-message" key={warning}>{warning}</p>)}
+    <StructureGenerator project={project} options={structureOptions} configure={setStructureOptions} generate={createStructure}/>
     <div className="section-heading"><h3>Línea de tiempo</h3><div className="arrangement-actions"><button className="text-button" onClick={onOpenTools}>Abrir generadores</button><button className="text-button" onClick={onOpenLyrics}>Abrir letras</button></div></div>
     <p className="arrangement-help">Elige una frase en cada bloque para añadir el instrumento, o Silencio para retirarlo. Cada frase se repite desde su inicio y se recorta al final de la sección. Los cambios del arreglo detienen el audio; volumen y silencio se aplican mientras suena.</p>
-    {!project.sections.length && <div className="arrangement-empty"><h3>Empieza con una estructura</h3><p>Crea una canción con Intro, Versos, Coros, Break y Outro. Cada sección tendrá una combinación distinta de instrumentos disponibles.</p><button className="button primary" onClick={createStructure}>Crear estructura inicial</button></div>}
-    <div className="gantt-toolbar"><div className="gantt-legend">{instrumentOrder.map(kind => <span className="instrument-theme" data-instrument={kind} key={kind}><i/>{instrumentNames[kind]}</span>)}</div><label>Zoom · compases<select aria-label="Zoom de la línea de tiempo" value={zoom} onChange={e => setZoom(Number(e.target.value))}><option value={24}>Compacto</option><option value={36}>Normal</option><option value={56}>Ampliado</option></select></label><button className="button secondary" onClick={createStructure}>Aplicar plantilla dinámica</button></div>
+    {!project.sections.length && <div className="arrangement-empty"><h3>Empieza con una estructura</h3><p>Elige una familia o deja que el generador proponga una forma. Después podrás cambiar cada bloque y sus instrumentos.</p></div>}
+    <div className="gantt-toolbar"><div className="gantt-legend">{instrumentOrder.map(kind => <span className="instrument-theme" data-instrument={kind} key={kind}><i/>{instrumentNames[kind]}</span>)}</div><label>Zoom · compases<select aria-label="Zoom de la línea de tiempo" value={zoom} onChange={e => setZoom(Number(e.target.value))}><option value={24}>Compacto</option><option value={36}>Normal</option><option value={56}>Ampliado</option></select></label></div>
     {timeline.length > 0 && <ArrangementTimeline project={project} timeline={timeline} selected={section?.id} current={current?.id} beat={beat} playing={state !== 'stopped'} zoom={zoom} select={setSelected} assign={assign} openLibrary={(trackId, variantId) => setLibrarySelection({ trackId, variantId })}/>}
     <div className="arrangement-actions arrangement-section-actions"><button className="button secondary" disabled={project.sections.length >= 100} onClick={add}><Plus size={16}/>Añadir sección</button>{section && <><button className="button secondary" disabled={index <= 0} onClick={() => commit(moveSection(project.sections, section.id, -1))}><ArrowUp size={15}/>Mover antes</button><button className="button secondary" disabled={index >= project.sections.length - 1} onClick={() => commit(moveSection(project.sections, section.id, 1))}><ArrowDown size={15}/>Mover después</button><button className="button secondary" disabled={project.sections.length >= 100} onClick={() => { const copy = { ...section, id: crypto.randomUUID(), name: `${section.name} (copia)`.slice(0, 100), trackIds: [...section.trackIds], ...(section.variantIds ? { variantIds: { ...section.variantIds } } : {}) }; const sections = [...project.sections]; sections.splice(index + 1, 0, copy); commit(sections); setSelected(copy.id) }}><Copy size={15}/>Duplicar sección</button><button className="button secondary" onClick={() => { if (window.confirm(`¿Eliminar «${section.name}» con su letra y sus vínculos? Las pistas originales se conservan.`)) { commit(project.sections.filter(item => item.id !== section.id)); setSelected(project.sections[index + 1]?.id ?? project.sections[index - 1]?.id ?? '') } }}><Trash2 size={15}/>Eliminar sección</button></>}</div>
     {section && <div className="arrangement-editor"><label>Sección a editar<select aria-label="Sección a editar" value={section.id} onChange={e => setSelected(e.target.value)}>{project.sections.map((item, i) => <option key={item.id} value={item.id}>{i + 1}. {item.name || 'Sin nombre'}</option>)}</select></label><SectionEditor key={section.id} section={section} edit={edit} report={setMessage}/><div className="arrangement-actions"><button className="button secondary" disabled={!project.tracks.length} onClick={linkAll}>Vincular todas a esta sección</button><button className="button secondary" disabled={!section.trackIds.length} onClick={() => edit({ trackIds: [], variantIds: {} })}>Desvincular todas de esta sección</button><button className="button secondary" disabled={!sounding || !selectedTimeline || starting} onClick={() => { if (selectedTimeline) void play(selectedTimeline.start) }}>Reproducir desde esta sección</button></div></div>}

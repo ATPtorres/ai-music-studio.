@@ -3,8 +3,8 @@ import { harmonyFingerprint, varyLine } from '../music/lines'
 import { randomFromSeed } from '../music/random'
 import { variantClip } from './clips'
 
-export const instrumentOrder = ['drums', 'bass', 'chords', 'melody'] as const
-export const instrumentNames = { drums: 'Batería', bass: 'Bajo', chords: 'Acordes', melody: 'Melodía' }
+export { instrumentOrder, instrumentNames } from './instruments'
+export { createDynamicStructure } from './structure'
 type Section = MusicProject['sections'][number]
 export function assignVariant(section: Section, trackId: string, variantId: string | null): Section {
   const variantIds = { ...section.variantIds }
@@ -62,21 +62,4 @@ export function editVariantNotes(track: MusicTrack, variantId: string, notes: Mu
   if ((track.kind === 'bass' || track.kind === 'melody') && sorted.some((note, i) => i > 0 && note.start < sorted[i - 1].start + sorted[i - 1].duration - 1e-8)) throw new Error('Bajo y melodía son monofónicos: las notas no deben solaparse.')
   if (track.kind === 'drums' && sorted.some((note, i) => [42, 46].includes(note.pitch) && sorted.some((other, j) => i !== j && other.pitch !== note.pitch && [42, 46].includes(other.pitch) && Math.abs(other.start - note.start) < 1e-8))) throw new Error('El hi-hat abierto y el cerrado no pueden empezar juntos.')
   return trackSchema.parse({ ...track, variants: track.variants?.map(item => item.id === variantId ? variantSchema.parse({ ...item, notes: sorted, sourceHarmony: undefined }) : item) })
-}
-export function createDynamicStructure(project: MusicProject): Section[] {
-  const templates: { name: string; bars: number; kinds: MusicTrack['kind'][]; second?: boolean }[] = [
-    { name: 'Intro', bars: 4, kinds: ['chords', 'melody'] },
-    { name: 'Verso 1', bars: 8, kinds: ['drums', 'bass', 'chords'] },
-    { name: 'Coro', bars: 8, kinds: ['drums', 'bass', 'chords', 'melody'] },
-    { name: 'Break', bars: 4, kinds: ['chords'] },
-    { name: 'Verso 2', bars: 8, kinds: ['drums', 'bass', 'melody'], second: true },
-    { name: 'Coro final', bars: 8, kinds: ['drums', 'bass', 'chords', 'melody'] },
-    { name: 'Outro', bars: 4, kinds: ['chords', 'melody'] },
-  ]
-  const tracks = instrumentOrder.flatMap(kind => project.tracks.filter(track => track.kind === kind)).slice(0, 16)
-  return templates.map(template => {
-    let section: Section = { id: crypto.randomUUID(), name: template.name, bars: template.bars, lyrics: '', trackIds: [] }
-    for (const track of tracks.filter(track => template.kinds.includes(track.kind))) section = assignVariant(section, track.id, template.second && (track.kind === 'bass' || track.kind === 'melody') ? track.variants?.[0]?.id ?? '' : '')
-    return section
-  })
 }

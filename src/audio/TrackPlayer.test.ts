@@ -36,6 +36,30 @@ describe('Preview sincronizado (audio simulado)', () => {
     expect(fake.voices[0].attack).toHaveBeenCalledWith(57, 2, 5, 88 / 127)
     player.dispose()
   })
+  it.each([0.01, 0.1, 0.3, 0.6])('mantiene las semicorcheas pares con swing %s en ticks que el reloj puede disparar', async swing => {
+    const notes = Array.from({ length: 32 }, (_, step) => ({ pitch: 38, start: step * 0.25 + (step % 2 ? swing * 0.25 : 0), duration: 0.06, velocity: 96 }))
+    const player = new TrackPlayer(vi.fn())
+    player.configure([{ id: 'drums', kind: 'drums', notes, volume: 0.7, muted: false }], 100, 8)
+    await player.play()
+    const events = fake.parts[0].events
+    expect(events).toHaveLength(32)
+    expect(events.every(event => /^\d+i$/.test(event.time))).toBe(true)
+    expect(new Set(events.map(event => event.time)).size).toBe(32)
+    events.forEach((event, index) => expect(Math.abs(Number(event.time.slice(0, -1)) / 192 - notes[index].start)).toBeLessThanOrEqual(0.5 / 192 + 1e-10))
+    for (const event of events) fake.parts[0].callback(1, event)
+    expect(fake.drumHit).toHaveBeenCalledTimes(32)
+    if (swing === 0.6) { expect(events[1].time).toBe('77i'); expect(events[3].time).toBe('173i') }
+    expect(notes[1].start).toBe(0.25 + swing * 0.25) // Do not quantize the stored music or MIDI.
+    player.dispose()
+  })
+  it('agenda el final y el loop en ticks enteros aunque la duración importada sea fraccionaria', async () => {
+    const player = new TrackPlayer(vi.fn())
+    player.configure([{ ...tracks[0], notes: [{ pitch: 60, start: 0, duration: 1.3, velocity: 90 }] }], 100, 1.3)
+    await player.play()
+    expect(fake.transport.loopEnd).toBe('250i')
+    expect(fake.transport.schedule).toHaveBeenCalledWith(expect.any(Function), '250i')
+    player.dispose()
+  })
   it('reanuda solamente las notas todavía activas sin perder la posición', async () => {
     const player = new TrackPlayer(vi.fn())
     player.configure(tracks, 120, 4)
