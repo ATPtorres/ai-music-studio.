@@ -150,3 +150,11 @@ Más documentación: [arquitectura y riesgos](docs/architecture.md), [plan por f
 ### Ajustes de audio del 20 de octubre de 2026
 
 Se retiraron Piano de Acordes y LinnDrum de Batería; los proyectos anteriores resuelven esas elecciones a Piano eléctrico y 707. Se equilibró la ganancia de los presets de Acordes y Bajo y se corrigieron las semicorcheas pares que se omitían al activar swing. Los cambios afectan también al preview del arreglo. [Mediciones y verificación](docs/verification-audio-fixes.md).
+
+## Interfaz para móvil y tableta
+
+La navegación inferior mantiene nombres visibles, los módulos ofrecen un selector para cambiar de herramienta y los formularios se adaptan al ancho. Los controles táctiles principales tienen al menos 44 px y los campos usan texto de 16 px. Batería, piano roll y arreglo se desplazan dentro de sus propios paneles. [Revisión en ocho tamaños, capturas y límites](docs/responsive.md).
+
+## Vista básica y opciones avanzadas
+
+Los seis módulos muestran los controles esenciales y un botón «Opciones avanzadas», cerrado por defecto. La configuración técnica y los editores detallados se despliegan sin perder sus valores al plegar. [Distribución de controles y verificación](docs/advanced-options.md).

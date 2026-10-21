@@ -14,7 +14,7 @@ export default function PianoRoll({ notes, low, high, end, beatsPerBar, selected
   const width = Math.max(480, (visibleEnd - start) * beatWidth + labelWidth)
   const height = (high - low + 1) * row + top
   const black = (pitch: number) => [1, 3, 6, 8, 10].includes(pitch % 12)
-  return <><div className="roll-pages"><button className="text-button" disabled={current === 0} onClick={() => setPage(current - 1)}>← Anteriores</button><span>Compases {current * 8 + 1}–{Math.ceil(visibleEnd / beatsPerBar)}</span><button className="text-button" disabled={current >= pages - 1} onClick={() => setPage(current + 1)}>Siguientes →</button></div><div className="piano-scroll" tabIndex={0} aria-label="Piano roll desplazable"><svg className="piano-roll" width={width} height={height} aria-label="Piano roll editable" onClick={event => {
+  return <><div className="roll-pages"><button className="text-button" disabled={current === 0} onClick={() => setPage(current - 1)}>← Anteriores</button><span>Compases {current * 8 + 1}–{Math.ceil(visibleEnd / beatsPerBar)}</span><button className="text-button" disabled={current >= pages - 1} onClick={() => setPage(current + 1)}>Siguientes →</button></div><p className="mobile-scroll-hint">Desliza para explorar las notas. Usa el editor inferior para ajustar altura, inicio y duración con precisión.</p><div className="piano-scroll" tabIndex={0} aria-label="Piano roll desplazable"><svg className="piano-roll" width={width} height={height} aria-label="Piano roll editable" onClick={event => {
     const rect = event.currentTarget.getBoundingClientRect()
     const x = event.clientX - rect.left - labelWidth; const y = event.clientY - rect.top - top
     if (x < 0 || y < 0 || x >= (visibleEnd - start) * beatWidth) return

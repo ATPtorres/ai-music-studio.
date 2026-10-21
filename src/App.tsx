@@ -1,4 +1,4 @@
-import { lazy, Suspense, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { BookOpen, AudioLines, ArrowDownToLine, ArrowRight, ArrowUpFromLine, Check, ChevronRight, CircleHelp, Disc3, FileMusic, FolderOpen, Guitar, LayoutDashboard, ListMusic, Mic2, Music2, Piano, Plus, Settings2, ShieldCheck, SlidersHorizontal, Sparkles, Waves } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { createProject, keys, type MusicProject } from './models/project'
@@ -20,10 +20,13 @@ const modules: { name: string; description: string; phase: number; icon: LucideI
   { name: 'Letras e IA', description: 'Transforma historias en canciones.', phase: 5, icon: Mic2, color: 'green' },
   { name: 'Estructura', description: 'Conecta cada parte de tu canción.', phase: 6, icon: ListMusic, color: 'yellow' },
 ]
+const toolPages = ['chords', 'melody', 'bass', 'drums', 'lyrics', 'arrangement'] as const
+
 type Page = 'knowledge' | 'studio' | 'tools' | 'projects' | 'guide' | 'chords' | 'melody' | 'bass' | 'drums' | 'lyrics' | 'arrangement'
 export default function App() {
   const { project, update, replace, status, blocked } = useProject()
   const [page, setPage] = useState<Page>('studio')
+  useEffect(() => { window.scrollTo(0, 0); document.getElementById('main-content')?.focus({ preventScroll: true }) }, [page])
   const [suggestion, setSuggestion] = useState<KnowledgeSuggestion | null>(null)
   const openTool = (index: number) => { setSelected(index); setSuggestion(null); setPage(index === 0 ? 'chords' : index === 1 ? 'melody' : index === 2 ? 'bass' : index === 3 ? 'drums' : index === 4 ? 'lyrics' : 'arrangement') }
   const [notice, setNotice] = useState('')
@@ -42,19 +45,20 @@ export default function App() {
       replace(next); setNotice('Proyecto importado y validado.'); setPage('studio')
     } catch (error) { setNotice(error instanceof Error ? error.message : 'No se pudo importar el proyecto.') }
   }
-  return <div className="app-shell">
+  return <div className="app-shell"><a className="skip-link" href="#main-content">Saltar al contenido</a>
     <aside className="sidebar">
-      <a href="#studio" className="brand" onClick={() => setPage('studio')}><span className="brand-mark"><AudioLines size={25}/></span><span>AI Music<span className="brand-light"> Studio</span><small>EL ESPACIO DE TUS IDEAS</small></span></a>
+      <a href="#studio" className="brand" aria-label="AI Music Studio · Ir a Mi estudio" onClick={() => setPage('studio')}><span className="brand-mark"><AudioLines size={25}/></span><span>AI Music<span className="brand-light"> Studio</span><small>EL ESPACIO DE TUS IDEAS</small></span></a>
       <div className="workspace-label">WORKSPACE <span>LOCAL</span></div>
-      <nav aria-label="Navegación principal">{([{ id: 'studio', title: 'Mi estudio', icon: LayoutDashboard }, { id: 'tools', title: 'Herramientas', icon: SlidersHorizontal }, { id: 'projects', title: 'Mis proyectos', icon: FolderOpen }, { id: 'knowledge', title: 'Biblioteca', icon: BookOpen }] as const).map(item => <button key={item.id} className={`nav-item ${(page === item.id || (['chords', 'melody', 'bass', 'drums', 'lyrics', 'arrangement'].includes(page) && item.id === 'tools')) ? 'active' : ''}`} onClick={() => setPage(item.id)}><item.icon size={19}/>{item.title}{page === item.id && <span className="nav-dot"/>}</button>)}</nav>
+      <nav aria-label="Navegación principal">{([{ id: 'studio', title: 'Mi estudio', icon: LayoutDashboard }, { id: 'tools', title: 'Herramientas', icon: SlidersHorizontal }, { id: 'projects', title: 'Mis proyectos', icon: FolderOpen }, { id: 'knowledge', title: 'Biblioteca', icon: BookOpen }] as const).map(item => <button key={item.id} title={item.title} aria-current={(page === item.id || (toolPages.some(value => value === page) && item.id === 'tools')) ? 'page' : undefined} className={`nav-item ${(page === item.id || (['chords', 'melody', 'bass', 'drums', 'lyrics', 'arrangement'].includes(page) && item.id === 'tools')) ? 'active' : ''}`} onClick={() => setPage(item.id)}><item.icon size={19}/>{item.title}{page === item.id && <span className="nav-dot"/>}</button>)}</nav>
       <div className="sidebar-divider"/><div className="workspace-label">TU CAJA DE HERRAMIENTAS</div>
       <div className="tool-nav">{modules.map((module, index) => <button key={module.name} className="instrument-theme" data-instrument={(['chords', 'melody', 'bass', 'drums'] as const)[index]} onClick={() => openTool(index)}><module.icon size={17}/>{module.name}<span>F{module.phase}</span></button>)}</div>
       <div className="sidebar-bottom"><div className="local-card"><ShieldCheck size={19}/><div>Tu música te pertenece<small>Sin cuentas. En tu dispositivo.</small></div></div><button className="nav-item" onClick={() => setPage('guide')}><CircleHelp size={18}/>Guía del estudio</button><div className="version"><span className="status-dot"/> Estudio · v0.7.0 <span>FASE 6</span></div></div>
     </aside>
     <div className="main-shell"><header className="topbar"><div className="breadcrumb">Workspace <ChevronRight size={14}/><strong>{page === 'knowledge' ? 'Biblioteca' : page === 'studio' ? 'Mi estudio' : page === 'melody' ? 'Melodías' : page === 'bass' ? 'Bajos' : page === 'arrangement' ? 'Estructura' : page === 'lyrics' ? 'Letras e IA' : page === 'drums' ? 'Batería' : page === 'chords' ? 'Acordes' : page === 'tools' ? 'Herramientas' : page === 'projects' ? 'Mis proyectos' : 'Guía del estudio'}</strong></div><div className="topbar-right"><button className="help-button" aria-label="Abrir guía del estudio" onClick={() => setPage('guide')}><CircleHelp size={17}/></button><span className="local-badge"><span className="status-dot"/> Modo local</span><span className="avatar">TÚ</span></div></header>
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {notice && <div className="notice" role="status">{notice}<button aria-label="Cerrar aviso" onClick={() => setNotice('')}>×</button></div>}
         {blocked && <div className="notice warning" role="alert">{status}<button onClick={() => { if (window.confirm('¿Permitir guardar este proyecto y reemplazar la copia no recuperable?')) replace(project) }}>Permitir guardado</button></div>}
+        <div className="mobile-module-switcher" hidden={!toolPages.some(value => value === page)}><label htmlFor="mobile-module">Herramienta actual</label><select id="mobile-module" aria-label="Cambiar herramienta" value={toolPages.some(value => value === page) ? page : 'chords'} onChange={e => openTool(toolPages.findIndex(value => value === e.target.value))}>{modules.map((module, index) => <option key={module.name} value={toolPages[index]}>{module.name}</option>)}</select></div>
         <div className="page-heading"><div><div className="eyebrow">TU ESPACIO CREATIVO</div><h1>{page === 'knowledge' ? 'Más caminos para tu música.' : page === 'studio' ? 'Todo empieza con una idea.' : page === 'melody' ? 'Una melodía que cuenta algo.' : page === 'bass' ? 'Todo empieza desde abajo.' : page === 'arrangement' ? 'Tu canción, de principio a fin.' : page === 'lyrics' ? 'Tu historia también tiene música.' : page === 'drums' ? 'Dale pulso a tu canción.' : page === 'chords' ? 'Dale armonía a tu idea.' : page === 'tools' ? 'Una herramienta para cada idea.' : page === 'projects' ? 'Tu música, siempre contigo.' : 'Construyamos tu próximo sonido.'}</h1><p>{page === 'knowledge' ? 'Explora recursos musicales y llévalos a tu próximo borrador.' : page === 'studio' ? 'Dale forma a tu próxima canción, a tu ritmo.' : page === 'melody' || page === 'bass' ? 'Dibuja tus notas, escucha el contexto y lleva tu idea al DAW.' : page === 'arrangement' ? 'Conecta tus pistas, ordena secciones y escucha el conjunto.' : page === 'lyrics' ? 'Escribe, revisa y conserva las palabras de tu canción.' : page === 'drums' ? 'Diseña tu groove, golpe a golpe, y escúchalo con tus pistas.' : page === 'chords' ? 'Genera, escucha y lleva tus acordes a cualquier DAW.' : page === 'tools' ? 'Explora los módulos que formarán tu estudio musical.' : page === 'projects' ? 'Guarda en este navegador y lleva una copia de tus proyectos.' : 'Un estudio modular que crece contigo, fase a fase.'}</p></div><button className="button secondary" onClick={reset}><Plus size={17}/>Nuevo proyecto</button></div>
         {page === 'knowledge' && <Suspense fallback={<p role="status">Cargando biblioteca…</p>}><KnowledgeExplorer onOpenStructures={() => setPage('arrangement')} onUseRecipe={next => { setSuggestion(next); setPage('chords') }}/></Suspense>}
         {page === 'chords' && <Suspense fallback={<p role="status">Cargando módulo de acordes…</p>}><ChordWorkbench key={project.id + (suggestion?.id ?? '')} suggestion={suggestion} onBrowseKnowledge={() => setPage('knowledge')} project={project} update={update} saveStatus={status} onOpenLine={kind => setPage(kind)}/></Suspense>}

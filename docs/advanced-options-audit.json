@@ -1,0 +1,164 @@
+[
+  {
+    "module": "Acordes",
+    "closed": "false",
+    "opened": "true",
+    "before": {
+      "overflow": false,
+      "visibleControls": 19
+    },
+    "after": {
+      "overflow": false,
+      "visibleControls": 32
+    },
+    "recollapsed": "false"
+  },
+  {
+    "module": "Melodías",
+    "closed": "false",
+    "opened": "true",
+    "before": {
+      "overflow": false,
+      "visibleControls": 18
+    },
+    "after": {
+      "overflow": false,
+      "visibleControls": 25
+    },
+    "recollapsed": "false"
+  },
+  {
+    "module": "Bajos",
+    "closed": "false",
+    "opened": "true",
+    "before": {
+      "overflow": false,
+      "visibleControls": 18
+    },
+    "after": {
+      "overflow": false,
+      "visibleControls": 25
+    },
+    "recollapsed": "false"
+  },
+  {
+    "module": "Batería",
+    "closed": "false",
+    "opened": "true",
+    "before": {
+      "overflow": false,
+      "visibleControls": 120
+    },
+    "after": {
+      "overflow": false,
+      "visibleControls": 125
+    },
+    "recollapsed": "false"
+  },
+  {
+    "module": "Letras",
+    "closed": "false",
+    "opened": "true",
+    "before": {
+      "overflow": false,
+      "visibleControls": 31
+    },
+    "after": {
+      "overflow": false,
+      "visibleControls": 33
+    },
+    "recollapsed": "false"
+  },
+  {
+    "module": "Estructura",
+    "closed": "false",
+    "opened": "true",
+    "before": {
+      "overflow": false,
+      "visibleControls": 86
+    },
+    "after": {
+      "overflow": false,
+      "visibleControls": 114
+    },
+    "recollapsed": "false"
+  },
+  {
+    "module": "Acordes",
+    "viewport": "desktop",
+    "metrics": {
+      "emptyFields": 0,
+      "overflow": false
+    }
+  },
+  {
+    "module": "Melodías",
+    "viewport": "desktop",
+    "metrics": {
+      "emptyFields": 0,
+      "overflow": false
+    }
+  },
+  {
+    "module": "Bajos",
+    "viewport": "desktop",
+    "metrics": {
+      "emptyFields": 0,
+      "overflow": false
+    }
+  },
+  {
+    "module": "Batería",
+    "viewport": "desktop",
+    "metrics": {
+      "emptyFields": 0,
+      "overflow": false
+    }
+  },
+  {
+    "module": "Letras",
+    "viewport": "desktop",
+    "metrics": {
+      "emptyFields": 0,
+      "overflow": false
+    }
+  },
+  {
+    "module": "Estructura",
+    "viewport": "desktop",
+    "metrics": {
+      "emptyFields": 0,
+      "overflow": false
+    }
+  },
+  {
+    "module": "Acordes",
+    "viewport": "320x740",
+    "overflow": false
+  },
+  {
+    "module": "Melodías",
+    "viewport": "320x740",
+    "overflow": false
+  },
+  {
+    "module": "Bajos",
+    "viewport": "320x740",
+    "overflow": false
+  },
+  {
+    "module": "Batería",
+    "viewport": "320x740",
+    "overflow": false
+  },
+  {
+    "module": "Letras",
+    "viewport": "320x740",
+    "overflow": false
+  },
+  {
+    "module": "Estructura",
+    "viewport": "320x740",
+    "overflow": false
+  }
+]
