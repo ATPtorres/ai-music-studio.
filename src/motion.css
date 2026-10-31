@@ -1,0 +1,45 @@
+/* Brief, finite feedback. Musical grids and the playhead retain exact positions. */
+@media (prefers-reduced-motion: no-preference) {
+  .app-shell :is(.button,.transport-icon,.text-button,.nav-item,.tool-nav button,.module-card,.advanced-options-toggle) {
+    transition: background-color 160ms ease, border-color 160ms ease,
+      color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+  }
+  .app-shell :is(input,select,textarea) {
+    transition: border-color 160ms ease, background-color 160ms ease;
+  }
+  .app-shell .advanced-options-toggle > svg:last-child {
+    transition: transform 180ms ease;
+  }
+  .app-shell .advanced-options-panel:not([hidden]),
+  .app-shell :is(.lyrics-draft,.arrangement-message,.chord-message,.line-message,.drum-message,.notice) {
+    animation: studio-reveal 180ms ease-out;
+  }
+  /* Lazy-loaded screens fade in when their actual content becomes available. */
+  .app-shell :is(.chord-workbench,.line-workbench,.drum-workbench,.lyrics-workbench,.arrangement-workbench) {
+    animation: studio-reveal 160ms ease-out;
+  }
+  .app-shell :is(.button,.transport-icon):active:not(:disabled) {
+    transform: translateY(1px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .app-shell .module-card:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 0 var(--studio-border);
+  }
+  .app-shell .module-card:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+}
+@keyframes studio-reveal {
+  from { opacity: 0.7; }
+  to { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell *, .app-shell *::before, .app-shell *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -4,6 +4,7 @@ import type { LucideIcon } from 'lucide-react'
 import { createProject, keys, type MusicProject } from './models/project'
 import { downloadProject, MAX_PROJECT_BYTES, parseProject } from './services/persistence'
 import { useProject } from './state/useProject'
+import { usePageMotion } from './hooks/usePageMotion'
 import type { KnowledgeSuggestion } from './knowledge/schema'
 const KnowledgeExplorer = lazy(() => import('./features/knowledge/KnowledgeExplorer'))
 const ChordWorkbench = lazy(() => import('./features/chords/ChordWorkbench'))
@@ -26,6 +27,7 @@ type Page = 'knowledge' | 'studio' | 'tools' | 'projects' | 'guide' | 'chords' |
 export default function App() {
   const { project, update, replace, status, blocked } = useProject()
   const [page, setPage] = useState<Page>('studio')
+  usePageMotion(page)
   useEffect(() => { window.scrollTo(0, 0); document.getElementById('main-content')?.focus({ preventScroll: true }) }, [page])
   const [suggestion, setSuggestion] = useState<KnowledgeSuggestion | null>(null)
   const openTool = (index: number) => { setSelected(index); setSuggestion(null); setPage(index === 0 ? 'chords' : index === 1 ? 'melody' : index === 2 ? 'bass' : index === 3 ? 'drums' : index === 4 ? 'lyrics' : 'arrangement') }

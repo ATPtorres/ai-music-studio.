@@ -1,0 +1,9 @@
+# Movimiento discreto de la interfaz
+
+La navegación usa una entrada de 220 ms: opacidad de 0,75 a 1 y desplazamiento vertical de 5 px a cero. `usePageMotion` usa Web Animations y depende únicamente de la página seleccionada, sin desmontar el editor para animarlo. Editar parámetros, guardar o actualizar el reloj de reproducción no vuelve a dispararla. Las navegaciones rápidas cancelan la animación anterior y se conserva el foco de teclado en el contenido.
+
+`motion.css` agrega apariciones de 160–180 ms al contenido de módulos que carga de forma diferida, paneles avanzados y mensajes nuevos. Los botones y campos tienen transiciones breves de color y borde; las tarjetas suben 2 px al pasar el puntero en dispositivos con ratón y los botones de acción ceden 1 px al pulsarlos. No hay animaciones infinitas, cambios de tamaño de las rejillas ni efectos sobre el cursor musical. Los paneles cerrados se ocultan inmediatamente para mantener sus controles fuera del teclado.
+
+Con `prefers-reduced-motion: reduce`, se desactivan animaciones y transiciones CSS. El hook omite la entrada y cancela la animación si la preferencia cambia mientras está en curso. El acceso a la biblioteca desde el Gantt también usa desplazamiento inmediato con esa preferencia. En navegadores sin Web Animations se conserva la navegación normal. No se añaden dependencias ni campos al proyecto.
+
+Verificación en Chromium: navegación por los seis módulos, foco, finalización de animaciones, conservación del JSON, reproducción real de batería al desplegar opciones, cancelación al activar movimiento reducido y ausencia de animaciones en ese modo. Vista móvil de 390 px sin desbordamiento y navegación mediante el selector de herramienta. Sin errores del navegador. Suite de 192 pruebas aprobada; compilación y ESLint correctos. La validación móvil usa una ventana simulada; no se probó en Safari ni dispositivos físicos.

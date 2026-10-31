@@ -158,3 +158,7 @@ La navegación inferior mantiene nombres visibles, los módulos ofrecen un selec
 ## Vista básica y opciones avanzadas
 
 Los seis módulos muestran los controles esenciales y un botón «Opciones avanzadas», cerrado por defecto. La configuración técnica y los editores detallados se despliegan sin perder sus valores al plegar. [Distribución de controles y verificación](docs/advanced-options.md).
+
+## Movimiento de la interfaz
+
+Transiciones breves entre pantallas, aparición suave de paneles y respuesta discreta de botones y tarjetas. Se respeta la preferencia de movimiento reducido del dispositivo. [Alcance y verificación](docs/motion.md).
