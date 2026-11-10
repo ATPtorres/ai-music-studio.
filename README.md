@@ -13,6 +13,23 @@ npm run dev
 
 Abre la URL que imprime Vite (normalmente http://127.0.0.1:5173/). Aunque la carpeta esté en XAMPP, el desarrollo se sirve con Vite. No publiques la raíz del repositorio por Apache. Para revisar producción: `npm run build` y `npm run preview`.
 
+## Agente de composición (opcional y gratis)
+
+El proyecto incluye un agente que traduce peticiones en lenguaje natural a las herramientas locales del estudio: configura el proyecto, genera acordes, melodía, bajo, batería y estructura, y permite deshacer el último cambio. **No necesita Gemini ni Netlify**: usa un proveedor compatible con OpenAI a través de un proxy local.
+
+1. Copia `.env.example` a `.env` y elige un proveedor con *tool calling*: Gemini, Groq u OpenRouter en su nivel gratuito, o Ollama en local.
+2. Rellena `LLM_BASE_URL`, `LLM_MODEL` y `LLM_API_KEY` (Ollama no necesita clave).
+3. Reinicia `npm run dev` y abre **Agente IA** en el lateral.
+
+```sh
+# Ejemplo con Gemini
+LLM_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai
+LLM_MODEL=gemini-3.5-flash
+LLM_API_KEY=tu_clave_gratuita
+```
+
+La clave se queda en el servidor de Vite y nunca llega al navegador. El endpoint `/api/agent` solo existe con `npm run dev` o `npm run preview`; un `dist/` estático no incluye el proxy. Sin variables configuradas, el agente muestra una guía y el resto del estudio funciona igual. Detalles, proveedores, seguridad y diagnóstico: [Agente de composición](docs/agent.md).
+
 ## Probar la Fase 2
 
 1. Abre **Acordes** en el lateral o su tarjeta en Estudio/Herramientas.
@@ -109,6 +126,8 @@ Genera la pista y usa su selector de sonido, o cámbialo desde la mezcla de Estr
 
 ## Arquitectura vigente
 
+- `server/agent.ts` y `server/viteAgent.ts`: proxy local compatible con OpenAI, claves solo en servidor y validación de fronteras.
+- `src/agent/` y `src/features/agent/`: herramientas musicales, bucle del agente, trazas, deshacer y configuración del proveedor.
 - `src/sounds/`, `src/audio/MelodicVoice.ts` y `src/audio/drumProfiles.ts`: catálogo validado, selectores y recetas de síntesis compartidas.
 - `src/arrangement/`, `src/features/arrangement/` y `src/midi/exportArrangement.ts`: disposición por secciones, clips vinculados, transporte/mezcla y MIDI completo.
 - `src/features/lyrics/`, `src/services/ai/`, `server/lyrics.ts` y `netlify/functions/lyrics.ts`: edición de letras, proveedores y endpoint con cuotas persistentes.
@@ -137,7 +156,7 @@ npm run lint
 npm run build
 ```
 
-164 pruebas en 26 archivos: biblioteca/selector, armonía ampliada, contexto acotado, teoría, esquemas/persistencia, armonía, melodías/bajos, patrones y swing, generación/edición en DOM simulado, transporte/kit con Tone simulado, letras/proveedores/límites del servidor, arreglo por secciones, selección de sonidos y lectura binaria de MIDI individual/multipista. Consulta [verificación de Fase 6](docs/verification-phase6.md) para distinguir lo comprobado de la escucha, los móviles físicos y la importación en DAW pendientes. La validación de 0.7.0 se ejecutó en Linux; consulta también la [verificación del editor visual](docs/visual-arrangement.md#verificación).
+211 pruebas en 32 archivos: biblioteca/selector, armonía ampliada, contexto acotado, teoría, esquemas/persistencia, armonía, melodías/bajos, patrones y swing, generación/edición en DOM simulado, transporte/kit con Tone simulado, letras/proveedores/límites del servidor, arreglo por secciones, selección de sonidos, lectura binaria de MIDI individual/multipista, herramientas del agente y proxy del agente. Consulta [verificación de Fase 6](docs/verification-phase6.md) para distinguir lo comprobado de la escucha, los móviles físicos y la importación en DAW pendientes. La validación de 0.7.0 se ejecutó en Linux; consulta también la [verificación del editor visual](docs/visual-arrangement.md#verificación).
 
 ## Datos y seguridad
 

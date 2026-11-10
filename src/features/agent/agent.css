@@ -1,0 +1,43 @@
+.agent-workbench{margin-bottom:28px}.agent-save{font-size:10px;color:var(--studio-muted);margin-bottom:14px}
+.agent-intro{display:flex;align-items:center;gap:18px;padding:24px;background:var(--studio-blue-soft);border:1px solid var(--studio-ink);margin-bottom:18px}
+.agent-intro h2{font-size:23px;margin:0 0 9px}.agent-intro p{font-size:12px;color:var(--studio-muted);margin:0;line-height:1.8;max-width:760px}
+.agent-state{margin-left:auto;display:flex;align-items:center;gap:7px;font-size:9px;letter-spacing:.4px;border:1px solid var(--studio-border);background:var(--studio-white);padding:7px 9px;white-space:nowrap}
+.agent-state.ready{border-color:var(--studio-blue);color:var(--studio-blue)}.agent-state.off{border-color:var(--studio-ink);background:var(--studio-yellow);color:var(--studio-ink)}
+.agent-setup{border:1px solid var(--studio-ink);background:var(--studio-yellow);padding:18px 20px;margin-bottom:18px}
+.agent-setup-title{display:flex;align-items:center;gap:9px;font-size:13px;margin-bottom:8px}
+.agent-setup p{font-size:12px;line-height:1.8;margin:6px 0}
+.agent-setup pre{background:var(--studio-white);border:1px solid var(--studio-border);padding:13px 15px;overflow:auto;font-size:11px;line-height:1.7;margin:12px 0}
+.agent-muted{color:var(--studio-muted);font-size:11px!important}
+.agent-chat{min-height:280px;max-height:480px;overflow-y:auto;border:1px solid var(--studio-border);background:var(--studio-white);padding:18px;display:flex;flex-direction:column;gap:11px}
+.agent-empty{margin:auto;text-align:center;color:var(--studio-muted);max-width:620px;padding:14px}
+.agent-empty>svg{color:var(--studio-blue)}.agent-empty p{font-size:12px;margin:9px 0 14px}
+.agent-empty small{display:block;font-size:10px;margin-top:14px;line-height:1.8}
+.agent-examples{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.agent-example{border:1px solid var(--studio-border);background:var(--studio-blue-soft);color:var(--studio-ink);text-align:left;padding:11px 12px;font-size:11px;line-height:1.6}
+.agent-example:hover:not(:disabled){border-color:var(--studio-blue);background:var(--studio-white)}
+.agent-example:disabled{opacity:.55;cursor:default}
+.agent-bubble{max-width:86%;padding:12px 14px;border:1px solid var(--studio-border);background:var(--studio-blue-soft);position:relative}
+.agent-bubble p{font-size:12px;line-height:1.8;margin:4px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.agent-role{font-size:8px;letter-spacing:1.1px;text-transform:uppercase;color:var(--studio-muted)}
+.agent-bubble.user{align-self:flex-end;background:var(--studio-blue);border-color:var(--studio-blue);color:var(--studio-white)}
+.agent-bubble.user .agent-role{color:var(--studio-white);opacity:.75}
+.agent-bubble.error{align-self:stretch;max-width:100%;background:var(--studio-red-soft);border-color:var(--studio-red);color:var(--studio-ink)}
+.agent-bubble.system{align-self:center;background:var(--studio-white);border-style:dashed}
+.agent-bubble.system p,.agent-bubble.system .agent-role{color:var(--studio-muted)}
+.agent-check{position:absolute;right:9px;bottom:9px;color:var(--studio-blue)}
+.agent-bubble.user .agent-check{color:var(--studio-white)}
+.agent-step{display:flex;align-items:center;gap:8px;font-size:10px;color:var(--studio-muted);padding:3px 2px;line-height:1.6}
+.agent-step svg{color:var(--studio-blue);flex-shrink:0}
+.agent-step.failed{color:var(--studio-red)}.agent-step.failed svg{color:var(--studio-red)}
+.agent-spin{animation:agent-spin 1s linear infinite}@keyframes agent-spin{to{transform:rotate(360deg)}}
+.agent-composer{border:1px solid var(--studio-border);border-top:0;background:var(--studio-white);padding:18px}
+.agent-composer label{font-size:11px;font-weight:600;color:var(--studio-ink)}
+.agent-composer textarea{margin-top:8px;font-size:13px;line-height:1.7;min-height:84px}
+.agent-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}
+.agent-hint{font-size:9px;color:var(--studio-muted);margin-right:auto}
+.agent-note{margin-top:20px}.agent-note code{background:var(--studio-white);border:1px solid var(--studio-border);padding:1px 4px;font-size:10px}
+@media(max-width:700px){
+  .agent-intro{padding:17px;gap:12px;align-items:flex-start;flex-wrap:wrap}.agent-intro h2{font-size:19px}
+  .agent-state{margin-left:0}.agent-chat{padding:13px;max-height:none}.agent-examples{grid-template-columns:1fr}
+  .agent-bubble{max-width:94%}.agent-composer{padding:14px}.agent-actions .button{flex:1}.agent-hint{display:none}
+}
